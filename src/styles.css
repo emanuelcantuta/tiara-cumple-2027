@@ -1,0 +1,83 @@
+/* =========================================
+   RESET
+========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh; /* fallback */
+  min-height: 100dvh;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* =========================================
+   VARIABLES
+========================================= */
+:root {
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+}
+
+/*
+   Colors 
+  --bg-color: #;
+  --primary-color: #;
+  --text-color: #;
+  --white: #;
+
+  Typography
+  --main-font: 'Arial', sans-serif;
+  --heading-font: 'Georgia', serif;
+*/
+
+/* =========================================
+   GLOBAL
+========================================= */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--main-font);
+  line-height: 1.5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h2, h3 {
+  font-family: var(--heading-font);
+  font-weight: normal;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

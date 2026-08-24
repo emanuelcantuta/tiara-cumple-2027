@@ -1,9 +1,4 @@
-@import './base/reset.css';
-@import './base/variables.css';
-@import './base/global.css';
-
 /* main */
-
 .container {
   max-width: 800px;
   margin: 0 auto; /* Centers horizontally */
