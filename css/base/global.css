@@ -1,0 +1,23 @@
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--main-font);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h2, h3 {
+  font-family: var(--heading-font);
+  font-weight: normal;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
