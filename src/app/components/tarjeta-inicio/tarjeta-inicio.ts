@@ -27,7 +27,7 @@ export class TarjetaInicio {
     const inputPassword = inputElement.value;
 
     this.clearInput(inputElement);
-    
+
     if (!inputPassword.trim()) {
       this.handleEmptyInput();
       return; 
@@ -36,6 +36,9 @@ export class TarjetaInicio {
     this.state.showEmptyWarning = false;
 
     if (inputPassword === this.config.password) {
+      const audio = document.getElementById('musica-fondo') as HTMLAudioElement;
+      
+      if (audio) audio.play();
       this.router.navigate(['/tarjetaRegalo']);
     } else {
       this.state.attempts++;
