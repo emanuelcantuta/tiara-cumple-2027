@@ -37,6 +37,8 @@ p, h1, h2, h3, h4, h5, h6 {
    VARIABLES
 ========================================= */
 :root {
+  --bg-color: linear-gradient(135deg, #ffd1dc 0%, #ffecd2 100%);
+
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 32px;
@@ -44,7 +46,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /*
    Colors 
-  --bg-color: #;
   --primary-color: #;
   --text-color: #;
   --white: #;
@@ -58,11 +59,13 @@ p, h1, h2, h3, h4, h5, h6 {
    GLOBAL
 ========================================= */
 body {
-  background-color: var(--bg-color);
+  background: var(--bg-color);
   color: var(--text-color);
   font-family: var(--main-font);
   line-height: 1.5;
 
+
+  /*duda*/
   display: flex;
   justify-content: center;
   align-items: center;
