@@ -6,8 +6,9 @@
   /* Mantenemos el RGBA para controlar la opacidad de la sombra */
   box-shadow: 0 10px 25px rgba(214, 40, 40, 0.2); 
   text-align: center;
-  max-width: 400px;
-  width: 90%;
+  
+  width: min(100%, 400px);
+  margin: 0 auto;
   border: 3px solid var(--error-color); 
 }
 
