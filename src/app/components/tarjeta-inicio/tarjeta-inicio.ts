@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginState } from './models/login-state';
 import { LOGIN_CONFIG } from './models/login.config';
@@ -22,7 +22,7 @@ export class TarjetaInicio {
     showAttemptError: false,
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
 
   clearInput(inputElement: HTMLInputElement): void {
@@ -52,16 +52,30 @@ export class TarjetaInicio {
     }
   }
 
-  handleEmptyInput(): void {
-    this.state.showEmptyWarning = true;
+  async handleEmptyInput(): Promise<void> {
+    this.state.showEmptyWarning = false;
     this.state.showAttemptError = false;
+    this.cdr.detectChanges();
+
+    await this.sleep(10);
+
+    this.state.showEmptyWarning = true;
+    this.cdr.detectChanges();
+
     this.triggerShakeAnimation();
     this.autoHideMessage();
   }
 
-  handleFailedAttempt(): void {
-    this.state.showAttemptError = true;
+  async handleFailedAttempt(): Promise<void> {
+    this.state.showAttemptError = false;
     this.state.showEmptyWarning = false;
+    this.cdr.detectChanges();
+
+    await this.sleep(10);
+
+    this.state.showAttemptError = true;
+    this.cdr.detectChanges(); // ⚡ Forzamos creación
+
     this.triggerShakeAnimation();
     this.autoHideMessage();
 
@@ -72,27 +86,35 @@ export class TarjetaInicio {
     }, this.config.errorTimeout);
   }
 
-  // método temblor reutilizable (capaz moverlo a una carpeta de utilidades si se usa en más lugares)
   triggerShakeAnimation(): void {
     this.state.errorAnimation = false; 
+    this.cdr.detectChanges();
+    
     setTimeout(() => {
       this.state.errorAnimation = true;
+      this.cdr.detectChanges();
     }, 10);
+    
     setTimeout(() => {
       this.state.errorAnimation = false; 
+      this.cdr.detectChanges();
     }, this.config.errorTimeout);
   }
   
   autoHideMessage(): void {
-    // 1. Si ya había un timer corriendo de un clic anterior, lo frenamos
     if (this.state.hideMessageTimeout) {
       clearTimeout(this.state.hideMessageTimeout);
     }
 
-    // 2. Creamos un timer nuevo y lo guardamos en la variable del estado
     this.state.hideMessageTimeout = setTimeout(() => {
       this.state.showEmptyWarning = false;
       this.state.showAttemptError = false;
+      this.cdr.detectChanges(); // Actualizamos la vista al limpiar
     }, 3000);
   }
+
+  sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 }
+
