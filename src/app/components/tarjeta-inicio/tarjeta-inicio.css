@@ -1,12 +1,11 @@
 .card {
-  background-color: #ffffff;
+  background-color: var(--white);
   padding: 3rem 2rem;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   text-align: center;
-  max-width: 400px;
-  width: 90%;
-  margin: 0 auto;
+
+  width: min(100%, 400px);
 }
 
 .card h1 {
@@ -17,33 +16,32 @@
 .card p {
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-sm);
 }
 
 input {
   padding: 12px;
-  border: 2px solid #eee;
+  border: 2px solid var(--border-light);
   border-radius: 10px;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.3s;
 }
 
-/* Asume que tenés --color-primario en tus variables globales, sino cambialo por un color hexadecimal */
 input:focus {
-  border-color: var(--color-primario, #e63946); 
+  border-color: var(--primary-color); 
 }
 
 button {
   padding: 12px;
-  background-color: var(--color-primario, #e63946);
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--white);
   border: none;
   border-radius: 10px;
   font-size: 1rem;
@@ -56,18 +54,28 @@ button:active {
   transform: scale(0.95);
 }
 
+.error-container {
+  min-height: 45px; 
+  margin-top: 15px; 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .error-text {
-  color: #d62828;
+  color: var(--error-color);
   font-size: 0.85rem;
-  margin-top: 15px;
   font-weight: bold;
+  margin: 0;
+  animation: fadeInOut 3s forwards; 
 }
 
 /* =========================================
-   ANIMACIÓN DE ERROR (TEMBLOR)
+   ANIMACIÓN DE ERROR
 ========================================= */
+
 .shake {
-  animation: temblar 0.5s ease-in-out;
+  animation: temblar 0.5s ease-in-out;  
 }
 
 @keyframes temblar {
@@ -77,4 +85,11 @@ button:active {
   60% { transform: translateX(-10px); }
   80% { transform: translateX(10px); }
   100% { transform: translateX(0); }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }  /* Aparece suavemente en el primer instante */
+  85% { opacity: 1; }  /* Se queda visible casi todo el tiempo */
+  100% { opacity: 0; } /* Se desvanece justo antes de desaparecer */
 }

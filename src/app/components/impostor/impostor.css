@@ -1,0 +1,72 @@
+/* Reutilizamos la base de la tarjeta - luego modificamos para que sea reutilizable */
+.card {
+  background-color: var(--white);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  /* Mantenemos el RGBA para controlar la opacidad de la sombra */
+  box-shadow: 0 10px 25px rgba(214, 40, 40, 0.2); 
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  border: 3px solid var(--error-color); 
+}
+
+.card h1 {
+  font-size: 1.8rem;
+  color: var(--error-color);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: var(--text-color);
+}
+
+.emoji-container {
+  font-size: 5rem;
+  margin: 1.5rem 0;
+}
+
+button {
+  padding: 12px;
+  background-color: var(--text-color); /* Usamos el gris oscuro de texto para el botón */
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  /* Sumamos el transform para el click */
+  transition: background-color 0.3s, transform 0.1s; 
+}
+
+button:hover {
+  background-color: var(--error-color);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* =========================================
+   ANIMACIÓN DE SIRENA (ALERTA ROJA)
+========================================= */
+
+.impostor-card {
+  animation: sirena 1.5s ease-in-out infinite;
+}
+
+@keyframes sirena {
+  0% { 
+    box-shadow: 0 0 15px rgba(214, 40, 40, 0.2); 
+    border-color: var(--error-color); 
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(214, 40, 40, 0.8); 
+    border-color: #ff3333; /* Este lo dejamos en hex porque es el brillo claro */
+    transform: scale(1.02); 
+  }
+  100% { 
+    box-shadow: 0 0 15px rgba(214, 40, 40, 0.2); 
+    border-color: var(--error-color); 
+  }
+}

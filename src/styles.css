@@ -1,59 +1,37 @@
 /* =========================================
    RESET
 ========================================= */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  min-height: 100vh; /* fallback */
-  min-height: 100dvh;
-}
-
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-}
-
-input, button, textarea, select {
-  font: inherit;
-}
-
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-}
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html, body { min-height: 100vh; min-height: 100dvh; }
+body { line-height: 1.5; -webkit-font-smoothing: antialiased; }
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; }
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 
 /* =========================================
    VARIABLES
 ========================================= */
 :root {
   --bg-color: linear-gradient(135deg, #ffd1dc 0%, #ffecd2 100%);
+  
+  /* Colores principales */
+  --primary-color: #e63946;
+  --error-color: #d62828;
+  --text-color: #333333;
+  --text-muted: #555555;
+  --white: #ffffff;
+  --border-light: #eeeeee;
 
+  /* Espaciados */
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 32px;
+
+  /* Tipografía */
+  --main-font: 'Arial', sans-serif; /* de momento */
+  --heading-font: 'Georgia', serif; /* de momento*/
 }
-
-/*
-   Colors 
-  --primary-color: #;
-  --text-color: #;
-  --white: #;
-
-  Typography
-  --main-font: 'Arial', sans-serif;
-  --heading-font: 'Georgia', serif;
-*/
 
 /* =========================================
    GLOBAL
@@ -62,10 +40,7 @@ body {
   background: var(--bg-color);
   color: var(--text-color);
   font-family: var(--main-font);
-  line-height: 1.5;
-
-
-  /*duda*/
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,11 +51,33 @@ h1, h2, h3 {
   font-weight: normal;
 }
 
-a {
-  color: var(--primary-color);
-  text-decoration: none;
+a { color: var(--primary-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* =========================================
+   VIEW TRANSITIONS (Animaciones de Rutas)
+========================================= */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
 }
 
-a:hover {
-  text-decoration: underline;
+::view-transition-old(root) {
+  animation-name: fade-and-slide-out;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-and-slide-in;
+}
+
+@keyframes fade-and-slide-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes fade-and-slide-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

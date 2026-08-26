@@ -1,6 +1,8 @@
-<article class="card-content">
-  <h1>¿Sos la verdadera Tiara? 🧐</h1> <!-- cambiar icono por img pusheen observador a futuro -->
-  <p>Ingresá la contraseña secreta para acceder a tu regalo:</p>
+<article class="card">
+  <header>
+    <h1>¿Sos la verdadera Tiara? 🧐</h1> <!-- cambiar icono por img pusheen observador a futuro -->
+    <p>Ingresá la contraseña secreta para acceder a tu regalo:</p>
+  </header>
 
   <div class="input-group" [class.shake]="state.errorAnimation">
     <input 
@@ -12,12 +14,13 @@
     <button (click)="verifyPassword(inputPass)">Entrar</button>
   </div>
 
-
-  @if (state.showEmptyWarning) {
-    <p class="error-text">¡Ey! No ingresaste ninguna contraseña. 😾</p> <!-- cambiar icono por img pusheen a futuro -->
-  } @else if (state.attempts > 0) {
-    <p class="error-text">
-        Contraseña incorrecta. Te quedan {{ config.maxAttempts - state.attempts }} intentos.
-    </p>
-  }
+  <footer class="error-container">
+    @if (state.showEmptyWarning) {
+      <p class="error-text">¡Ey! No ingresaste ninguna contraseña. 😾</p>
+    } @else if (state.showAttemptError) {
+      <p class="error-text">
+          Contraseña incorrecta. Te quedan {{ config.maxAttempts - state.attempts }} intentos.
+      </p>
+    }
+  </footer>
 </article>

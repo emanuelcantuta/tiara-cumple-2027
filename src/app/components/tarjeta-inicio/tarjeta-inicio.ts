@@ -19,9 +19,15 @@ export class TarjetaInicio {
     attempts: 0,
     errorAnimation: false,
     showEmptyWarning: false,
+    showAttemptError: false,
   };
 
   constructor(private router: Router) {}
+
+
+  clearInput(inputElement: HTMLInputElement): void {
+    inputElement.value = '';
+  }
 
   verifyPassword(inputElement: HTMLInputElement): void {
     const inputPassword = inputElement.value;
@@ -34,10 +40,10 @@ export class TarjetaInicio {
     }
 
     this.state.showEmptyWarning = false;
+    this.state.showAttemptError = false;
 
     if (inputPassword === this.config.password) {
       const audio = document.getElementById('musica-fondo') as HTMLAudioElement;
-      
       if (audio) audio.play();
       this.router.navigate(['/tarjetaRegalo']);
     } else {
@@ -46,17 +52,18 @@ export class TarjetaInicio {
     }
   }
 
-  clearInput(inputElement: HTMLInputElement): void {
-    inputElement.value = '';
-  }
-
   handleEmptyInput(): void {
     this.state.showEmptyWarning = true;
+    this.state.showAttemptError = false;
     this.triggerShakeAnimation();
+    this.autoHideMessage();
   }
 
   handleFailedAttempt(): void {
+    this.state.showAttemptError = true;
+    this.state.showEmptyWarning = false;
     this.triggerShakeAnimation();
+    this.autoHideMessage();
 
     setTimeout(() => {
       if (this.state.attempts >= this.config.maxAttempts) {
@@ -74,5 +81,18 @@ export class TarjetaInicio {
     setTimeout(() => {
       this.state.errorAnimation = false; 
     }, this.config.errorTimeout);
+  }
+  
+  autoHideMessage(): void {
+    // 1. Si ya había un timer corriendo de un clic anterior, lo frenamos
+    if (this.state.hideMessageTimeout) {
+      clearTimeout(this.state.hideMessageTimeout);
+    }
+
+    // 2. Creamos un timer nuevo y lo guardamos en la variable del estado
+    this.state.hideMessageTimeout = setTimeout(() => {
+      this.state.showEmptyWarning = false;
+      this.state.showAttemptError = false;
+    }, 3000);
   }
 }
