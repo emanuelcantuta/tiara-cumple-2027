@@ -1,7 +1,8 @@
 .card {
   border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 3rem 2rem 0 2rem;
+  padding: 3rem 1.5rem 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: min(96%, 800px);
 }
 
 .card h1 {
