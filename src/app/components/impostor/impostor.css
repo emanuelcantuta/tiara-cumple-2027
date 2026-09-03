@@ -1,5 +1,5 @@
 .card {
-  padding: 3rem 2rem;
+  padding: 1.5rem 0.5rem;
   box-shadow: 0 10px 25px rgba(214, 40, 40, 0.2); 
   border: 3px solid var(--error-color); 
 }
