@@ -1,21 +1,12 @@
-/* Reutilizamos la base de la tarjeta - luego modificamos para que sea reutilizable */
 .card {
-  background-color: var(--white);
   padding: 3rem 2rem;
-  border-radius: 20px;
-  /* Mantenemos el RGBA para controlar la opacidad de la sombra */
   box-shadow: 0 10px 25px rgba(214, 40, 40, 0.2); 
-  text-align: center;
-  
-  width: min(100%, 400px);
-  margin: 0 auto;
   border: 3px solid var(--error-color); 
 }
 
 .card h1 {
   font-size: 1.8rem;
   color: var(--error-color);
-  margin-bottom: 0.5rem;
 }
 
 .card p {
@@ -28,24 +19,12 @@
 }
 
 button {
-  padding: 12px;
-  background-color: var(--text-color); /* Usamos el gris oscuro de texto para el botón */
-  color: var(--white);
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  /* Sumamos el transform para el click */
+  background-color: var(--text-color); 
   transition: background-color 0.3s, transform 0.1s; 
 }
 
 button:hover {
   background-color: var(--error-color);
-}
-
-button:active {
-  transform: scale(0.95);
 }
 
 /* =========================================

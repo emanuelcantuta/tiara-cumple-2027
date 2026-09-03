@@ -1,16 +1,11 @@
 .card {
-  background-color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 3rem 2rem 0 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  text-align: center;
-
-  width: min(100%, 400px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .card h1 {
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .card p {
@@ -39,19 +34,8 @@ input:focus {
 }
 
 button {
-  padding: 12px;
   background-color: var(--primary-color);
-  color: var(--white);
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
   transition: transform 0.1s;
-}
-
-button:active {
-  transform: scale(0.95);
 }
 
 .error-container {

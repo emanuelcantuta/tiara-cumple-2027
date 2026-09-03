@@ -24,7 +24,6 @@ export class TarjetaInicio {
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
-
   clearInput(inputElement: HTMLInputElement): void {
     inputElement.value = '';
   }
@@ -36,7 +35,7 @@ export class TarjetaInicio {
 
     if (!inputPassword.trim()) {
       this.handleEmptyInput();
-      return; 
+      return;
     }
 
     this.state.showEmptyWarning = false;
@@ -74,7 +73,7 @@ export class TarjetaInicio {
     await this.sleep(10);
 
     this.state.showAttemptError = true;
-    this.cdr.detectChanges(); // ⚡ Forzamos creación
+    this.cdr.detectChanges();
 
     this.triggerShakeAnimation();
     this.autoHideMessage();
@@ -109,7 +108,7 @@ export class TarjetaInicio {
     this.state.hideMessageTimeout = setTimeout(() => {
       this.state.showEmptyWarning = false;
       this.state.showAttemptError = false;
-      this.cdr.detectChanges(); // Actualizamos la vista al limpiar
+      this.cdr.detectChanges();
     }, 3000);
   }
 
@@ -117,4 +116,3 @@ export class TarjetaInicio {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
-

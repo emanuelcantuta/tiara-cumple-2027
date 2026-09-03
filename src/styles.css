@@ -13,7 +13,10 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
    VARIABLES
 ========================================= */
 :root {
-  --bg-color: linear-gradient(135deg, #ffd1dc 0%, #ffecd2 100%);
+  /* Fondo y Cintas */
+  --bg-main: #ffd1dc;
+  --ribbon-wide: rgba(255, 255, 255, 0.4);
+  --ribbon-thin: rgba(255, 255, 255, 0.8);
   
   /* Colores principales */
   --primary-color: #e63946;
@@ -24,20 +27,34 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
   --border-light: #eeeeee;
 
   /* Espaciados */
-  --space-sm: 8px;
+  --space-sm: 6px;
   --space-md: 16px;
   --space-lg: 32px;
 
   /* Tipografía */
-  --main-font: 'Arial', sans-serif; /* de momento */
-  --heading-font: 'Georgia', serif; /* de momento*/
+  --main-font: 'Arial', sans-serif;
+  --heading-font: 'Georgia', serif;
 }
 
 /* =========================================
    GLOBAL
 ========================================= */
 body {
-  background: var(--bg-color);
+  background-color: var(--bg-main);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 120px,
+    var(--ribbon-wide) 120px,
+    var(--ribbon-wide) 150px, 
+    transparent 150px,
+    transparent 160px,
+    var(--ribbon-thin) 160px,
+    var(--ribbon-thin) 165px
+  );
+  background-size: 200% 200%;
+  animation: rayasMoviles 30s linear infinite;
+
   color: var(--text-color);
   font-family: var(--main-font);
   
@@ -54,10 +71,52 @@ h1, h2, h3 {
 a { color: var(--primary-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+.card {
+  background-color: var(--ribbon-thin);
+}
+
+/* =========================================
+   COMPONENTES REUTILIZABLES (UI)
+========================================= */
+.card {
+  background-color: var(--ribbon-thin);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 auto;
+  width: min(100%, 500px);
+}
+
+.card h1 {
+  margin-bottom: 0.5rem;
+}
+
+button {
+  padding: 12px;
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* =========================================
+   ANIMACIONES
+========================================= */
+@keyframes rayasMoviles {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
 /* =========================================
    VIEW TRANSITIONS (Animaciones de Rutas)
 ========================================= */
-
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 0.4s;
