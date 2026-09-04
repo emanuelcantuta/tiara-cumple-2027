@@ -7,6 +7,7 @@
 
 .card h1 {
   font-size: 1.8rem;
+  font-weight: 500;
   color: var(--error-color);
   margin-bottom: 0.5rem;
 }
