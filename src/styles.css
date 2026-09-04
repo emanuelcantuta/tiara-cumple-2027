@@ -1,3 +1,5 @@
+@import '@fontsource-variable/fredoka';
+@import '@fontsource-variable/quicksand';
 /* =========================================
    RESET
 ========================================= */
@@ -32,8 +34,8 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
   --space-lg: 32px;
 
   /* Tipografía */
-  --main-font: 'Arial', sans-serif;
-  --heading-font: 'Georgia', serif;
+  --heading-font: 'Fredoka Variable', serif;
+  --main-font: 'Quicksand Variable', sans-serif;
 }
 
 /* =========================================
