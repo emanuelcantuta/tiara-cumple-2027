@@ -61,6 +61,7 @@ export class TarjetaInicio {
     this.state.showEmptyWarning = true;
     this.cdr.detectChanges();
 
+    this.playErrorSound();
     this.triggerShakeAnimation();
     this.autoHideMessage();
   }
@@ -75,6 +76,7 @@ export class TarjetaInicio {
     this.state.showAttemptError = true;
     this.cdr.detectChanges();
 
+    this.playErrorSound();
     this.triggerShakeAnimation();
     this.autoHideMessage();
 
@@ -114,5 +116,11 @@ export class TarjetaInicio {
 
   sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  playErrorSound(): void {
+    const audio = new Audio('assets/audio/ui/error.wav'); 
+    audio.volume = 0.5;
+    audio.play().catch(err => console.warn('Reproducción de audio bloqueada:', err)); 
   }
 }
