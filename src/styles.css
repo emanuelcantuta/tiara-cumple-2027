@@ -58,10 +58,15 @@ body {
   color: var(--text-color);
   font-family: var(--main-font);
   text-wrap: balance;
-
+  
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+app-root {
+  display: block;
+  width: 100%;
 }
 
 h1, h2, h3 {
