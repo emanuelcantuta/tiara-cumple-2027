@@ -13,6 +13,7 @@
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
   color: var(--text-muted);
+  text-wrap: balance;
 }
 
 .input-group {
