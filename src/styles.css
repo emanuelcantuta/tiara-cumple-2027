@@ -55,7 +55,7 @@ body {
     var(--ribbon-thin) 165px
   );
   background-size: 200% 200%;
-  animation: rayasMoviles 30s linear infinite;
+  animation: rayasMoviles 3s linear infinite;
 
   color: var(--text-color);
   font-family: var(--main-font);
@@ -113,8 +113,8 @@ button:active {
    ANIMACIONES
 ========================================= */
 @keyframes rayasMoviles {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+  0% { background-position: 0px 0px; }
+  100% { background-position: -233.35px 0px; } 
 }
 
 /* =========================================
