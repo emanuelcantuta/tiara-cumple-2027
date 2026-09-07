@@ -6,11 +6,13 @@
   </header>
 
   <div class="input-group" [class.shake]="state.errorAnimation">
-    <input 
-      #inputPass 
-      type="password" 
+    <input
+      #inputPass
+      id="contrasena"
+      name="contrasena"
+      type="password"
       placeholder="Tu contraseña..."
-      (keyup.enter)="verifyPassword(inputPass)" 
+      (keyup.enter)="verifyPassword(inputPass)"
     >
     <button (click)="verifyPassword(inputPass)">Entrar</button>
   </div>
