@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginState } from './models/login-state';
 import { LOGIN_CONFIG } from './models/login.config';
-
-// tarjetaRegalo - impostor (nombres de las rutas a las que se redirige según el resultado del login)
+import { Auth } from '../../services/auth';
 
 @Component({
   imports: [CommonModule],
@@ -14,6 +13,9 @@ import { LOGIN_CONFIG } from './models/login.config';
 })
 export class TarjetaInicio {
   readonly config = LOGIN_CONFIG;
+  private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
+  private auth = inject(Auth);
 
   state: LoginState = {
     attempts: 0,
@@ -21,8 +23,6 @@ export class TarjetaInicio {
     showEmptyWarning: false,
     showAttemptError: false,
   };
-
-  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
   clearInput(inputElement: HTMLInputElement): void {
     inputElement.value = '';
@@ -42,9 +42,10 @@ export class TarjetaInicio {
     this.state.showAttemptError = false;
 
     if (inputPassword === this.config.password) {
+      this.auth.signIn();
       const audio = document.getElementById('musica-fondo') as HTMLAudioElement;
       if (audio) audio.play();
-      this.router.navigate(['/tarjetaRegalo']);
+      this.router.navigate(['/regalo']);
     } else {
       this.state.attempts++;
       this.handleFailedAttempt();
