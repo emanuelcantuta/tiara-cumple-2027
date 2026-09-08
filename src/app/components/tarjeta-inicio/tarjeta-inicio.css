@@ -6,11 +6,11 @@
 }
 
 .card h1 {
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
 }
 
 header p {
-  font-size: 0.9rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   margin-bottom: 1.5rem;
   color: var(--text-muted);
   text-wrap: balance;
@@ -26,7 +26,7 @@ input {
   padding: 12px;
   border: 2px solid var(--border-light);
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   outline: none;
   transition: border-color 0.3s;
 }
@@ -51,7 +51,7 @@ button {
 .error-text {
   color: var(--error-color);
   text-wrap: balance;
-  font-size: 0.8rem;
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
   font-weight: bold;
   margin: 0;
   animation: fadeInOut 3s forwards; 
