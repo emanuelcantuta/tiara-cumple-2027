@@ -101,11 +101,19 @@
   aspect-ratio: 16 / 9;
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 10px;
+  overflow: hidden;
+  
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2.5rem;
   margin-bottom: var(--space-sm);
+}
+
+.img-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .gallery-item figcaption {

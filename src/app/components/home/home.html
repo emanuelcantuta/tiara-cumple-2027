@@ -13,8 +13,7 @@
           
           <figure class="gallery-item card" (click)="playTrack(track)">
             <div class="img-placeholder">
-              <!-- <img [src]="track.coverUrl" alt="Portada">  a futuro para las portadas -->
-              🎵 
+              <img id="portada" [src]="track.coverUrl" alt="Portada de {{ track.title}}">
             </div> 
             <figcaption>
               <strong>{{ track.title }}</strong>
@@ -39,7 +38,7 @@
 
     <!-- 3. SELECCIÓN DE BANDAS -->
     <section class="bands-section">
-      <h2 >¡Elegí tu próximo destino!</h2>
+      <h2 class="section-title">¡Elegí tu próximo destino!</h2>
       <ul class="band-list">
         <li>
           <a href="#">🎸 Banda Uno</a>

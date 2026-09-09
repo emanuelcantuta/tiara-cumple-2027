@@ -13,7 +13,7 @@ export class Home {
 
   tracks: Track[] = [
     {
-      coverUrl: 'assets/images/banda1.jpg', 
+      coverUrl: 'assets/images/kpop/cortis/joyride-portada.webp', 
       title: 'JoyRide',
       artist: 'CORTIS',
       audioSource: { 
@@ -22,66 +22,66 @@ export class Home {
       }
     },
     {
-      coverUrl: 'assets/images/banda2.jpg',
-      title: 'Otra Canción',
-      artist: 'Artista Dos',
+      coverUrl: 'assets/images/kpop/cortis/what-you-want-portada.webp',
+      title: 'What You Want',
+      artist: 'CORTIS',
       audioSource: { 
-        mp3: 'assets/audio/music/otra.mp3', 
-        ogg: 'assets/audio/music/otra.ogg' 
+        mp3: 'assets/audio/music/otra.mp3',
+        ogg: 'assets/audio/music/otra.ogg'
       }
     },
     {
-      coverUrl: 'assets/images/banda3.jpg',
-      title: 'Tercera Canción',
-      artist: 'Artista Tres',
-      audioSource: { 
+      coverUrl: 'assets/images/kpop/enhypen/bloody-paradise-portada.webp',
+      title: 'Bloody Paradise',
+      artist: 'ENHYPEN',
+      audioSource: {
         mp3: 'assets/audio/music/tercera.mp3', 
         ogg: 'assets/audio/music/tercera.ogg' 
       }
     }, 
     {
-      coverUrl: 'assets/images/banda4.jpg',
-      title: 'Cuarta Canción',
-      artist: 'Artista Cuatro',
+      coverUrl: 'assets/images/kpop/enhypen/no-doubt-portada.webp',
+      title: 'No Doubt',
+      artist: 'ENHYPEN',
       audioSource: { 
         mp3: 'assets/audio/music/cuarta.mp3', 
         ogg: 'assets/audio/music/cuarta.ogg' 
       }
     },
     {
-      coverUrl: 'assets/images/banda5.jpg',
-      title: 'Quinta Canción',
-      artist: 'Artista Cinco',
-      audioSource: { 
-        mp3: 'assets/audio/music/quinta.mp3', 
-        ogg: 'assets/audio/music/quinta.ogg' 
-      }
-    },
-    {
-      coverUrl: 'assets/images/banda6.jpg',
-      title: 'Sexta Canción',
-      artist: 'Artista Seis',
-      audioSource: { 
-        mp3: 'assets/audio/music/sexta.mp3', 
-        ogg: 'assets/audio/music/sexta.ogg' 
-      }
-    },
-    {
-      coverUrl: 'assets/images/banda7.jpg',
-      title: 'Séptima Canción',
-      artist: 'Artista Siete',
+      coverUrl: 'assets/images/kpop/newjeans/omg-portada.webp',
+      title: 'OMG',
+      artist: 'NEWJEANS',
       audioSource: { 
         mp3: 'assets/audio/music/septima.mp3', 
         ogg: 'assets/audio/music/septima.ogg' 
       }
     },
     {
-      coverUrl: 'assets/images/banda8.jpg',
-      title: 'Octava Canción',
-      artist: 'Artista Ocho',
+      coverUrl: 'assets/images/kpop/newjeans/super-shy-portada.webp',
+      title: 'Super Shy',
+      artist: 'NEWJEANS',
       audioSource: { 
         mp3: 'assets/audio/music/octava.mp3', 
         ogg: 'assets/audio/music/octava.ogg' 
+      }
+    },
+    {
+      coverUrl: 'assets/images/kpop/illit/not-cute-anymore-portada.webp',
+      title: 'Not Cute Anymore',
+      artist: 'ILLIT',
+      audioSource: { 
+        mp3: 'assets/audio/music/quinta.mp3', 
+        ogg: 'assets/audio/music/quinta.ogg' 
+      }
+    },
+    {
+      coverUrl: 'assets/images/kpop/illit/magnetic-portada.webp',
+      title: 'Magnetic',
+      artist: 'ILLIT',
+      audioSource: { 
+        mp3: 'assets/audio/music/sexta.mp3', 
+        ogg: 'assets/audio/music/sexta.ogg' 
       }
     },
 
