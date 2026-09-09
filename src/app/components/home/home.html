@@ -1,1 +1,57 @@
-<p>home works!</p>
+<div class="home-container">
+  <nav class="top-nav">
+    <h1>Para Tiara</h1>
+    <!-- agregar boton de pausa (maybeX) -->
+  </nav>
+
+  <main class="main-content">
+    <!-- 1. SELECTOR DE MÚSICA HORIZONTAL -->
+    <section class="gallery-section">
+      <h2 class="section-title">Elegí qué escuchar 🎧</h2>
+      <div class="horizontal-scroll">
+        @for (track of tracks; track $index) {
+          
+          <figure class="gallery-item card" (click)="playTrack(track)">
+            <div class="img-placeholder">
+              <!-- <img [src]="track.coverUrl" alt="Portada">  a futuro para las portadas -->
+              🎵 
+            </div> 
+            <figcaption>
+              <strong>{{ track.title }}</strong>
+              <span class="muted">{{ track.artist }}</span>
+            </figcaption>
+          </figure>
+
+        }
+      </div>
+    </section>
+
+    <!-- 2. LA CARTA -->
+    <section class="letter-section card">
+      <h2 class="section-title">MI CARTA JEJEJ (aún no sé que decir)</h2>
+      <p>
+        aún no sé que decir...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, eum ipsam fugit 
+        consectetur fugiat consequuntur similique nemo in harum doloremque veritatis nobis, 
+        voluptatum pariatur nulla atque cum. Perferendis, dolorem quos!
+      </p>
+    </section>
+
+    <!-- 3. SELECCIÓN DE BANDAS -->
+    <section class="bands-section">
+      <h2 >¡Elegí tu próximo destino!</h2>
+      <ul class="band-list">
+        <li>
+          <a href="#">🎸 Banda Uno</a>
+        </li>
+        <li>
+          <a href="#">🎵 Banda Dos</a>
+        </li>
+        <li>
+          <a href="#">♣ Banda Tres</a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+</div>
