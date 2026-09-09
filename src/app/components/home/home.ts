@@ -17,9 +17,9 @@ export class Home {
       coverUrl: 'assets/images/kpop/cortis/joyride-portada.webp', 
       title: 'JoyRide',
       artist: Artist.CORTIS,
-      audioSource: { 
-        mp3: 'assets/audio/music/cortis/CORTIS-JoyRide.mp3',
-        ogg: 'assets/audio/music/cortis/CORTIS-JoyRide.ogg'
+      audioSource: {
+        mp3: 'assets/audio/music/cortis/cortis-joyride.mp3',
+        ogg: 'assets/audio/music/cortis/cortis-joyride.ogg'
       }
     },
     {
@@ -27,8 +27,8 @@ export class Home {
       title: 'What You Want',
       artist: Artist.CORTIS,
       audioSource: { 
-        mp3: 'assets/audio/music/otra.mp3',
-        ogg: 'assets/audio/music/otra.ogg'
+        mp3: 'assets/audio/music/cortis/cortis-what-you-want.mp3',
+        ogg: 'assets/audio/music/cortis/cortis-what-you-want.ogg'
       }
     },
     {
@@ -36,8 +36,8 @@ export class Home {
       title: 'Bloody Paradise',
       artist: Artist.ENHYPEN,
       audioSource: {
-        mp3: 'assets/audio/music/tercera.mp3', 
-        ogg: 'assets/audio/music/tercera.ogg' 
+        mp3: 'assets/audio/music/enhypen/enhypen-bloody-paradise.mp3', 
+        ogg: 'assets/audio/music/enhypen/enhypen-bloody-paradise.ogg' 
       }
     }, 
     {
