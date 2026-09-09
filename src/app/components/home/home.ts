@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Track } from './models/track';
 import { Audio } from '../../services/audio';
+import { Artist } from '../../models/artist';
 
 @Component({
   imports: [],
@@ -15,7 +16,7 @@ export class Home {
     {
       coverUrl: 'assets/images/kpop/cortis/joyride-portada.webp', 
       title: 'JoyRide',
-      artist: 'CORTIS',
+      artist: Artist.CORTIS,
       audioSource: { 
         mp3: 'assets/audio/music/cortis/CORTIS-JoyRide.mp3',
         ogg: 'assets/audio/music/cortis/CORTIS-JoyRide.ogg'
@@ -24,7 +25,7 @@ export class Home {
     {
       coverUrl: 'assets/images/kpop/cortis/what-you-want-portada.webp',
       title: 'What You Want',
-      artist: 'CORTIS',
+      artist: Artist.CORTIS,
       audioSource: { 
         mp3: 'assets/audio/music/otra.mp3',
         ogg: 'assets/audio/music/otra.ogg'
@@ -33,7 +34,7 @@ export class Home {
     {
       coverUrl: 'assets/images/kpop/enhypen/bloody-paradise-portada.webp',
       title: 'Bloody Paradise',
-      artist: 'ENHYPEN',
+      artist: Artist.ENHYPEN,
       audioSource: {
         mp3: 'assets/audio/music/tercera.mp3', 
         ogg: 'assets/audio/music/tercera.ogg' 
@@ -42,7 +43,7 @@ export class Home {
     {
       coverUrl: 'assets/images/kpop/enhypen/no-doubt-portada.webp',
       title: 'No Doubt',
-      artist: 'ENHYPEN',
+      artist: Artist.ENHYPEN,
       audioSource: { 
         mp3: 'assets/audio/music/cuarta.mp3', 
         ogg: 'assets/audio/music/cuarta.ogg' 
@@ -51,7 +52,7 @@ export class Home {
     {
       coverUrl: 'assets/images/kpop/newjeans/omg-portada.webp',
       title: 'OMG',
-      artist: 'NEWJEANS',
+      artist: Artist.NEWJEANS,
       audioSource: { 
         mp3: 'assets/audio/music/septima.mp3', 
         ogg: 'assets/audio/music/septima.ogg' 
@@ -60,7 +61,7 @@ export class Home {
     {
       coverUrl: 'assets/images/kpop/newjeans/super-shy-portada.webp',
       title: 'Super Shy',
-      artist: 'NEWJEANS',
+      artist: Artist.NEWJEANS,
       audioSource: { 
         mp3: 'assets/audio/music/octava.mp3', 
         ogg: 'assets/audio/music/octava.ogg' 
@@ -69,7 +70,7 @@ export class Home {
     {
       coverUrl: 'assets/images/kpop/illit/not-cute-anymore-portada.webp',
       title: 'Not Cute Anymore',
-      artist: 'ILLIT',
+      artist: Artist.ILLIT,
       audioSource: { 
         mp3: 'assets/audio/music/quinta.mp3', 
         ogg: 'assets/audio/music/quinta.ogg' 
@@ -78,7 +79,7 @@ export class Home {
     {
       coverUrl: 'assets/images/kpop/illit/magnetic-portada.webp',
       title: 'Magnetic',
-      artist: 'ILLIT',
+      artist: Artist.ILLIT,
       audioSource: { 
         mp3: 'assets/audio/music/sexta.mp3', 
         ogg: 'assets/audio/music/sexta.ogg' 
