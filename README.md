@@ -12,23 +12,25 @@ La interfaz está inspirada en una estética **Y2K / Kawaii**, buscando un balan
 
 ## 🚀 Logros y Estado Actual
 **Fase 1: Arquitectura y Seguridad (Completada)**
-* [x] Configuración del enrutamiento de Angular con transiciones de vista (View Transitions).
-* [x] Sistema de autenticación (Login) simulado con manejo de errores (animaciones CSS tipo "shake").
-* [x] **Seguridad:** Protección de credenciales usando variables de entorno (`.env`) inyectadas en tiempo de construcción.
-* [x] **Estilos:** Arquitectura CSS modular y escalable.
+* [x] Configuración de rutas hijas (`children`) y transiciones de vista (View Transitions).
+* [x] Sistema de autenticación simulado con manejo de errores (animaciones CSS tipo "shake").
+* [x] **Seguridad de Rutas (Guards):** Protección del contenido del regalo mediante `authGuard` y un servicio global de autenticación gestionado con Angular Signals.
+* [x] **Seguridad de Credenciales:** Protección de contraseña usando variables de entorno (`.env`) inyectadas en tiempo de construcción.
 * [x] **Despliegue:** CI/CD configurado y funcionando en Vercel.
 
+**Fase 2: Componentes e Interacción (En Progreso)**
+* [x] **Selector de Música (Scroll Horizontal):** Galería nativa (CSS puro sin librerías) con portadas clickeables en formato 16:9, conectadas a un servicio reactivo para cambiar la música de fondo.
+* [x] **Layout Principal (Home):** Maquetado responsivo estructurado con una barra de navegación, la galería interactiva, una sección central para la carta y un menú de enlaces dinámicos para las bandas.
+
 ## 🗺️ Roadmap (Próximos Pasos)
-**Fase 2: Componentes e Interacción (En Desarrollo)**
-* [ ] **Selector de Música (UI Scroll Horizontal):** Tarjetas clickeables para cambiar la canción de fondo (CORTIS, ENHYPEN, NEWJEANS...).
-* [ ] **Categorías de Regalos (Tabs):** Navegación por pestañas con diferentes temáticas que cambien dinámicamente el contenido de la tarjeta.
-* [ ] **Sección de Bandas / Biografías (Diseño en evaluación):** Creación de un espacio para explorar información de sus grupos favoritos. Se está decidiendo entre dos enfoques multimedia:
+* [ ] **Diseño de la Carta:** Estilizar la sección central de lectura (evaluando aplicar un efecto visual de hoja de papel).
+* [ ] **Sección de Bandas / Biografías:** Creación de las vistas al hacer clic en los enlaces del Home. Se está decidiendo entre dos enfoques multimedia:
   * *Opción A (Galería Inmersiva):* Un diálogo o modal a pantalla completa enfocado puramente en lo visual, integrando fotos, GIFs de Pusheen/bandas y videos de YouTube (iframes).
   * *Opción B (Estilo Wiki):* Una página más estructurada con información detallada de cada integrante, decorada con imágenes/GIFs y coronada con su video musical más famoso (iframe de YouTube).
-* [ ] **Integración de Pusheen:** Distribuir los assets visuales a lo largo de las vistas.
+* [ ] **Integración de Pusheen:** Distribuir los assets visuales a lo largo de las vistas definitivas.
 * [ ] **Formulario de Feedback:** Sistema de calificación (1 al 10) con envío de mensaje directo a mi gmail al finalizar la experiencia.
 
 ## 🛠️ Tecnologías Utilizadas
-* **Frontend:** Angular (Standalone Components), TypeScript, HTML5.
-* **Estilos:** CSS3 Puro (Variables semánticas, animaciones Keyframes, Flexbox).
+* **Frontend:** Angular (Standalone Components, Routing Avanzado, **Signals**, inyección moderna de dependencias), TypeScript, HTML5.
+* **Estilos:** CSS3 Puro (Variables semánticas, Responsive Design con `clamp()` y `aspect-ratio`, Scroll Snapping nativo, Flexbox).
 * **Despliegue y Hosting:** Vercel.
