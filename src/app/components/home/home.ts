@@ -45,7 +45,6 @@ export class Home {
       artist: Artist.ENHYPEN,
       audioSource: this.buildAudioSource('assets/audio/music/enhypen/enhypen-bloody-paradise')
     },
-    // --- falta agregar los audios y fijar rutas --- 
     { 
       coverUrl: 'assets/images/kpop/enhypen/no-doubt-portada.webp',
       title: 'No Doubt',
