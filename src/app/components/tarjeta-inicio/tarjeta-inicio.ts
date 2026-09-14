@@ -24,6 +24,12 @@ export class TarjetaInicio {
     showAttemptError: false,
   };
 
+  constructor() {
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['/regalo']);
+    }
+  }
+
   clearInput(inputElement: HTMLInputElement): void {
     inputElement.value = '';
   }
