@@ -4,14 +4,11 @@
 :host {
   display: block;
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
 }
 
 .home-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .top-nav {
@@ -23,7 +20,10 @@
   background-color: var(--white);
   border-bottom: 2px solid var(--border-light);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  z-index: 10;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 /* =========================================
@@ -70,12 +70,10 @@
 }
 
 .main-content {
-  flex: 1;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: var(--space-lg) 0;
+  padding: var(--space-lg) 0 calc(var(--space-lg) * 2) 0;
 }
 
 /* =========================================
