@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Track } from './models/track';
 import { Audio } from '../../services/audio';
 import { Artist } from '../../models/artist';
 import { SongSource } from '../../models/song-source';
+import { Auth } from '../../services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [],
@@ -12,6 +14,10 @@ import { SongSource } from '../../models/song-source';
 })
 export class Home {
   private audio = inject(Audio);
+  private auth = inject(Auth);
+  private router = inject(Router);
+  
+  isPlaying = signal<boolean>(true);
 
   private buildAudioSource(basePath: string): SongSource {
     return {
@@ -75,5 +81,24 @@ export class Home {
 
   playTrack(selectedTrack: Track): void {
     this.audio.changeSong(selectedTrack.audioSource);
+    this.isPlaying.set(true);
+  }
+
+  toggleAudio(): void {
+    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
+    if (audioEl) {
+      if (audioEl.paused) {
+        audioEl.play();
+        this.isPlaying.set(true);
+      } else {
+        audioEl.pause();
+        this.isPlaying.set(false);
+      }
+    }
+  }
+
+  logOut(): void {
+    this.auth.logOut();
+    this.router.navigate(['/']);
   }
 }

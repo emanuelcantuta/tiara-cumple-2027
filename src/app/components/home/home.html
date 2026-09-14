@@ -1,7 +1,23 @@
 <div class="home-container">
   <nav class="top-nav">
     <h1>Para Tiara</h1>
-    <!-- agregar boton de pausa (maybeX) -->
+    
+    <div class="nav-actions">
+      <button class="icon-btn" (click)="toggleAudio()">
+        @if (isPlaying()) {
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2m0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8"/><path d="M13 9h2v6h-2zM9 9h2v6H9z"/></svg>
+          Pausa
+        } @else {
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2m0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8"/><path d="m9 17 8-5-8-5z"/></svg>
+          Play
+        }
+      </button>
+
+      <button class="icon-btn logout-btn" (click)="logOut()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 13v-2H7V8l-5 4 5 4v-3z"/><path d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2"/></svg>
+        Salir
+      </button>
+    </div>
   </nav>
 
   <main class="main-content">

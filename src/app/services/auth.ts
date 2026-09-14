@@ -8,4 +8,9 @@ export class Auth {
         this.isLoggedIn.set(true);
         localStorage.setItem('tiara_session', 'true');
     }
+
+    logOut() {
+    this.isLoggedIn.set(false);
+    localStorage.removeItem('tiara_session');
+  }
 }
