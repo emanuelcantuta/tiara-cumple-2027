@@ -1,6 +1,6 @@
 import { Component, inject, effect, ViewChild, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Audio } from './services/audio';
+import { Audio } from '@services/audio';
 
 @Component({
   imports: [RouterOutlet],

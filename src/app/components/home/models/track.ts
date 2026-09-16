@@ -1,5 +1,5 @@
-import { Artist } from '../../../models/artist';
-import { SongSource } from '../../../models/song-source';
+import { Artist } from '@models/artist';
+import { SongSource } from '@models/song-source';
 
 export interface Track {
   coverUrl: string;

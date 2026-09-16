@@ -1,5 +1,5 @@
 import { Service, signal } from '@angular/core';
-import { SongSource } from '../models/song-source';
+import { SongSource } from '@models/song-source';
 
 @Service()
 export class Audio {

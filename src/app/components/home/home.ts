@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { Track } from './models/track';
-import { Audio } from '../../services/audio';
-import { Artist } from '../../models/artist';
-import { SongSource } from '../../models/song-source';
-import { Auth } from '../../services/auth';
+import { Audio } from '@services/audio';
+import { Artist } from '@models/artist';
+import { SongSource } from '@models/song-source';
+import { Auth } from '@services/auth';
 import { Router } from '@angular/router';
 
 @Component({

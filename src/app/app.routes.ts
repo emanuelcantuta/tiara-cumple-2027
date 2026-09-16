@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { TarjetaInicio } from './components/tarjeta-inicio/tarjeta-inicio';
-import { Impostor } from './components/impostor/impostor';
-import { Home } from './components/home/home';
-import { authGuard } from './guards/auth';
+import { TarjetaInicio } from '@components/tarjeta-inicio/tarjeta-inicio';
+import { Impostor } from '@components/impostor/impostor';
+import { Home } from '@components/home/home';
+import { authGuard } from '@guards/auth';
 
 export const routes: Routes = [
     {
