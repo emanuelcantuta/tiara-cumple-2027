@@ -43,20 +43,6 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 ========================================= */
 body {
   background-color: var(--bg-main);
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 120px,
-    var(--ribbon-wide) 120px,
-    var(--ribbon-wide) 150px, 
-    transparent 150px,
-    transparent 160px,
-    var(--ribbon-thin) 160px,
-    var(--ribbon-thin) 165px
-  );
-  background-size: 200% 200%;
-  animation: rayasMoviles 3s linear infinite;
-
   color: var(--text-color);
   font-family: var(--main-font);
 }

@@ -5,6 +5,20 @@
   min-height: 100vh;
   min-height: 100dvh;
   width: 100%;
+  background-color: var(--bg-main);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 120px,
+    var(--ribbon-wide) 120px,
+    var(--ribbon-wide) 150px, 
+    transparent 150px,
+    transparent 160px,
+    var(--ribbon-thin) 160px,
+    var(--ribbon-thin) 165px
+  );
+  background-size: 200% 200%;
+  animation: rayasMoviles 3s linear infinite;
 }
 
 .card {
