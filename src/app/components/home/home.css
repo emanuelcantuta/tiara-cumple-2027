@@ -16,11 +16,6 @@
     radial-gradient(circle at 15% 90%, #F0D9F7 0%, transparent 45%);
 }
 
-.home-container {
-  display: flex;
-  flex-direction: column;
-}
-
 .top-nav {
   height: 70px;
   padding: 0 var(--space-md);
@@ -82,24 +77,19 @@
 .main-content {
   display: flex;
   flex-direction: column;
+  max-width: 900px;
   gap: 40px;
-  padding: var(--space-lg) 0 calc(var(--space-lg) * 2) 0;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
 }
 
 /* =========================================
    ALINEACIÓN GENERAL
 ========================================= */
-/* 1. Secciones sin fondo (Galería y Bandas) */
-.gallery-section, .bands-section {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 var(--space-md);
-}
 
 /* 2. Sección con fondo de vidrio (La Carta) */
 .letter-section {
-  width: calc(100% - (var(--space-md) * 2));
-  margin: 0 auto;
+  max-width: 700px; /*por ahora (VER)*/
   padding: var(--space-lg);
   text-align: left;
 }
