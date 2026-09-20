@@ -4,6 +4,16 @@
 :host {
   display: block;
   width: 100%;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+  
+  background-color: #61669f;
+  background-image: 
+    radial-gradient(circle at 15% 20%, #FFFFFF 0%, transparent 40%),
+    radial-gradient(circle at 85% 15%, #FFD3E0 0%, transparent 48%),
+    radial-gradient(circle at 80% 85%, #FFE3C7 0%, transparent 48%),
+    radial-gradient(circle at 15% 90%, #F0D9F7 0%, transparent 45%);
 }
 
 .home-container {
