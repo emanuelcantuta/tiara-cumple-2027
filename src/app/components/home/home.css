@@ -22,28 +22,40 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--white);
-  border-bottom: 2px solid var(--border-light);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  
+  background-color: rgba(42, 45, 79, 0.85);
+  backdrop-filter: blur(10px);
+  color: white; /*VER*/
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-/* =========================================
-   BOTONES DE NAVEGACIÓN
-========================================= */
+.top-nav h1 {
+  white-space: nowrap;
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .nav-actions {
   display: flex;
   gap: var(--space-md);
   align-items: center;
 }
 
+.icon-btn svg {
+  flex-shrink: 0;
+}
+
 .icon-btn {
-  background-color: var(--ribbon-thin);
-  color: var(--text-color);
-  border: 1px solid var(--border-light);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white; /*VER*/
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 8px 16px;
   border-radius: 20px; /* Bordes bien redonditos tipo píldora */
   font-size: 0.95rem;
@@ -59,10 +71,8 @@
 
 .icon-btn:hover {
   background-color: var(--white);
-  border-color: var(--primary-color);
-  color: var(--primary-color);
+  color: #2a2d4f;
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .icon-btn:active {
@@ -123,9 +133,10 @@
   width: clamp(220px, 50vw, 320px);
   padding: var(--space-sm);
   scroll-snap-align: start; 
-  
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: white; /*VER*/
+  border: none;
 }
 
 .gallery-item:hover {
@@ -165,10 +176,22 @@
 }
 
 .muted {
-  opacity: 0.6;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.85rem;
   margin-top: 4px;
 }
+
+/* =========================================
+   PALETA DE COLORES DE LAS 8 TARJETAS
+========================================= */
+.gallery-item:nth-child(1) { background-color: #61669f; }
+.gallery-item:nth-child(2) { background-color: #889f61; }
+.gallery-item:nth-child(3) { background-color: #9f6166; }
+.gallery-item:nth-child(4) { background-color: #9f8861; }
+.gallery-item:nth-child(5) { background-color: #619f88; }
+.gallery-item:nth-child(6) { background-color: #88619f; }
+.gallery-item:nth-child(7) { background-color: #9f6188; }
+.gallery-item:nth-child(8) { background-color: #61889f; }
 
 /* =========================================
    2. CARTA (Textos)
