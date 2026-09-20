@@ -42,6 +42,12 @@
   text-overflow: ellipsis;
 }
 
+@media (max-width: 480px) {
+  .top-nav h1 {
+    font-weight: 700;
+  }
+}
+
 .nav-actions {
   display: flex;
   gap: var(--space-md);
