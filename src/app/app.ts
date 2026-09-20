@@ -20,6 +20,7 @@ export class App {
 
       if (this.audioPlayer) {
         this.audioPlayer.nativeElement.load(); 
+        this.audioPlayer.nativeElement.volume = 0.3; // 30% de vol (VER)
         this.audioPlayer.nativeElement.play().catch(err => 
           console.warn('Reproducción automática en espera de interacción:', err)
         );
