@@ -46,34 +46,34 @@ export class Home {
       audioSource: this.buildAudioSource('assets/audio/music/enhypen/enhypen-bloody-paradise')
     },
     { 
-      coverUrl: 'assets/images/kpop/enhypen/no-doubt-portada.webp',
-      title: 'No Doubt',
-      artist: Artist.ENHYPEN,
-      audioSource: this.buildAudioSource('assets/audio/music/enhypen/enhypen-no-doubt')
+      coverUrl: 'assets/images/kpop/evan/death-of-me-portada.webp',
+      title: 'Death of Me',
+      artist: Artist.EVAN,
+      audioSource: this.buildAudioSource('assets/audio/music/evan/evan-death-of-me')
     },
     {
-      coverUrl: 'assets/images/kpop/newjeans/omg-portada.webp',
-      title: 'OMG',
-      artist: Artist.NEWJEANS,
-      audioSource: this.buildAudioSource('assets/audio/music/newjeans/newjeans-omg')
+      coverUrl: 'assets/images/kpop/aespa/kiss-n-tell-portada.webp',
+      title: 'Kiss N Tell',
+      artist: Artist.AESPA,
+      audioSource: this.buildAudioSource('assets/audio/music/aespa/aespa-kiss-n-tell')
     },
     {
-      coverUrl: 'assets/images/kpop/newjeans/super-shy-portada.webp',
-      title: 'Super Shy',
-      artist: Artist.NEWJEANS,
-      audioSource: this.buildAudioSource('assets/audio/music/newjeans/newjeans-super-shy')
+      coverUrl: 'assets/images/kpop/aespa/lemonade-portada.webp',
+      title: 'Lemonade',
+      artist: Artist.AESPA,
+      audioSource: this.buildAudioSource('assets/audio/music/aespa/aespa-lemonade')
     },
     {
-      coverUrl: 'assets/images/kpop/illit/not-cute-anymore-portada.webp',
-      title: 'Not Cute Anymore',
-      artist: Artist.ILLIT,
-      audioSource: this.buildAudioSource('assets/audio/music/illit/illit-not-cute-anymore')
+      coverUrl: 'assets/images/kpop/loona/hi-high-portada.webp',
+      title: 'Hi High',
+      artist: Artist.LOONA,
+      audioSource: this.buildAudioSource('assets/audio/music/loona/loona-hi-high')
     },
     {
-      coverUrl: 'assets/images/kpop/illit/magnetic-portada.webp',
-      title: 'Magnetic',
-      artist: Artist.ILLIT,
-      audioSource: this.buildAudioSource('assets/audio/music/illit/illit-magnetic')
+      coverUrl: 'assets/images/kpop/loona/butterfly-portada.webp',
+      title: 'Butterfly',
+      artist: Artist.LOONA,
+      audioSource: this.buildAudioSource('assets/audio/music/loona/loona-butterfly')
     },
 
   ];
