@@ -217,16 +217,16 @@
 }
 
 /* =========================================
-   3. BANDAS
+   3. DESTINOS (Categorías)
 ========================================= */
-.band-list {
+.category-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
 }
 
-.band-list a {
+.category-list a {
   display: block;
   padding: 15px var(--space-md);
   background-color: var(--ribbon-thin);
@@ -240,7 +240,7 @@
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.band-list a:hover {
+.category-list a:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
   text-decoration: none; 
@@ -248,7 +248,7 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.band-list a:active {
+.category-list a:active {
   transform: scale(0.98);
 }
 
