@@ -12,9 +12,11 @@
       name="contrasena"
       type="password"
       placeholder="Tu contraseña..."
+      title="Ejemplo: tiara123"
+      aria-label="Ingresá la contraseña secreta"
       (keyup.enter)="verifyPassword(inputPass)"
     >
-    <button (click)="verifyPassword(inputPass)">Entrar</button>
+    <button title="Ingresar" type="button" (click)="verifyPassword(inputPass)">Entrar</button>
   </div>
 
   <footer class="error-container">
