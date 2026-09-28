@@ -213,7 +213,7 @@
 ========================================= */
 .letter-section p {
   color: var(--text-color);
-  line-height: 1.6; /* Un interlineado más amplio hace que sea más fácil de leer */
+  line-height: 1.6;
 }
 
 /* =========================================
@@ -233,10 +233,10 @@
   color: var(--text-color);
   border-radius: 12px;
   border: 2px solid var(--border-light);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: bold;
   text-decoration: none;
-  
+  cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -250,6 +250,87 @@
 
 .category-list a:active {
   transform: scale(0.98);
+}
+
+/* =========================================
+   MODAL SECRETO (Dialog nativo)
+========================================= */
+.secret-dialog {
+  border: none;
+  border-radius: 20px;
+  padding: 40px var(--space-lg);
+  background-color: var(--white);
+  color: var(--text-color);
+  max-width: 90%;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+.secret-dialog::backdrop {
+  background-color: rgba(42, 45, 79, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.secret-dialog[open] {
+  animation: modalFadeIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.modal-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-sm);
+  display: inline-block;
+  animation: shake 0.5s ease-in-out;
+}
+
+.modal-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.modal-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.1);
+}
+
+.modal-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
 }
 
 /* =========================================

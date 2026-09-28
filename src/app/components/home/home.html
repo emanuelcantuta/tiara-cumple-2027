@@ -56,19 +56,21 @@
   <section class="categories-section"> 
     <h2 class="section-title">¡Elegí tu próximo destino!</h2>
     <ul class="category-list">
+      @for (destination of destinations; track destination.id) {
       <li>
-        <a href="#">🎸 Cortis (porque se que los amas)</a>
+        <a (click)="handleDestinationClick(destination)">
+          {{ destination.icon }} {{ destination.title }}
+        </a>
       </li>
-      <li>
-        <a href="#">🎵 Personajes que me recuerdan a vos</a>
-      </li>
-      <li>
-        <a href="#">😽 Mensajes pusheen</a>
-      </li>
-      <li>
-        <a href="#">🎁 Regalo sorpresa</a> <!-- se debe desbloquear -->
-      </li>
+    }
     </ul>
   </section>
-
+  
+  <!-- EL MODAL SECRETO -->
+  <dialog #secretDialog class="secret-dialog card">
+    <div class="modal-icon">🔒</div>
+    <h3 class="section-title">Acceso Restringido</h3>
+    <p>Para desbloquear esta sección, vas a tener que encontrar la contraseña oculta en los otros destinos...</p>
+    <button class="modal-btn" (click)="closeModal()">Entendido</button>
+  </dialog>
 </main>

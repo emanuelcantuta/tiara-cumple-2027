@@ -1,10 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
-import { Track } from './models/track';
+import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Audio } from '@services/audio';
+import { Auth } from '@services/auth';
 import { Artist } from '@models/artist';
 import { SongSource } from '@models/song-source';
-import { Auth } from '@services/auth';
-import { Router } from '@angular/router';
+import { Track } from './models/track';
+import { Destination, DestinationId } from './models/destination';
 
 @Component({
   imports: [],
@@ -99,5 +100,26 @@ export class Home {
   logOut(): void {
     this.auth.logOut();
     this.router.navigate(['/']);
+  }
+
+  @ViewChild('secretDialog') secretDialog!: ElementRef<HTMLDialogElement>;
+
+  destinations: Destination[] = [
+    { id: DestinationId.CORTIS, title: 'Cortis (porque sé que los amás)', icon: '🎸', isLocked: false },
+    { id: DestinationId.PERSONAJES, title: 'Personajes que me recuerdan a vos', icon: '🎵', isLocked: false },
+    { id: DestinationId.PUSHEEN, title: 'Mensajes pusheen', icon: '😽', isLocked: false },
+    { id: DestinationId.SECRETO, title: 'Regalo sorpresa', icon: '🎁', isLocked: true }
+  ];
+
+  handleDestinationClick(destination: Destination): void {
+    if (destination.isLocked) {
+      this.secretDialog.nativeElement.showModal();
+    } else {
+      this.router.navigate([`/${destination.id}`]);
+    }
+  }
+
+  closeModal(): void {
+    this.secretDialog.nativeElement.close();
   }
 }
