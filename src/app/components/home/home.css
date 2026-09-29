@@ -4,12 +4,21 @@
 :host {
   display: block;
   width: 100%;
-
   min-height: 100vh;
   min-height: 100dvh;
+  position: relative;
+}
+
+:host::before {
+  content: '';
+  position: fixed;
+  top: -10vh; 
+  left: 0;
+  width: 100vw;
+  height: 120vh; 
+  z-index: -1;
   
   background-color: #61669f;
-  background-attachment: fixed;
   background-image: 
     radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.9) 0%, transparent 32%),
     radial-gradient(circle at 85% 15%, #FFD3E0 0%, transparent 45%),
