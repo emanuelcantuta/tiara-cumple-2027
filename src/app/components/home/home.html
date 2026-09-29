@@ -28,7 +28,7 @@
         
         <figure class="gallery-item card" title="Reproducir {{ track.title }}" aria-label="Reproducir {{ track.title }}" (click)="playTrack(track)">
           <div class="img-placeholder">
-            <img id="portada" [src]="track.coverUrl" alt="Portada de {{ track.title}}">
+            <img id="portada" [src]="track.coverUrl" alt="Portada de {{ track.title }}" loading="lazy">
           </div> 
           <figcaption>
             <strong>{{ track.title }}</strong>
@@ -79,7 +79,7 @@
       </div>
     } @else {
       <div class="modal-icon" [class.shake]="secretError()">
-        <img src="assets/images/pusheen/writing-cat.gif" alt="Pusheen escribiendo" width="150">
+        <img src="assets/images/pusheen/writing-cat.gif" alt="Pusheen escribiendo" width="150" loading="lazy">
       </div>
       <h3 class="section-title">Ingresá la clave</h3>
       <p>Si ya exploraste todo, decime cuál es la palabra secreta:</p>
