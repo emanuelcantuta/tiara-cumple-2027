@@ -121,7 +121,7 @@
 
 /* 3. Títulos de las secciones */
 .section-title {
-  margin-bottom: 0.5lh;
+  margin-bottom: var(--margin-bottom-text);
   color: var(--primary-color);
   font-weight: 500;
 }
@@ -214,6 +214,19 @@
 .letter-section p {
   color: var(--text-color);
   line-height: 1.6;
+  margin-bottom: var(--margin-bottom-text);
+}
+
+.letter-section p:last-child {
+  margin-bottom: 0;
+}
+
+.casual-signoff {
+  text-align: right;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: 24px;
+  font-style: italic;
 }
 
 .title-note {
@@ -229,6 +242,15 @@
   text-decoration: line-through;
   text-decoration-color: var(--error-color);
   text-decoration-thickness: 2px;
+}
+
+.ps-text {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 4px;
 }
 
 /* =========================================
