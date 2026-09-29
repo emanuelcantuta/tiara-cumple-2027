@@ -286,6 +286,9 @@
   font-size: 3rem;
   margin-bottom: var(--space-sm);
   display: inline-block;
+}
+
+#secret-icon { 
   animation: shake 0.5s ease-in-out;
 }
 
@@ -298,7 +301,6 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 24px;
   transition: all 0.2s ease;
   display: inline-block;
 }
@@ -331,6 +333,67 @@
   60% { transform: translateX(-10px); }
   80% { transform: translateX(10px); }
   100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* =========================================
+   INTERIORES DEL MODAL SECRETO
+========================================= */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.text-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.text-btn:hover {
+  opacity: 1;
+}
+
+/* Input dentro del modal */
+.modal-input-group {
+  margin: 20px 0;
+}
+
+.modal-input-group input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.modal-input-group input:focus {
+  border-color: var(--primary-color);
+  background-color: var(--white);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.error-text {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 /* =========================================

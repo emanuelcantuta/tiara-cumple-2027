@@ -68,9 +68,39 @@
   
   <!-- EL MODAL SECRETO -->
   <dialog #secretDialog class="secret-dialog card">
-    <div class="modal-icon">🔒</div>
-    <h3 class="section-title">Acceso Restringido</h3>
-    <p>Para desbloquear esta sección, vas a tener que encontrar la contraseña oculta en los otros destinos...</p>
-    <button class="modal-btn" (click)="closeModal()">Entendido</button>
+    @if (!showSecretInput()) {
+      <div class="modal-icon" id="secret-icon">🔒</div>
+      <h3 class="section-title">Acceso Restringido</h3>
+      <p>Para desbloquear esta sección, vas a tener que encontrar la contraseña oculta en los otros destinos...</p>
+      
+      <div class="modal-actions">
+        <button class="modal-btn" (click)="closeModal()">Entendido</button>
+        <button class="text-btn" (click)="enableSecretInput()">Ya tengo la clave</button>
+      </div>
+    } @else {
+      <div class="modal-icon" [class.shake]="secretError()">
+        <img src="assets/images/pusheen/writing-cat.gif" alt="Pusheen escribiendo" width="150">
+      </div>
+      <h3 class="section-title">Ingresá la clave</h3>
+      <p>Si ya exploraste todo, decime cuál es la palabra secreta:</p>
+      
+      <div class="modal-input-group" [class.shake]="secretError()">
+        <input 
+          #secretPass 
+          type="password" 
+          placeholder="Tu contraseña..." 
+          (keyup.enter)="verifySecret(secretPass)"
+        >
+      </div>
+
+      @if (secretError()) {
+        <p> (┬┬﹏┬┬) MAL!!</p>
+      }
+
+      <div class="modal-actions">
+        <button class="modal-btn" (click)="verifySecret(secretPass)">Desbloquear</button>
+        <button class="text-btn" (click)="closeModal()">Cancelar</button>
+      </div>
+    }
   </dialog>
 </main>

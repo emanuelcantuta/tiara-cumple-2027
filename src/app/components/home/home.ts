@@ -103,6 +103,8 @@ export class Home {
   }
 
   @ViewChild('secretDialog') secretDialog!: ElementRef<HTMLDialogElement>;
+  showSecretInput = signal<boolean>(false);
+  secretError = signal<boolean>(false);
 
   destinations: Destination[] = [
     { id: DestinationId.CORTIS, title: 'Cortis (porque sé que los amás)', icon: '🎸', isLocked: false },
@@ -115,11 +117,31 @@ export class Home {
     if (destination.isLocked) {
       this.secretDialog.nativeElement.showModal();
     } else {
-      this.router.navigate([`/${destination.id}`]);
+      this.router.navigate([`/${destination.id}`]); // esto es ?
     }
   }
 
   closeModal(): void {
     this.secretDialog.nativeElement.close();
+    setTimeout(() => {
+      this.showSecretInput.set(false);
+      this.secretError.set(false);
+    }, 300);
+  }
+
+  enableSecretInput(): void {
+    this.showSecretInput.set(true);
+  }
+
+  verifySecret(inputElement: HTMLInputElement): void {
+    const pass = inputElement.value.trim().toLowerCase();
+    if (pass === 'pusheen2027') { 
+      this.closeModal();
+      this.router.navigate([`/${DestinationId.SECRETO}`]); // cambiar a la ruta del destino secreto
+    } else {
+      this.secretError.set(true);
+      inputElement.value = '';
+      setTimeout(() => this.secretError.set(false), 800);
+    }
   }
 }
