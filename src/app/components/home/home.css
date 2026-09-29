@@ -216,6 +216,21 @@
   line-height: 1.6;
 }
 
+.title-note {
+  display: inline-block;
+  margin-left: 3px;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  color: #619f88; 
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.strike {
+  text-decoration: line-through;
+  text-decoration-color: var(--error-color);
+  text-decoration-thickness: 2px;
+}
+
 /* =========================================
    3. DESTINOS (Categorías)
 ========================================= */
