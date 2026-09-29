@@ -38,7 +38,7 @@ export class TarjetaInicio {
     const inputPassword = inputElement.value;
 
     this.clearInput(inputElement);
-
+    inputElement.focus();
     if (!inputPassword.trim()) {
       this.handleEmptyInput();
       return;

@@ -117,7 +117,7 @@ export class Home {
     if (destination.isLocked) {
       this.secretDialog.nativeElement.showModal();
     } else {
-      this.router.navigate([`/${destination.id}`]); // esto es ?
+      this.router.navigate([`/${destination.id}`]); // cambiar a la ruta del destino secreto
     }
   }
 
@@ -141,6 +141,7 @@ export class Home {
     } else {
       this.secretError.set(true);
       inputElement.value = '';
+      inputElement.focus();
       setTimeout(() => this.secretError.set(false), 800);
     }
   }
