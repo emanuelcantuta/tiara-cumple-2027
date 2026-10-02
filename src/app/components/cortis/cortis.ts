@@ -16,7 +16,7 @@ export class Cortis {
       id: 'martin',
       name: 'Martin',
       koreanName: '마틴',
-      mainImage: 'assets/images/cortis/martin-profile.jpg', // cambiar
+      mainImage: 'assets/images/kpop/cortis/martin-profile.webp',
       themeColor: '#c42626',
       roles: ['LIDER', 'RAPERO PRINCIPAL'],
       tags: ['Coreano-canadiense', 'Piscis', '18 años'],
@@ -35,10 +35,10 @@ export class Cortis {
       ]
     }, // bias 2 agregar seonhyeon
     {
-      id: 'bias2',
-      name: 'Nombre Bias 2 seonhyeon',
-      koreanName: '이름',
-      mainImage: 'assets/images/kpop/cortis/bias2.webp', // Imagen temporal
+      id: 'seonghyeon',
+      name: 'Seonghyeon',
+      koreanName: '이성현',
+      mainImage: 'assets/images/kpop/cortis/seonghyeon-profile.webp',
       themeColor: '#1d4ed8', // Azul
       roles: ['VOCALISTA', 'BAILARÍN'],
       tags: ['Coreano', 'Aries', '19 años'],
