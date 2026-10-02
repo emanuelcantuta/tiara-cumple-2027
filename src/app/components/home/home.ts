@@ -1,24 +1,21 @@
 import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { TopNav } from '@components/top-nav/top-nav';
 import { Audio } from '@services/audio';
-import { Auth } from '@services/auth';
 import { Artist } from '@models/artist';
 import { SongSource } from '@models/song-source';
 import { Track } from './models/track';
 import { Destination, DestinationId } from './models/destination';
 
 @Component({
-  imports: [],
+  imports: [TopNav],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
 })
 export class Home {
   private audio = inject(Audio);
-  private auth = inject(Auth);
   private router = inject(Router);
-  
-  isPlaying = signal<boolean>(true);
 
   private buildAudioSource(basePath: string): SongSource {
     return {
@@ -81,25 +78,6 @@ export class Home {
 
   playTrack(selectedTrack: Track): void {
     this.audio.changeSong(selectedTrack.audioSource);
-    this.isPlaying.set(true);
-  }
-
-  toggleAudio(): void {
-    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
-    if (audioEl) {
-      if (audioEl.paused) {
-        audioEl.play();
-        this.isPlaying.set(true);
-      } else {
-        audioEl.pause();
-        this.isPlaying.set(false);
-      }
-    }
-  }
-
-  logOut(): void {
-    this.auth.logOut();
-    this.router.navigate(['/']);
   }
 
   @ViewChild('secretDialog') secretDialog!: ElementRef<HTMLDialogElement>;
@@ -113,11 +91,12 @@ export class Home {
     { id: DestinationId.SECRETO, title: 'Regalo sorpresa', icon: '🎁', isLocked: true }
   ];
 
+  // categoría de destinos bloqueados: Cortis, Personajes, Pusheen, Secreto
   handleDestinationClick(destination: Destination): void {
     if (destination.isLocked) {
       this.secretDialog.nativeElement.showModal();
     } else {
-      this.router.navigate([`/${destination.id}`]); // cambiar a la ruta del destino secreto
+      this.router.navigate([`/${destination.id}`]);
     }
   }
 
