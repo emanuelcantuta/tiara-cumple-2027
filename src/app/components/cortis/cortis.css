@@ -1,14 +1,224 @@
 :host {
   display: block;
-  width: 100%;
+  background-color: #fdfdfd;
+  color: #1a1a1a;
   min-height: 100vh;
-  min-height: 100dvh;
 }
 
-.main-content {
-  display: flex;
-  flex-direction: column;
+.cortis-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: var(--space-lg) var(--space-md);
+  padding: 40px var(--space-md);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ================== CABECERA ================== */
+.editorial-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.main-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #111;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.group-hero {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  background-color: #f0f0f0;
+}
+
+.group-hero img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.intro-text {
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #444;
+}
+
+/* ================== DIVISOR ================== */
+.vip-divider {
+  text-align: center;
+  margin: 60px 0 40px;
+  padding-top: 30px;
+  border-top: 2px solid #000; /* Volvió la línea negra limpia */
+}
+
+.vip-divider h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.vip-divider p {
+  color: #555;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* ================== BENTO GRID ================== */
+.biases-section {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.bias-bento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+@media (min-width: 768px) {
+  .bias-bento {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+  }
+}
+
+/* Cajas base del grid */
+.bento-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  border: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* CAJA 1: IMAGEN (Con su marquito limpio) */
+.image-box {
+  padding: 4px;
+  border: 2px solid var(--theme-color);
+}
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+}
+@media (min-width: 768px) {
+  .image-box {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+
+/* CAJA 2: CABECERA */
+.header-box {
+  align-items: flex-start;
+}
+.header-box h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #111; /* Nombre en negro, como pediste */
+}
+.header-box .korean {
+  font-weight: normal;
+  color: #444;
+  font-size: 1.5rem;
+}
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+.badge {
+  background-color: var(--theme-color);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tag {
+  border: 1px solid var(--theme-color);
+  color: #555;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+@media (min-width: 768px) {
+  .header-box {
+    grid-column: span 2;
+  }
+}
+
+/* CAJAS DE STATS (Con borde dinámico abajo) */
+.stat-box {
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  border-bottom: 4px solid var(--theme-color);
+}
+.stat-box .label {
+  font-size: 0.75rem;
+  color: #777;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+.stat-box .value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* CAJA DE FRASES (Estilo línea de tiempo) */
+.quotes-box {
+  background-color: #f9f9f9;
+  border: none;
+  border-left: 4px solid var(--theme-color);
+  border-radius: 0 12px 12px 0;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.quotes-title {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: var(--theme-color); /* Solo el titulo toma el color del bias */
+}
+.quotes-box p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #444;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .quotes-box {
+    grid-column: span 4;
+  }
 }

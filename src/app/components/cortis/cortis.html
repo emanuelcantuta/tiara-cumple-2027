@@ -1,10 +1,72 @@
 <app-top-nav></app-top-nav>
-<main class="main-content">
-  <section class="letter-section">
-    <h2 class="section-title">🎸 Bienvenidos a la Zona Cortis</h2>
+
+<main class="cortis-container">
+  
+  <!-- SECCIÓN 1: INTRO (Estilo Editorial) -->
+  <header class="editorial-header">
+    <h1 class="main-title">CORTIS: The Tiara Edition</h1>
+    <div class="subtitle">EDICIÓN EXCLUSIVA PARA TIARA • FEB 2027</div>
     
-    <p>
-      (Acá vamos a poner el contenido...)
+    <!-- Imagen grupal -->
+    <div class="group-hero">
+      <img src="assets/images/kpop/cortis/cortis-group.webp" alt="Cortis Group">
+    </div>
+    
+    <p class="intro-text">
+      Cortis debutó en 2025, pero más importante que eso: se convirtieron en tus favoritos. Acá celebramos a los verdaderos protagonistas de tu playlist y los dueños de tus mejores momentos fangirl.
     </p>
+  </header>
+
+  <!-- SECCIÓN 2: EXCUSATIO -->
+  <div class="vip-divider">
+    <h2>👑 Solo Tus Bias Supremos 👑</h2>
+    <p>Información de los demás miembros omitida intencionalmente por falta de espacio en mi corazón (y en el tuyo).</p>
+  </div>
+
+  <!-- SECCIÓN 3: BENTO GRID POR BIAS -->
+  <section class="biases-section">
+    @for (bias of biases; track bias.id) {
+      <!-- Acá está la magia: le pasamos el color al CSS -->
+      <article class="bias-bento" [style.--theme-color]="bias.themeColor">
+        
+        <!-- Caja 1: Foto Principal (Ocupa el doble de espacio) -->
+        <div class="bento-box image-box">
+          <img [src]="bias.mainImage" [alt]="bias.name">
+        </div>
+
+        <!-- Caja 2: Cabecera con Nombre y Roles -->
+        <div class="bento-box header-box">
+          <h2>{{ bias.name }} <span class="korean">{{ bias.koreanName }}</span></h2>
+          <div class="roles">
+            @for (role of bias.roles; track role) {
+              <span class="badge">{{ role }}</span>
+            }
+          </div>
+          <div class="tags">
+            @for (tag of bias.tags; track tag) {
+              <span class="tag">#{{ tag }}</span>
+            }
+          </div>
+        </div>
+
+        <!-- Cajas 3+: Stats Generados dinámicamente -->
+        @for (stat of bias.stats; track stat.label) {
+          <div class="bento-box stat-box">
+            <span class="label">{{ stat.label }}</span>
+            <span class="value">{{ stat.value }}</span>
+          </div>
+        }
+
+        <!-- Caja Final: Frases (Ocupa todo el ancho abajo) -->
+        <div class="bento-box quotes-box">
+          <h3 class="quotes-title">Frases Icónicas</h3>
+          @for (quote of bias.quotes; track quote) {
+            <p>{{ quote }}</p>
+          }
+        </div>
+
+      </article>
+    }
   </section>
+
 </main>
