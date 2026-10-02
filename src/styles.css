@@ -99,30 +99,3 @@ button:active {
   0% { background-position: 0px 0px; }
   100% { background-position: -233.35px 0px; } 
 }
-
-/* =========================================
-   VIEW TRANSITIONS (Animaciones de Rutas)
-========================================= */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.4s;
-  animation-timing-function: ease-in-out;
-}
-
-::view-transition-old(root) {
-  animation-name: fade-and-slide-out;
-}
-
-::view-transition-new(root) {
-  animation-name: fade-and-slide-in;
-}
-
-@keyframes fade-and-slide-out {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-20px); }
-}
-
-@keyframes fade-and-slide-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
