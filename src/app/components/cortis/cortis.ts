@@ -33,22 +33,27 @@ export class Cortis {
         '"Otra frase graciosa de Martín que me vi de tiktok XD que creo poner aquí."',
         
       ]
-    }, // bias 2 agregar seonhyeon
+    },
     {
       id: 'seonghyeon',
       name: 'Seonghyeon',
-      koreanName: '이성현',
+      koreanName: '성현',
       mainImage: 'assets/images/kpop/cortis/seonghyeon-profile.webp',
-      themeColor: '#1d4ed8', // Azul
-      roles: ['VOCALISTA', 'BAILARÍN'],
-      tags: ['Coreano', 'Aries', '19 años'],
+      themeColor: '#000000',
+      roles: ['VOCALISTA PRINCIPAL', 'BAILARIN'],
+      tags: ['Coreano', 'Capricornio', '17 años'],
       stats: [
-        { label: 'NACIMIENTO', value: '10 de abr, 2007' },
-        { label: 'ALTURA', value: '185 cm' },
-        { label: 'MBTI', value: 'INFP' },
-        { label: 'EMOJI', value: '🐺' }
+        { label: 'NACIMIENTO', value: '13 de enero de 2009' },
+        { label: 'ALTURA', value: '175 cm' },
+        { label: 'MBTI', value: 'INTP' },
+        { label: 'SIGNO CHINO', value: 'Rata' },
+        { label: 'COLOR', value: 'Negro' },
+        { label: 'EMOJI', value: '🦊' }
       ],
       quotes: [
+        '"Frase icónica del segundo bias."',
+        '"Frase icónica del segundo bias."',
+        '"Frase icónica del segundo bias."',
         '"Frase icónica del segundo bias."'
       ]
     }
