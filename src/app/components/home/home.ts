@@ -96,7 +96,7 @@ export class Home {
     if (destination.isLocked) {
       this.secretDialog.nativeElement.showModal();
     } else {
-      this.router.navigate([`/${destination.id}`]);
+      this.router.navigate([`/regalo/${destination.id}`]);
     }
   }
 
@@ -116,7 +116,7 @@ export class Home {
     const pass = inputElement.value.trim().toLowerCase();
     if (pass === 'pusheen2027') { 
       this.closeModal();
-      this.router.navigate([`/${DestinationId.SECRETO}`]); // cambiar a la ruta del destino secreto
+      this.router.navigate([`/regalo/${DestinationId.SECRETO}`]); // cambiar a la ruta del destino secreto
     } else {
       this.secretError.set(true);
       inputElement.value = '';
