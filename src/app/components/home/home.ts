@@ -32,10 +32,10 @@ export class Home {
       audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-joyride')
     },
     {
-      coverUrl: 'assets/images/kpop/cortis/what-you-want-portada.webp',
-      title: 'What You Want',
+      coverUrl: 'assets/images/kpop/cortis/lullaby-portada.webp',
+      title: 'Lullaby',
       artist: Artist.CORTIS,
-      audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-what-you-want')
+      audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-lullaby')
     },
     {
       coverUrl: 'assets/images/kpop/enhypen/bloody-paradise-portada.webp',
