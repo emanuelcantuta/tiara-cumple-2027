@@ -29,13 +29,14 @@ export class Cortis {
         { label: 'EMOJI', value: '🦌' }
       ],
       quotes: [
-        '"Acá va una frase icónica de Martín que a ella le encante."',
-        '"Otra frase graciosa o memorable del stream."'
+        '"Acá va una frase icónica de Martín que a ella le llame...."',
+        '"Otra frase graciosa de Martín que me vi de tiktok XD que creo poner aquí."',
+        
       ]
     }, // bias 2 agregar seonhyeon
     {
       id: 'bias2',
-      name: 'Nombre Bias 2',
+      name: 'Nombre Bias 2 seonhyeon',
       koreanName: '이름',
       mainImage: 'assets/images/kpop/cortis/bias2.webp', // Imagen temporal
       themeColor: '#1d4ed8', // Azul

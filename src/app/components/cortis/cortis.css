@@ -73,13 +73,22 @@
 .intro-text {
   background-color: #ffffff;
   border: 1px solid #eaeaea;
-  padding: 20px;
+  padding: 20px 25px;
   border-radius: 8px;
   font-size: 0.95rem;
   line-height: 1.6;
   max-width: 700px;
   margin: 0 auto;
   color: #444;
+  text-align: left;
+}
+
+.intro-text p {
+  margin: 0;
+}
+
+.intro-text p + p {
+  margin-top: 16px;
 }
 
 /* ================== DIVISOR ================== */
