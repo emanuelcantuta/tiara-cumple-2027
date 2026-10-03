@@ -10,4 +10,5 @@ export interface BiasProfile {
   tags: string[];
   stats: ProfileStat[];
   quotes: string[];
+  gallery: string[];
 }

@@ -32,6 +32,15 @@ export class Cortis {
         '"Acá va una frase icónica de Martín que a ella le llame...."',
         '"Otra frase graciosa de Martín que me vi de tiktok XD que creo poner aquí."',
         
+      ],
+      gallery: [
+        'assets/images/cortis/martin-gal-1.jpg',
+        'assets/images/cortis/martin-gal-2.jpg',
+        'assets/images/cortis/martin-gal-3.jpg',
+        'assets/images/cortis/martin-gal-3.jpg',
+        'assets/images/cortis/martin-gal-3.jpg',
+        'assets/images/cortis/martin-gal-3.jpg',
+        'assets/images/cortis/martin-gal-3.jpg',
       ]
     },
     {
@@ -55,6 +64,14 @@ export class Cortis {
         '"Frase icónica del segundo bias."',
         '"Frase icónica del segundo bias."',
         '"Frase icónica del segundo bias."'
+      ],
+      gallery: [
+        'assets/images/cortis/seonghyeon-gal-1.jpg',
+        'assets/images/cortis/seonghyeon-gal-2.jpg',
+        'assets/images/cortis/seonghyeon-gal-3.jpg',
+        'assets/images/cortis/seonghyeon-gal-3.jpg',
+        'assets/images/cortis/seonghyeon-gal-3.jpg',
+        'assets/images/cortis/seonghyeon-gal-3.jpg',
       ]
     }
   ];

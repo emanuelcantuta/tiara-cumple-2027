@@ -70,6 +70,18 @@
           }
         </div>
 
+        <!-- Caja Final: Galería (Carrusel Scroll Snap) -->
+        <div class="bento-box gallery-box">
+          <h3 class="gallery-title">Polaroids</h3>
+          <div class="carousel">
+            @for (photo of bias.gallery; track photo) {
+              <div class="carousel-slide">
+                <img [src]="photo" [alt]="'Foto de ' + bias.name">
+              </div>
+            }
+          </div>
+        </div>
+
       </article>
     }
   </section>
