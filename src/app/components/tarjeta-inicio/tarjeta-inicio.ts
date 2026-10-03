@@ -94,19 +94,19 @@ export class TarjetaInicio {
     }, this.config.errorTimeout);
   }
 
-  triggerShakeAnimation(): void {
+  async triggerShakeAnimation(): Promise<void> {
     this.state.errorAnimation = false; 
     this.cdr.detectChanges();
     
-    setTimeout(() => {
-      this.state.errorAnimation = true;
-      this.cdr.detectChanges();
-    }, 10);
+    await this.sleep(10);
     
-    setTimeout(() => {
-      this.state.errorAnimation = false; 
-      this.cdr.detectChanges();
-    }, this.config.errorTimeout);
+    this.state.errorAnimation = true;
+    this.cdr.detectChanges();
+    
+    await this.sleep(this.config.errorTimeout);
+    
+    this.state.errorAnimation = false; 
+    this.cdr.detectChanges();
   }
   
   autoHideMessage(): void {
