@@ -93,24 +93,23 @@ export class Cortis {
       ],
       quotes: [
         {
-         text: 'I think expressing myself is kind of difficult.',
-         url: ''
+         text: 'Creo que expresarme es difícil. Todavía soy tímido y no tengo confianza aún.',
+         englishText: 'I think expressing myself is kind of difficult.',
+         url: 'https://www.tiktok.com/@mrtincams/video/7678109638734187808'
         },
         {
-          text: 'Otra frase icónica de Seonghyeon.',
-          url: '' 
+          text: `Aunque sientas que todo es demasiado, por favor recuerda que no tienes que enfrentarlo todo solo. 
+          Está bien sentirse cansado y está bien tomar las cosas con calma. Tus sentimientos son válidos y tú 
+          importas más de lo que podrías darte cuenta. Por favor, quédate, cuídate y sigue adelante un día a la vez. 
+          <strong>Todavía hay personas que se preocupan por ti y que silenciosamente te están apoyando</strong>.`,
+          englishText: 'keep going one day at a time there are still people who care about you and who are quietly cheering you on',
+          url: 'https://www.tiktok.com/@justjuhoon/video/7615166230017740039' 
         },
         {
-          text: 'Otra frase icónica de Seonghyeon.',
-          url: '' 
-        },
-        {
-          text: 'Otra frase icónica de Seonghyeon.',
-          url: '' 
-        },
-        {
-          text: 'Otra frase icónica de Seonghyeon.',
-          url: '' 
+          text: `Siempre escribo sobre emociones que realmente he sentido como en <strong>JoyRide</strong>: No sun no sky a 
+          ghostly pale face.`,
+          englishText: 'I always write about emotions I have really felt.',
+          url: 'https://x.com/huecortis/status/2105825274759950822' 
         }
       ],
       gallery: [
