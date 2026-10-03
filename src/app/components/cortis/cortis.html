@@ -9,7 +9,7 @@
     
     <!-- Imagen grupal -->
     <div class="group-hero">
-      <img src="assets/images/kpop/cortis/cortis-group.webp" alt="Cortis Group">
+      <img src="assets/images/kpop/cortis/cortis-group.webp" alt="Cortis Group" fetchpriority="high">
     </div>
     
     <div class="intro-text">
@@ -36,7 +36,7 @@
         
         <!-- Caja 1: Foto Principal (Ocupa el doble de espacio) -->
         <div class="bento-box image-box">
-          <img [src]="bias.mainImage" [alt]="bias.name">
+          <img [src]="bias.mainImage" [alt]="bias.name" fetchpriority="high">
         </div>
 
         <!-- Caja 2: Cabecera con Nombre y Roles -->
@@ -83,9 +83,14 @@
         <div class="bento-box gallery-box">
           <h3 class="gallery-title">Galería</h3>
           <div class="carousel">
-            @for (photo of bias.gallery; track photo) {
+            @for (photo of bias.gallery; track $index) {
               <div class="carousel-slide">
-                <img [src]="photo" [alt]="'Foto de ' + bias.name" (click)="selectedPhoto = photo" class="clickable-photo">
+                <img [src]="photo" 
+                     [alt]="'Polaroid de ' + bias.name" 
+                     (click)="selectedPhoto = photo"
+                     [attr.loading]="$index <= 1 ? 'eager' : 'lazy'" 
+                     decoding="async"
+                     class="clickable-photo">
               </div>
             }
           </div>
