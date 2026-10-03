@@ -66,6 +66,11 @@
   border-color: var(--error-color);
 }
 
+#btn-back, #btn-pause {
+  width: 110px;
+  justify-content: center;
+}
+
 @media (max-width: 480px) {
   .top-nav {
     padding: 0 var(--space-sm);
@@ -80,7 +85,7 @@
     width: 18px;
     height: 18px;
   }
-  #btn-back {
-    width: 106px;
+  #btn-back, #btn-pause {
+    width: 108px;
   }
 }
