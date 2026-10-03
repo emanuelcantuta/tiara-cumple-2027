@@ -30,9 +30,26 @@ export class Cortis {
         { label: 'EMOJI', value: '🦌' }
       ],
       quotes: [
-        '"Acá va una frase icónica de Martín que a ella le llame...."',
-        '"Otra frase graciosa de Martín que me vi de tiktok XD que creo poner aquí."',
-        
+        {
+          text: 'Ser vergonzoso (cringe) también es ser libre.',
+          url: 'https://www.tiktok.com/@kizurat/video/7670274171137461524'
+        },
+        {
+          text: 'Otra frase icónica de Martín.',
+          url: '' 
+        },
+        {
+          text: 'Otra frase icónica de Martín.',
+          url: '' 
+        },
+        {
+          text: 'Otra frase icónica de Martín.',
+          url: '' 
+        },
+        {
+          text: 'Otra frase icónica de Martín.',
+          url: '' 
+        }
       ],
       gallery: [
         'assets/images/kpop/cortis/martin/martin-1.webp',
@@ -62,10 +79,26 @@ export class Cortis {
         { label: 'EMOJI', value: '🦊' }
       ],
       quotes: [
-        '"Frase icónica del segundo bias."',
-        '"Frase icónica del segundo bias."',
-        '"Frase icónica del segundo bias."',
-        '"Frase icónica del segundo bias."'
+        {
+         text: 'Frase icónica de Seonghyeon.',
+         url: ''
+        },
+        {
+          text: 'Otra frase icónica de Seonghyeon.',
+          url: '' 
+        },
+        {
+          text: 'Otra frase icónica de Seonghyeon.',
+          url: '' 
+        },
+        {
+          text: 'Otra frase icónica de Seonghyeon.',
+          url: '' 
+        },
+        {
+          text: 'Otra frase icónica de Seonghyeon.',
+          url: '' 
+        }
       ],
       gallery: [
         'assets/images/cortis/seonghyeon-gal-1.jpg',

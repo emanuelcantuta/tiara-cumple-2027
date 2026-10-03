@@ -9,6 +9,6 @@ export interface BiasProfile {
   roles: string[];
   tags: string[];
   stats: ProfileStat[];
-  quotes: string[];
+  quotes: { text: string; url: string }[];
   gallery: string[];
 }

@@ -229,24 +229,64 @@
 
 /* CAJA 3 DE FRASES (Estilo línea de tiempo) */
 .quotes-box {
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   border: none;
   border-left: 4px solid var(--theme-color);
   border-radius: 0 12px 12px 0;
   justify-content: flex-start;
   gap: 10px;
 }
+
 .quotes-title {
   font-size: 1.1rem;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   color: var(--theme-color);
+  font-weight: 600;
 }
-.quotes-box p {
-  font-size: 1rem;
-  font-style: italic;
-  color: #444;
+
+/* =========================================
+   FRASES (Blockquotes)
+========================================= */
+.quotes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bias-quote {
   margin: 0;
+  padding: 15px 20px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-left: 4px solid var(--theme-color); /* La línea izquierda con el color del Bias */
+  border-radius: 0 8px 8px 0;
 }
+
+.bias-quote p {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #333;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.bias-quote cite {
+  font-style: normal;
+}
+
+.quote-source {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--theme-color);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.quote-source:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
 @media (min-width: 768px) {
   .quotes-box {
     grid-column: span 4;
@@ -263,6 +303,7 @@
   font-size: 1.1rem;
   margin: 0 0 15px 20px;
   color: var(--theme-color);
+  font-weight: 600;
 }
 
 @media (min-width: 768px) {

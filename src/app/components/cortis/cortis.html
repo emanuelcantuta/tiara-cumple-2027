@@ -65,9 +65,18 @@
         <!-- Caja 4: Frases -->
         <div class="bento-box quotes-box">
           <h3 class="quotes-title">Frases Icónicas</h3>
-          @for (quote of bias.quotes; track quote) {
-            <p>{{ quote }}</p>
-          }
+          <div class="quotes-list">
+            @for (quote of bias.quotes; track quote.text) {
+              <blockquote class="bias-quote">
+                <p>“{{ quote.text }}”</p>
+                <cite>
+                  <a [href]="quote.url" target="_blank" rel="noopener noreferrer" class="quote-source">
+                    Ver momento ↗
+                  </a>
+                </cite>
+              </blockquote>
+            }
+          </div>
         </div>
 
         <!-- Caja Final: Galería (Carrusel Scroll Snap) -->
