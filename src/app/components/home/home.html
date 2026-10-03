@@ -8,8 +8,13 @@
         
         <figure class="gallery-item card" title="Reproducir {{ track.title }}" aria-label="Reproducir {{ track.title }}" (click)="playTrack(track)">
           <div class="img-placeholder">
-            <img id="portada" [src]="track.coverUrl" alt="Portada de {{ track.title }}" loading="lazy">
-          </div> 
+            <img id="portada" 
+                 [src]="track.coverUrl" 
+                 alt="Portada de {{ track.title }}" 
+                 [attr.loading]="$index <= 2 ? 'eager' : 'lazy'"
+                 [attr.fetchpriority]="$index <= 2 ? 'high' : 'auto'"
+                 decoding="async">
+          </div>
           <figcaption>
             <strong>{{ track.title }}</strong>
             <span class="muted">{{ track.artist }}</span>
@@ -28,7 +33,14 @@
         (deah que <b>ti<s class="strike">a</s>ra</b>ba)
       </span>
     </h2>
-    <img id="pusheen-ballons" src="assets/images/pusheen/celebrate/pusheen-ballons.gif" alt="pusheen con globos de cumpleaños" width="80" height="80">
+    <img id="pusheen-ballons" 
+      src="assets/images/pusheen/celebrate/pusheen-ballons.gif" 
+      alt="pusheen con globos de cumpleaños" 
+      width="80" 
+      height="80"
+      fetchpriority="high"
+      decoding="async"
+    >
     <p>
       Primero que nada, ¡FeEeeELiz cumple tiara JFAK! 🎂 Quería hacerte algo diferente este año, así que te armé este rinconcito web especialmente para vos. Arriba tenés un reproductor para poner tus temazos favoritos mientras vas chusmeando.
     </p>
@@ -72,7 +84,11 @@
       </div>
     } @else {
       <div class="modal-icon" [class.shake]="secretError()">
-        <img src="assets/images/pusheen/writing-cat.gif" alt="Pusheen escribiendo" width="150" loading="lazy">
+        <img src="assets/images/pusheen/writing-cat.gif" 
+             alt="Pusheen escribiendo" 
+             width="150" 
+             loading="lazy"
+             decoding="async">
       </div>
       <h3 class="section-title">Ingresá la clave</h3>
       <p>Si ya exploraste todo, decime cuál es la palabra secreta:</p>
