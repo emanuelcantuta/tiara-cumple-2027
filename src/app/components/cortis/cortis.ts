@@ -101,12 +101,15 @@ export class Cortis {
         }
       ],
       gallery: [
-        'assets/images/cortis/seonghyeon-gal-1.jpg',
-        'assets/images/cortis/seonghyeon-gal-2.jpg',
-        'assets/images/cortis/seonghyeon-gal-3.jpg',
-        'assets/images/cortis/seonghyeon-gal-3.jpg',
-        'assets/images/cortis/seonghyeon-gal-3.jpg',
-        'assets/images/cortis/seonghyeon-gal-3.jpg',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-1.webp',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-2.webp',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-3.webp',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-4.webp',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-5.webp',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-6.webp',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-7.webp',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-8.webp',
+        'assets/images/kpop/cortis/seonghyeon/seonghyeon-9.webp',
       ]
     }
   ];

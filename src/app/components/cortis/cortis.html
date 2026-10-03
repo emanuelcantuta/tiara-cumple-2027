@@ -66,7 +66,7 @@
         <div class="bento-box quotes-box">
           <h3 class="quotes-title">Frases Icónicas</h3>
           <div class="quotes-list">
-            @for (quote of bias.quotes; track quote.text) {
+            @for (quote of bias.quotes; track $index) {
               <blockquote class="bias-quote">
                 <p>“{{ quote.text }}”</p>
                 <cite>
