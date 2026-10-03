@@ -68,7 +68,12 @@
           <div class="quotes-list">
             @for (quote of bias.quotes; track $index) {
               <blockquote class="bias-quote">
-                <p>“{{ quote.text }}”</p>
+                <p class="quote-es">“<span [innerHTML]="quote.text"></span>”</p>
+                
+                @if (quote.englishText) {
+                  <p class="quote-en">{{ quote.englishText }}</p>
+                }
+
                 <cite>
                   <a [href]="quote.url" target="_blank" rel="noopener noreferrer" class="quote-source">
                     Ver momento ↗

@@ -31,23 +31,36 @@ export class Cortis {
       ],
       quotes: [
         {
-          text: 'Ser vergonzoso (cringe) también es ser libre.',
+          text: `Pero creo que también pasa en nuestra generación, es como si todos quisieran ser geniales,
+           como si quisieran caber en un bolsillo o caber en una bolsa. Actúan como si fueran geniales y esas cosas, pero a veces,
+            <strong>el ser vergonzoso (cringe) es ser libre</strong>.`,
+          englishText: '"To be cringe is to be free."',
           url: 'https://www.tiktok.com/@kizurat/video/7670274171137461524'
         },
         {
-          text: 'Otra frase icónica de Martín.',
+          text: `Hablo mucho conmigo mismo. Me miro al espejo, y hablo conmigo mismo. 
+          Cuando voy en el avión, hablo conmigo mismo. Creo que es solo porque hago música, ya sabes, 
+          <strong>hablar conmigo mismo es la mejor manera de, como que, organizar mis pensamientos</strong>.`,
+          englishText: '"You know, talking to myself is the best way to, like, organize my thoughts."',
           url: '' 
         },
         {
-          text: 'Otra frase icónica de Martín.',
+          text: `Lo cool no debería parecer actuado. Tiene que ser todo un estilo de vida. 
+          <strong>Tienes que ser tú mismo</strong>.`,
+          englishText: '"You have to be yourself."',
           url: '' 
         },
         {
-          text: 'Otra frase icónica de Martín.',
+          text: `Siento que solo estoy tratando de ser yo mismo, como era antes. 
+          Es más que nada una mentalidad. Al final del día, <strong>soy solo un adolecente</strong>.`,
+          englishText: '"At the end of the day, I\'m just a teenager."',
           url: '' 
         },
         {
-          text: 'Otra frase icónica de Martín.',
+          text: `En nuestra generación como que vamos perdiendo de vista, eso de soñar. Y pues, 
+          a veces piensas que es cursi, a veces piensas que es demasiado empalagoso. 
+          <strong>Pero yo creo que tienes que vivir guiándote por algo, ¿sabes?</strong>`,
+          englishText: '"But I think you have to live guided by something, you know?."', 
           url: '' 
         }
       ],
@@ -80,7 +93,7 @@ export class Cortis {
       ],
       quotes: [
         {
-         text: 'Frase icónica de Seonghyeon.',
+         text: 'I think expressing myself is kind of difficult.',
          url: ''
         },
         {
