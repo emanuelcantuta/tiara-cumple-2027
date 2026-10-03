@@ -72,7 +72,7 @@
 
         <!-- Caja Final: Galería (Carrusel Scroll Snap) -->
         <div class="bento-box gallery-box">
-          <h3 class="gallery-title">Polaroids</h3>
+          <h3 class="gallery-title">Galería</h3>
           <div class="carousel">
             @for (photo of bias.gallery; track photo) {
               <div class="carousel-slide">
@@ -89,10 +89,8 @@
 </main>
 <!-- MODAL DE IMAGEN -->
 @if (selectedPhoto) {
-  <div class="photo-modal" (click)="selectedPhoto = null">
+  <div class="photo-modal">
     <button class="close-modal" (click)="selectedPhoto = null">✕</button>
-    
-    <!-- El stopPropagation evita que se cierre el modal si hace click justo en la foto -->
-    <img [src]="selectedPhoto" alt="Foto ampliada" (click)="$event.stopPropagation()">
+    <img [src]="selectedPhoto" alt="Foto ampliada">
   </div>
 }

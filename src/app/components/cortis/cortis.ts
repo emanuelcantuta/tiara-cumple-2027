@@ -35,7 +35,7 @@ export class Cortis {
         
       ],
       gallery: [
-        'assets/images/cortis/martin-gal-1.jpg',
+        'assets/images/kpop/cortis/martin-profile.webp',
         'assets/images/cortis/martin-gal-2.jpg',
         'assets/images/cortis/martin-gal-3.jpg',
         'assets/images/cortis/martin-gal-3.jpg',
