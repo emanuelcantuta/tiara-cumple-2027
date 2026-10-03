@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TopNav } from '@components/top-nav/top-nav';
 import { Audio } from '@services/audio';
@@ -10,6 +10,7 @@ import { Destination, DestinationId } from './models/destination';
 @Component({
   imports: [TopNav],
   selector: 'app-home',
+  standalone: true,
   styleUrl: './home.css',
   templateUrl: './home.html',
 })
@@ -80,7 +81,7 @@ export class Home {
     this.audio.changeSong(selectedTrack.audioSource);
   }
 
-  @ViewChild('secretDialog') secretDialog!: ElementRef<HTMLDialogElement>;
+  secretDialog = viewChild<ElementRef<HTMLDialogElement>>('secretDialog');
   showSecretInput = signal<boolean>(false);
   secretError = signal<boolean>(false);
 
@@ -94,14 +95,14 @@ export class Home {
   // categoría de destinos bloqueados: Cortis, Personajes, Pusheen, Secreto
   handleDestinationClick(destination: Destination): void {
     if (destination.isLocked) {
-      this.secretDialog.nativeElement.showModal();
+      this.secretDialog()?.nativeElement.showModal();
     } else {
       this.router.navigate([`/regalo/${destination.id}`]);
     }
   }
 
   closeModal(): void {
-    this.secretDialog.nativeElement.close();
+    this.secretDialog()?.nativeElement.close();
     setTimeout(() => {
       this.showSecretInput.set(false);
       this.secretError.set(false);

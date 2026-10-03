@@ -16,8 +16,8 @@ export class TopNav {
   private auth = inject(Auth);
   private router = inject(Router);
   
-  isPlaying = signal<boolean>(true);
-  isHomePage = signal<boolean>(this.router.url === '/regalo');
+  isPlaying = signal(true);
+  isHomePage = signal(this.router.url === '/regalo');
 
   constructor() {
     this.router.events.pipe(
