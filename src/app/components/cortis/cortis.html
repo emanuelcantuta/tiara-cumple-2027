@@ -62,7 +62,7 @@
           </div>
         }
 
-        <!-- Caja Final: Frases (Ocupa todo el ancho abajo) -->
+        <!-- Caja 4: Frases -->
         <div class="bento-box quotes-box">
           <h3 class="quotes-title">Frases Icónicas</h3>
           @for (quote of bias.quotes; track quote) {
@@ -76,7 +76,7 @@
           <div class="carousel">
             @for (photo of bias.gallery; track photo) {
               <div class="carousel-slide">
-                <img [src]="photo" [alt]="'Foto de ' + bias.name">
+                <img [src]="photo" [alt]="'Foto de ' + bias.name" (click)="selectedPhoto = photo" class="clickable-photo">
               </div>
             }
           </div>
@@ -87,3 +87,12 @@
   </section>
 
 </main>
+<!-- MODAL DE IMAGEN -->
+@if (selectedPhoto) {
+  <div class="photo-modal" (click)="selectedPhoto = null">
+    <button class="close-modal" (click)="selectedPhoto = null">✕</button>
+    
+    <!-- El stopPropagation evita que se cierre el modal si hace click justo en la foto -->
+    <img [src]="selectedPhoto" alt="Foto ampliada" (click)="$event.stopPropagation()">
+  </div>
+}

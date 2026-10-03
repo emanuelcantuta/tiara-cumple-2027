@@ -11,6 +11,7 @@ import { BiasProfile } from './models/BiasProfile';
   templateUrl: './cortis.html',
 })
 export class Cortis {
+  selectedPhoto: string | null = null;
   biases: BiasProfile[] = [
     {
       id: 'martin',
