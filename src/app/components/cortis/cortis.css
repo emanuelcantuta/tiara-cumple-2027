@@ -296,7 +296,7 @@
   letter-spacing: 0.5px;
 }
 
-.bias-quote .quote-es strong {
+.bias-quote .quote-es ::ng-deep strong {
   color: var(--theme-color);
   font-weight: 700;
 }

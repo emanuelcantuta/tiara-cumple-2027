@@ -52,7 +52,7 @@ export class Cortis {
         },
         {
           text: `Siento que solo estoy tratando de ser yo mismo, como era antes. 
-          Es más que nada una mentalidad. Al final del día, <strong>soy solo un adolecente</strong>.`,
+          Es más que nada una mentalidad. <strong>Al final del día, soy solo un adolecente</strong>.`,
           englishText: '"At the end of the day, I\'m just a teenager."',
           url: '' 
         },
