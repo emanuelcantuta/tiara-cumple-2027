@@ -30,7 +30,7 @@
 .cortis-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px var(--space-md);
+  padding: var(--space-lg) var(--space-md);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
