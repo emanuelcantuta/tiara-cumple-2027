@@ -1,0 +1,50 @@
+<app-top-nav></app-top-nav>
+<main class="personajes-container">
+  
+  @if (!showMinigame) {
+    <!-- VISTA 1: COLECCIÓN DE CARTAS -->
+    <header class="section-header">
+      <h1 class="main-title">El Multiverso de Tiara</h1>
+      <p class="subtitle">Personajes que tienen un pedacito de tu esencia (o de tu caos) ✨</p>
+    </header>
+
+    <section class="characters-grid">
+      @for (character of charactersList; track character.id) {
+        <article class="character-card">
+          <div class="card-image-wrapper">
+            <img [src]="character.image" [alt]="character.name" loading="lazy">
+          </div>
+          
+          <div class="card-info">
+            <div class="card-header">
+              <h2>{{ character.name }}</h2>
+              <span class="origin">{{ character.origin }}</span>
+            </div>
+            
+            <div class="stat-badge">
+              <span>{{ character.stat }}</span>
+            </div>
+            
+            <p class="description">{{ character.description }}</p>
+
+            <!-- EL ACCESO SECRETO -->
+            @if (character.hasSecretLink) {
+              <div class="secret-container">
+                <button class="secret-trigger" (click)="launchSecretMinigame()">
+                  [ Iniciar Prueba de Identidad ]
+                </button>
+              </div>
+            }
+          </div>
+        </article>
+      }
+    </section>
+  } @else {
+    <!-- VISTA 2: EL MINIJUEGO -->
+    <section class="minigame-container">
+      <h2>Iniciando sistema secreto... 👾</h2>
+      <p>Cargando archivos encriptados. Por favor espere.</p>
+    </section>
+  }
+
+</main>

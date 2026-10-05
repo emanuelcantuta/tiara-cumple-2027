@@ -1,0 +1,202 @@
+/* =========================================
+   FONDO GLOBAL (Estilo Juguetón Pastel)
+========================================= */
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  z-index: 0;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:host::before {
+  content: '';
+  position: fixed;
+  top: -10vh;
+  left: 0;
+  width: 100vw;
+  height: 120vh;
+  z-index: -1;
+  background-color: #fdfdfd; /* Base casi blanca y luminosa */
+  
+  /* Burbujas de colores pastel muy suaves que no molestan a la vista */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.35) 0%, transparent 45%), /* Rosita */
+    radial-gradient(circle at 90% 15%, rgba(173, 216, 230, 0.35) 0%, transparent 45%), /* Celestito */
+    radial-gradient(circle at 80% 85%, rgba(255, 245, 180, 0.35) 0%, transparent 50%), /* Amarillito */
+    radial-gradient(circle at 20% 85%, rgba(221, 160, 221, 0.3) 0%, transparent 50%),  /* Lilita */
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.9) 0%, transparent 65%);  /* Centro blanco */
+}
+
+.personajes-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* =========================================
+   CABECERA
+========================================= */
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.main-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* =========================================
+   GRID DE CARTAS (Responsive)
+========================================= */
+.characters-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Móviles: 1 columna */
+  gap: 25px;
+}
+
+@media (min-width: 600px) {
+  .characters-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tablets: 2 columnas */
+  }
+}
+
+@media (min-width: 1024px) {
+  .characters-grid {
+    grid-template-columns: repeat(4, 1fr); /* PC: 4 columnas */
+  }
+}
+
+/* =========================================
+   DISEÑO DE LA CARTA
+========================================= */
+.character-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Mantiene la foto cuadrada */
+  overflow: hidden;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.character-card:hover .card-image-wrapper img {
+  transform: scale(1.05); /* Zoom sutil al pasar el mouse */
+}
+
+/* =========================================
+   INFORMACIÓN DE LA CARTA
+========================================= */
+.card-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Empuja el botón secreto hacia abajo si sobra espacio */
+}
+
+.card-header {
+  margin-bottom: 12px;
+}
+
+.card-header h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+  color: #111;
+}
+
+.card-header .origin {
+  font-size: 0.85rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.stat-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: #f0f4ff;
+  color: #3b5bdb;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  flex-grow: 1;
+}
+
+/* =========================================
+   BOTÓN SECRETO (Hack)
+========================================= */
+.secret-container {
+  margin-top: auto; /* Lo tira al fondo de la carta */
+  text-align: center;
+  padding-top: 15px;
+  border-top: 1px dashed #eee;
+}
+
+.secret-trigger {
+  background: none;
+  border: none;
+  color: #ccc; /* Muy clarito para que pase desapercibido */
+  font-family: monospace;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 5px;
+}
+
+.secret-trigger:hover {
+  color: #00ff00; /* Verde hacker al pasar el mouse */
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* =========================================
+   CONTENEDOR DEL MINIJUEGO
+========================================= */
+.minigame-container {
+  text-align: center;
+  padding: 100px 20px;
+  font-family: monospace;
+  color: #333;
+}

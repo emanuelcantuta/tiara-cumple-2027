@@ -4,6 +4,7 @@ import { Impostor } from '@components/impostor/impostor';
 import { Home } from '@components/home/home';
 import { authGuard } from '@guards/auth';
 import { Cortis } from '@components/cortis/cortis';
+import { Personajes } from '@components/personajes/personajes';
 
 export const routes: Routes = [
     {
@@ -21,8 +22,8 @@ export const routes: Routes = [
         canActivate: [authGuard],
         children: [
             { path: '', component: Home, title: 'Tu Regalo - Tiara cumple' },
-            { path: 'cortis', component: Cortis, title: 'Zona Cortis 🎸- Tiara cumple' }
-            // ACA IRÁN LOS FUTUROS COMPONENTES
+            { path: 'cortis', component: Cortis, title: 'Zona Cortis 🎸- Tiara cumple' },
+            { path: 'personajes', component: Personajes, title: 'Personajes - Tiara cumple' }
         ]
     },
     { 
