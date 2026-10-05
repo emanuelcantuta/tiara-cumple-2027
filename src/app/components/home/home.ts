@@ -87,7 +87,7 @@ export class Home {
 
   destinations: Destination[] = [
     { id: DestinationId.CORTIS, title: 'Cortis (porque sé que los amás)', icon: '🎸', isLocked: false },
-    { id: DestinationId.PERSONAJES, title: 'Personajes que me recuerdan a vos', icon: '🎵', isLocked: false },
+    { id: DestinationId.PERSONAJES, title: 'Personajes que me recuerdan a vos', icon: '👩🏻‍🦰', isLocked: false },
     { id: DestinationId.PUSHEEN, title: 'Mensajes pusheen', icon: '😽', isLocked: false },
     { id: DestinationId.SECRETO, title: 'Regalo sorpresa', icon: '🎁', isLocked: true }
   ];
