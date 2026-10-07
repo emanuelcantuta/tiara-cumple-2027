@@ -1,6 +1,5 @@
 .top-nav {
-  height: 70px;
-  padding: 0 var(--space-md);
+  padding: 14px var(--space-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
