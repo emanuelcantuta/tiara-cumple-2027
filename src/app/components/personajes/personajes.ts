@@ -18,21 +18,45 @@ export class Personajes {
     {
       id: 'p1',
       name: 'Pomni',
-      origin: 'The Amazing Digital Circus (tadc)',
+      origin: 'The Amazing Digital Circus (TADC)',
       image: 'assets/images/personajes/pomni.webp',
       stat: 'Vibe: Caos y ternura',
       description: 'Me recordás a este personaje porque...'
     },
     {
       id: 'p2',
+      name: 'Hinata',
+      origin: 'Hinata (Naruto)',
+      image: 'assets/images/personajes/hinata.webp',
+      stat: 'Nivel de ternura: 100%',
+      description: 'Este personaje me recuerda a vos porque...'
+    },
+    {
+      id: 'p3',
+      name: 'Yena',
+      origin: 'YENA (k-pop)',
+      image: 'assets/images/personajes/yena.webp',
+      stat: 'Habilidad especial: ...',
+      description: 'No sé por qué, pero siempre ...'
+    },
+    {
+      id: 'p4',
       name: 'Powder / Jinx',
-      origin: 'Arcane',
+      origin: 'Arcane (LOL)',
       image: 'assets/images/personajes/powder.webp',
       stat: 'Nivel de ansiedad: 999%',
       description: 'Siempre que veo a este personaje me acuerdo de cuando...'
     },
     {
-      id: 'p3',
+      id: 'p5',
+      name: 'Su-Zaizai',
+      origin: 'When I Fly Towards You (C-Drama)',
+      image: 'assets/images/personajes/su-zaizai.webp',
+      stat: 'Nivel de ternura: 100%',
+      description: 'Este personaje me recuerda a vos porque...'
+    },
+    {
+      id: 'p6',
       name: 'Twilight Sparkle',
       origin: 'My little pony',
       image: 'assets/images/personajes/twilight.webp',
@@ -40,35 +64,18 @@ export class Personajes {
       description: 'Este personaje me hace pensar en...'
     },
     {
-      id: 'p4',
-      name: 'Personaje 4',
-      origin: 'Serie/Juego 4',
-      image: 'assets/images/personajes/p4.webp',
-      stat: 'Habilidad especial: Inexistente',
-      description: 'No sé por qué, pero siempre me viene a la mente este personaje cuando...'
-    },
-    {
-      id: 'p5',
-      name: 'Personaje 5',
-      origin: 'Serie/Juego 5',
-      image: 'assets/images/personajes/p5.webp',
+      id: 'p7',
+      name: 'Perro salchicha',
+      origin: 'Perro salchicha',
+      image: 'assets/images/personajes/perro-salchicha.webp',
       stat: 'Nivel de ternura: 100%',
       description: 'Este personaje me recuerda a vos porque...'
     },
     {
-      id: 'p6',
-      name: 'Personaje 6',
-      origin: 'Serie/Juego 6',
-      image: 'assets/images/personajes/p6.webp',
-      stat: 'Nivel de misterio: 100%',
-      description: 'Este personaje siempre me ha intrigado por su naturaleza enigmática...'
-    },
-    // agregar mas personajes aquí...
-    {
       id: 'p-secret',
       name: 'El Hacker / Misterioso',
       origin: '???',
-      image: 'assets/images/personajes/secret.webp',
+      image: 'assets/images/personajes/loading.gif',
       stat: 'Nivel de rareza: Desconocido',
       description: 'Hay algo raro en este archivo... parece que el sistema detectó una anomalía.',
       hasSecretLink: true
@@ -78,6 +85,4 @@ export class Personajes {
   launchSecretMinigame() {
     this.showMinigame = true;
   }
-
-
 }
