@@ -1,0 +1,40 @@
+@if (isSystemLoading) {
+  <section class="loading-screen">
+    <h2>Iniciando sistema secreto... 👾</h2>
+    <p>Cargando archivos encriptados. Por favor espere<span class="dots">...</span></p>
+  </section>
+} @else {
+  <section class="game-container">
+    
+    <!-- BARRA SUPERIOR (Vidas, Título y Progreso) -->
+    <header class="game-header">
+      <div class="lives-container">
+        <!-- Mostramos 3 corazones (usando una clase 'lost' si perdió la vida) -->
+        @for (i of [1, 2, 3]; track $index) {
+          <span class="heart" [class.lost]="lives < i">❤️</span>
+        }
+      </div>
+      
+      <div class="category-title">
+        Pusheen-tados
+      </div>
+      
+      <div class="score-container">
+        <span class="score-text">{{ score }}/5</span>
+      </div>
+    </header>
+
+    <!-- ZONA CENTRAL (Acá irá la ruleta o la tarjeta de pregunta luego) -->
+    <main class="game-board">
+      <p style="text-align: center; margin-top: 50px;">¡Sistema desencriptado! (La ruleta irá acá)</p>
+    </main>
+
+    <!-- ZONA INFERIOR (Botones de ayuda) -->
+    <footer class="game-footer">
+      <button class="bomb-btn" [disabled]="!hasBomb" (click)="useBomb()">
+        💣 Usar Ayuda
+      </button>
+    </footer>
+
+  </section>
+}

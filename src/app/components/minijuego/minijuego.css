@@ -1,0 +1,108 @@
+/* =========================================
+   CONTENEDOR GLOBAL DEL COMPONENTE
+========================================= */
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 180px);
+}
+
+.game-container {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* =========================================
+   PANTALLA DE CARGA
+========================================= */
+.loading-screen {
+  text-align: center;
+  padding: 100px 20px;
+  font-family: monospace;
+  color: #333;
+  animation: pulse 1.5s infinite;
+}
+
+.loading-screen h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* =========================================
+   UI DEL JUEGO
+========================================= */
+.game-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  border: 2px solid #f0f0f0;
+}
+
+.heart {
+  font-size: 1.5rem;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.heart.lost {
+  filter: grayscale(100%);
+  opacity: 0.3;
+}
+
+.category-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.score-container {
+  background-color: #f0f4ff;
+  color: #3b5bdb;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.game-footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.bomb-btn {
+  background-color: #845ef7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.bomb-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

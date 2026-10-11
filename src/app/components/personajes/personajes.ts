@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TopNav } from '@components/top-nav/top-nav';
 import { Character } from './models/character';
+import { Minijuego } from '@components/minijuego/minijuego';
 
 @Component({
-  imports: [CommonModule, TopNav],
+  imports: [CommonModule, TopNav, Minijuego],
   selector: 'app-personajes',
   standalone: true,
   styleUrl: './personajes.css',
