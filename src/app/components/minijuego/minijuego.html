@@ -44,6 +44,19 @@
       <!-- VISTA B: LA TARJETA DE PREGUNTA -->
       <main class="question-board">
         <div class="question-card">
+          
+          <!-- EL RELOJ -->
+          <div class="timer-wrapper">
+            <div class="timer-bar-bg">
+              <!-- La barra se achica usando style.width y cambia a clase danger si le quedan 3 o menos segs -->
+              <div class="timer-bar-fill" 
+                   [style.width.%]="(timeLeft / 10) * 100"
+                   [class.danger]="timeLeft <= 3">
+              </div>
+            </div>
+            <span class="timer-text" [class.danger-text]="timeLeft <= 3">00:{{ timeLeft < 10 ? '0'+timeLeft : timeLeft }}</span>
+          </div>
+
           <span class="q-category">{{ currentQuestion.category }}</span>
           <h3 class="q-text">{{ currentQuestion.text }}</h3>
           

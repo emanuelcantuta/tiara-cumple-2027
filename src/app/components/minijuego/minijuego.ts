@@ -26,6 +26,10 @@ export class Minijuego implements OnInit {
   askedQuestionsIds: number[] = [];
   currentRotation: number = 0;
 
+  // Variables para el reloj
+  timeLeft: number = 10;
+  private timerInterval: any;
+
   questionsList: Question[] = [
     {
       id: 1,
@@ -57,7 +61,7 @@ export class Minijuego implements OnInit {
     },
     {
       id: 5,
-      category: '🍿 Espectáculos', // O Deportes, o lo que quieras
+      category: '🍿 Espectáculos',
       text: '¿Acá va tu quinta pregunta?',
       options: ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4'],
       correctAnswer: 'Opción Correcta'
@@ -67,8 +71,12 @@ export class Minijuego implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.isSystemLoading = false;
-      this.cdr.detectChanges(); // ¡Acá está la magia! Fuerza a redibujar el HTML
+      this.cdr.detectChanges();
     }, 2000);
+  }
+
+  ngOnDestroy() {
+    this.stopTimer();
   }
 
   spinRoulette() {
@@ -103,10 +111,50 @@ export class Minijuego implements OnInit {
       this.isSpinning = false;
       this.currentQuestion = selectedQ;
       this.askedQuestionsIds.push(selectedQ.id);
+      this.startTimer();
       this.cdr.detectChanges();
     }, 3000);
   }
 
+  // --- LÓGICA DEL TIEMPO ---
+  startTimer() {
+    this.timeLeft = 10; 
+    this.timerInterval = setInterval(() => {
+      this.timeLeft--;
+      this.cdr.detectChanges();
+
+      if (this.timeLeft <= 0) {
+        this.stopTimer();
+        this.handleTimeout();
+      }
+    }, 1000);
+  }
+
+  stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+  }
+
+  handleTimeout() {
+    this.lives--;
+    this.currentQuestion = null;
+    this.cdr.detectChanges();
+  }
+
+  // --- LÓGICA DE RESPUESTA BÁSICA ---
+  checkAnswer(selectedOption: string) {
+    this.stopTimer();
+
+    if (selectedOption === this.currentQuestion?.correctAnswer) {
+      this.score++;
+    } else {
+      this.lives--;
+    }
+    
+    this.currentQuestion = null;
+    this.cdr.detectChanges();
+  }
+
   useBomb() {}
-  checkAnswer(selectedOption: string) {}
 }
