@@ -77,7 +77,7 @@ export class Personajes {
     },
     {
       id: 'p-secret',
-      name: 'Error 404',
+      name: '404 - Not Found',
       origin: '???',
       image: 'assets/images/personajes/loading.gif',
       stat: 'Texto no encontrado',
