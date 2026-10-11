@@ -24,6 +24,7 @@ export class Minijuego implements OnInit {
   isSpinning: boolean = false;
   currentQuestion: Question | null = null;
   askedQuestionsIds: number[] = [];
+  currentRotation: number = 0;
 
   questionsList: Question[] = [
     {
@@ -54,8 +55,6 @@ export class Minijuego implements OnInit {
       options: ['Al cine', 'Al Barrio Chino', 'A merendar', 'A mi casa'],
       correctAnswer: 'Al cine'
     },
-    // FALTARÍA LA PREGUNTA 5 ACÁ ABAJO:
-    /*
     {
       id: 5,
       category: '🍿 Espectáculos', // O Deportes, o lo que quieras
@@ -63,7 +62,6 @@ export class Minijuego implements OnInit {
       options: ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4'],
       correctAnswer: 'Opción Correcta'
     }
-    */
   ];
 
   ngOnInit() {
@@ -73,7 +71,42 @@ export class Minijuego implements OnInit {
     }, 2000);
   }
 
-  spinRoulette() {}
+  spinRoulette() {
+    if (this.isSpinning || this.questionsList.length === this.askedQuestionsIds.length) return;
+
+    this.isSpinning = true;
+
+    // 1. Filtramos las preguntas para no repetir las que ya salieron
+    const availableQuestions = this.questionsList.filter(q => !this.askedQuestionsIds.includes(q.id));
+    
+    // 2. Elegimos una al azar
+    const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+    const selectedQ = availableQuestions[randomIndex];
+
+    // 3. Buscamos el índice original para saber qué "gajo" (color) le corresponde
+    const originalIndex = this.questionsList.findIndex(q => q.id === selectedQ.id);
+
+    // 4. Matemáticas de la ruleta:
+    // Cada gajo mide 72 grados. Su centro está a la mitad (+36).
+    // Restamos de 360 para que ese centro quede alineado arriba (con la flecha roja).
+    const sliceCenter = (originalIndex * 72) + 36;
+    const targetDegree = 360 - sliceCenter;
+
+    // Le damos 5 vueltas completas de suspenso (5 * 360 = 1800 grados)
+    const extraSpins = 360 * 5;
+    
+    // Calculamos la rotación acumulada total para que no se "reinicie" visualmente el giro
+    const remainder = this.currentRotation % 360;
+    this.currentRotation = this.currentRotation - remainder + extraSpins + targetDegree;
+
+    setTimeout(() => {
+      this.isSpinning = false;
+      this.currentQuestion = selectedQ;
+      this.askedQuestionsIds.push(selectedQ.id);
+      this.cdr.detectChanges();
+    }, 3000);
+  }
+
   useBomb() {}
   checkAnswer(selectedOption: string) {}
 }

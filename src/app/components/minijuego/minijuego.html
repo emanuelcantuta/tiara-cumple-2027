@@ -24,18 +24,39 @@
       </div>
     </header>
 
-    <!-- ZONA CENTRAL (La Ruleta) -->
-    <main class="game-board">
-      <div class="roulette-wrapper">
-        <div class="roulette-pointer"></div>
-        <div class="roulette-wheel" [class.spinning]="isSpinning">
+    <!-- ZONA CENTRAL -->
+    @if (!currentQuestion) {
+      <!-- VISTA A: LA RULETA -->
+      <main class="game-board">
+        <div class="roulette-wrapper">
+          <div class="roulette-pointer"></div>
           
+          <!-- Acá le inyectamos los grados de giro matemáticos -->
+          <div class="roulette-wheel" [style.transform]="'rotate(' + currentRotation + 'deg)'">
+          </div>
+
+          <button class="spin-btn" (click)="spinRoulette()" [disabled]="isSpinning">
+            GIRAR
+          </button>
         </div>
-        <button class="spin-btn" (click)="spinRoulette()" [disabled]="isSpinning">
-          GIRAR
-        </button>
-      </div>
-    </main>
+      </main>
+    } @else {
+      <!-- VISTA B: LA TARJETA DE PREGUNTA -->
+      <main class="question-board">
+        <div class="question-card">
+          <span class="q-category">{{ currentQuestion.category }}</span>
+          <h3 class="q-text">{{ currentQuestion.text }}</h3>
+          
+          <div class="options-grid">
+            @for (option of currentQuestion.options; track $index) {
+              <button class="option-btn" (click)="checkAnswer(option)">
+                {{ option }}
+              </button>
+            }
+          </div>
+        </div>
+      </main>
+    }
 
     <!-- ZONA INFERIOR (Botones de ayuda) -->
     <footer class="game-footer">

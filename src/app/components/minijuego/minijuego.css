@@ -191,8 +191,91 @@
   filter: drop-shadow(0 4px 2px rgba(0,0,0,0.2));
 }
 
-/* Clase dinámica desde TypeScript para girar */
-.spinning {
-  /* Esto es temporal, luego lo giraremos con grados dinámicos desde JS */
-  transform: rotate(1080deg); 
+/* =========================================
+   TARJETA DE PREGUNTA
+========================================= */
+.question-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.question-card {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 2px solid #f0f0f0;
+  text-align: center;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.q-category {
+  display: inline-block;
+  background: #f0f4ff;
+  color: #3b5bdb;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.q-text {
+  font-size: 1.2rem; /* Lo achicamos un pelín para que no quite tanto espacio */
+  color: #222;
+  margin-bottom: 25px;
+  line-height: 1.4;
+  padding: 0 10px; /* Un poco de aire a los costados */
+}
+
+.options-grid {
+  display: grid;
+  /* En celular, 1 sola columna pero que ocupe todo el ancho */
+  grid-template-columns: 1fr;
+  gap: 15px; /* Un poco más de separación entre botones */
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .options-grid {
+    grid-template-columns: 1fr 1fr; /* En PC/Tablet, 2 columnas */
+  }
+}
+
+.option-btn {
+  background: white;
+  border: 2px solid #e2e8f0; /* Borde un poco más suave */
+  padding: 18px 15px; /* Más alto para que sea más fácil tocar con el dedo */
+  border-radius: 16px; /* Más redondeado, estilo app moderna */
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%; /* Asegura que el botón se estire */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02); /* Sombrita súper sutil */
+}
+
+/* Efecto al pasar el dedo o el mouse */
+.option-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+}
+
+/* Efecto al tocar la pantalla */
+.option-btn:active {
+  transform: translateY(0);
+  background: #f1f5f9;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
 }
