@@ -62,26 +62,25 @@
           
           <div class="options-grid">
             @for (option of currentQuestion.options; track $index) {
-              <!-- Le ponemos clases dinámicas para pintarlo verde o rojo -->
               <button class="option-btn" 
-                      [disabled]="selectedAnswer !== null || answerResult === 'timeout'"
-                      [class.correct]="(selectedAnswer !== null || answerResult === 'timeout') && option === currentQuestion.correctAnswer"
+                      [disabled]="selectedAnswer !== null || answerResult === AnswerStatus.Timeout"
+                      [class.correct]="(selectedAnswer !== null || answerResult === AnswerStatus.Timeout) && option === currentQuestion.correctAnswer"
                       [class.incorrect]="selectedAnswer === option && option !== currentQuestion.correctAnswer"
                       (click)="checkAnswer(option)">
                 {{ option }}
               </button>
             }
           </div>
-          
-          <!-- CARTEL DE FEEDBACK (Solo aparece cuando hay un resultado) -->
+
+          <!-- CARTEL DE FEEDBACK -->
           @if (answerResult) {
             <div class="result-message" 
-                 [class.success]="answerResult === 'correct'" 
-                 [class.error]="answerResult === 'incorrect' || answerResult === 'timeout'">
+                 [class.success]="answerResult === AnswerStatus.Correct" 
+                 [class.error]="answerResult === AnswerStatus.Incorrect || answerResult === AnswerStatus.Timeout">
               
-              @if (answerResult === 'correct') {
+              @if (answerResult === AnswerStatus.Correct) {
                 <h3>¡Correcto! ✅</h3>
-              } @else if (answerResult === 'incorrect') {
+              } @else if (answerResult === AnswerStatus.Incorrect) {
                 <h3>Incorrecto ❌</h3>
               } @else {
                 <h3>¡Tiempo Agotado! ⏰</h3>

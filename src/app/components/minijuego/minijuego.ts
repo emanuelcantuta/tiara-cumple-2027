@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { Question } from './models/question';
+import { AnswerStatus } from './models/answer-status';
 
 @Component({
   imports: [CommonModule],
@@ -14,6 +15,7 @@ export class Minijuego implements OnInit {
 
   private cdr = inject(ChangeDetectorRef);
   isSystemLoading: boolean = true;
+  AnswerStatus = AnswerStatus;
 
   // estado del jugador
   lives: number = 3;
@@ -29,6 +31,9 @@ export class Minijuego implements OnInit {
   // Variables para el reloj
   timeLeft: number = 10;
   private timerInterval: any;
+
+  selectedAnswer: string | null = null;
+  answerResult: AnswerStatus | null = null;
 
   questionsList: Question[] = [
     {
@@ -116,9 +121,6 @@ export class Minijuego implements OnInit {
     }, 3000);
   }
 
-  selectedAnswer: string | null = null;
-  answerResult: 'correct' | 'incorrect' | 'timeout' | null = null;
-
   // --- LÓGICA DEL TIEMPO ---
   startTimer() {
     this.timeLeft = 10; 
@@ -134,9 +136,7 @@ export class Minijuego implements OnInit {
   }
 
   stopTimer() {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-    }
+    if (this.timerInterval) clearInterval(this.timerInterval);
   }
 
   playSoundCorrect() {
@@ -152,11 +152,10 @@ export class Minijuego implements OnInit {
   }
 
   handleTimeout() {
-    this.answerResult = 'timeout';
+    this.answerResult = AnswerStatus.Timeout;
     this.playSoundError();
     this.cdr.detectChanges();
 
-    // Esperamos 2 segundos para que vea el cartel de "Tiempo Agotado"
     setTimeout(() => {
       this.lives--;
       this.resetTurn();
@@ -171,11 +170,11 @@ export class Minijuego implements OnInit {
     this.selectedAnswer = selectedOption;
 
     if (selectedOption === this.currentQuestion?.correctAnswer) {
-      this.answerResult = 'correct';
+      this.answerResult = AnswerStatus.Correct;
       this.score++;
       this.playSoundCorrect();
     } else {
-      this.answerResult = 'incorrect';
+      this.answerResult = AnswerStatus.Incorrect;
       this.lives--;
       this.playSoundError();
     }
