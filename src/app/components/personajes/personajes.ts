@@ -31,7 +31,6 @@ export class Personajes {
       image: 'assets/images/personajes/hinata.webp',
       stat: 'Nerviosismo: 90%',
       description: `Algo que tienen muchos personajes en común, es que todos son mis favoritos.
-      
       Al igual que con Hinata (amaba el ship HxNaruto JAFKSD). Me veia solo para que salieran ellosxD. Y del anime fue la que más me llamaba a vs.`
     },
     {
