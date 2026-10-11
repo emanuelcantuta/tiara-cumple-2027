@@ -116,6 +116,9 @@ export class Minijuego implements OnInit {
     }, 3000);
   }
 
+  selectedAnswer: string | null = null;
+  answerResult: 'correct' | 'incorrect' | 'timeout' | null = null;
+
   // --- LÓGICA DEL TIEMPO ---
   startTimer() {
     this.timeLeft = 10; 
@@ -136,23 +139,58 @@ export class Minijuego implements OnInit {
     }
   }
 
+  playSoundCorrect() {
+    // TODO: A futuro, descomentar y poner la ruta de tu sonido de acierto
+    // const audio = new Audio('assets/audio/correcto.mp3');
+    // audio.play();
+  }
+
+  playSoundError() {
+    // TODO: A futuro, descomentar y poner la ruta de tu sonido de error/perder vida
+    // const audio = new Audio('assets/audio/error.mp3');
+    // audio.play();
+  }
+
   handleTimeout() {
-    this.lives--;
-    this.currentQuestion = null;
+    this.answerResult = 'timeout';
+    this.playSoundError();
     this.cdr.detectChanges();
+
+    // Esperamos 2 segundos para que vea el cartel de "Tiempo Agotado"
+    setTimeout(() => {
+      this.lives--;
+      this.resetTurn();
+    }, 2000);
   }
 
   // --- LÓGICA DE RESPUESTA BÁSICA ---
   checkAnswer(selectedOption: string) {
+    if (this.selectedAnswer) return; 
+
     this.stopTimer();
+    this.selectedAnswer = selectedOption;
 
     if (selectedOption === this.currentQuestion?.correctAnswer) {
+      this.answerResult = 'correct';
       this.score++;
+      this.playSoundCorrect();
     } else {
+      this.answerResult = 'incorrect';
       this.lives--;
+      this.playSoundError();
     }
     
+    this.cdr.detectChanges();
+
+    setTimeout(() => {
+      this.resetTurn();
+    }, 2000);
+  }
+
+  resetTurn() {
     this.currentQuestion = null;
+    this.selectedAnswer = null;
+    this.answerResult = null;
     this.cdr.detectChanges();
   }
 

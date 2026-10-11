@@ -324,3 +324,57 @@
   from { transform: scale(1); }
   to { transform: scale(1.1); }
 }
+
+/* =========================================
+   ESTADOS DE RESPUESTA (Botones)
+========================================= */
+/* Cuando ya respondió, bloqueamos el hover para que no confunda */
+.option-btn:disabled {
+  cursor: default;
+  opacity: 0.8;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* El botón que era el correcto se pinta de verde pastel */
+.option-btn.correct {
+  background-color: #d4edda !important;
+  border-color: #c3e6cb !important;
+  color: #155724 !important;
+  font-weight: 800;
+}
+
+/* El botón que eligió y estaba mal se pinta de rojito */
+.option-btn.incorrect {
+  background-color: #f8d7da !important;
+  border-color: #f5c6cb !important;
+  color: #721c24 !important;
+}
+
+/* =========================================
+   CARTEL DE FEEDBACK (Abajo de las opciones)
+========================================= */
+.result-message {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 16px;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.result-message h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.result-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 2px solid #c3e6cb;
+}
+
+.result-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 2px solid #f5c6cb;
+}
