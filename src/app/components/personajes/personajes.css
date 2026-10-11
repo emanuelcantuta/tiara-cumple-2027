@@ -93,6 +93,11 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.character-card:last-child .stat-badge{
+  background-color: #ffebee;
+  color: var(--error-color);
+}
+
 .character-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
@@ -155,6 +160,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   margin-bottom: 15px;
+  margin-left: -8px;
 }
 
 .description {

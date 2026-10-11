@@ -77,10 +77,10 @@ export class Personajes {
     },
     {
       id: 'p-secret',
-      name: 'El Hacker / Misterioso',
+      name: 'Error 404',
       origin: '???',
       image: 'assets/images/personajes/loading.gif',
-      stat: 'Nivel de rareza: Desconocido',
+      stat: 'Texto no encontrado',
       description: `Hay algo raro en este archivo... parece que el sistema detectó una anomalía.`,
       hasSecretLink: true
     }
