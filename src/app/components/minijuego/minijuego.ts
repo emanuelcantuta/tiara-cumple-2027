@@ -10,7 +10,6 @@ import { Question } from './models/question';
   templateUrl: './minijuego.html',
 })
 export class Minijuego implements OnInit {
-  // Evento para avisarle al componente padre (Personajes) si gana el juego
   @Output() gameWon = new EventEmitter<void>();
 
   private cdr = inject(ChangeDetectorRef);
@@ -71,7 +70,7 @@ export class Minijuego implements OnInit {
     setTimeout(() => {
       this.isSystemLoading = false;
       this.cdr.detectChanges(); // ¡Acá está la magia! Fuerza a redibujar el HTML
-    }, 2500);
+    }, 2000);
   }
 
   spinRoulette() {}
