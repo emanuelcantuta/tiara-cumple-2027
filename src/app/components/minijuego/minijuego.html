@@ -32,7 +32,9 @@
           <div class="roulette-pointer"></div>
           
           <!-- Acá le inyectamos los grados de giro matemáticos -->
-          <div class="roulette-wheel" [style.transform]="'rotate(' + currentRotation + 'deg)'">
+          <div class="roulette-wheel" 
+            [style.transform]="'rotate(' + currentRotation + 'deg)'"
+            [style.background]="rouletteGradient">
           </div>
 
           <button class="spin-btn" (click)="spinRoulette()" [disabled]="isSpinning">

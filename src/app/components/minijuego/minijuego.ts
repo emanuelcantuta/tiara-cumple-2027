@@ -27,6 +27,7 @@ export class Minijuego implements OnInit {
   currentQuestion: Question | null = null;
   askedQuestionsIds: number[] = [];
   currentRotation: number = 0;
+  wonQuestionsIds: number[] = [];
 
   // Variables para el reloj
   timeLeft: number = 10;
@@ -40,30 +41,34 @@ export class Minijuego implements OnInit {
       id: 1,
       category: '🎨 Arte',
       text: 'Cuando nos juntamos e hicimos un cuadro juntos, ¿qué animal fue el que dibujé yo?',
-      options: ['Un gato', 'Un perro', 'Pingüino', 'Un sapo'],
-      correctAnswer: 'Pingüino'
+      options: ['Un gato', 'Un perro', 'El Pingüino', 'Un sapo'],
+      correctAnswer: 'El Pingüino',
+      color: '#ffb6c1' // Rosa pastel
     },
     {
       id: 2,
       category: '📜 Historia',
       text: '¿Dónde o cómo fue la primera vez que interactuamos?',
       options: ['En la escuela', 'En un cumple familiar', 'En una plaza', 'Por chat'],
-      correctAnswer: 'En un cumple familiar'
+      correctAnswer: 'En un cumple familiar',
+      color: '#add8e6' // Celeste
     },
     {
       id: 3,
       category: '🔬 Educación',
       text: 'Cuando me colé en tu aula como "ayudanteJAKS", ¿qué clase tocaba?',
       options: ['Matemática', 'Literatura', 'Inglés', 'Geografía'],
-      correctAnswer: 'Inglés'
+      correctAnswer: 'Inglés',
+      color: '#fff5b4' // Amarillo
     },
     {
       id: 4,
       category: '🌍 Lugares',
       text: '¡Esta seguro la sabésXD! ¿A qué lugar todavía no fuimos y es el que más veces dijimos para ir?',
       options: ['Al cine', 'Al Barrio Chino', 'A merendar', 'A mi casa'],
-      correctAnswer: 'Al cine'
-    },
+      correctAnswer: 'Al cine',
+      color: '#bdfcc9' // Verde agua
+    },/*
     {
       id: 5,
       category: '🍿 Espectáculos',
@@ -71,7 +76,31 @@ export class Minijuego implements OnInit {
       options: ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4'],
       correctAnswer: 'Opción Correcta'
     }
+       */
   ];
+
+  // FILTRO: Trae solo las preguntas que todavía no ganó
+  get availableQuestions(): Question[] {
+    return this.questionsList.filter(q => !this.wonQuestionsIds.includes(q.id));
+  }
+
+  // DIBUJA EL GRADIENTE DE LA RULETA SEGÚN LAS PREGUNTAS DISPONIBLES
+  get rouletteGradient(): string {
+    const available = this.availableQuestions;
+    if (available.length === 0) return '#f0f0f0'; // Gris si no quedan preguntas
+
+    const sliceSize = 360 / available.length;
+    let gradient = 'conic-gradient(';
+    
+    available.forEach((q, index) => {
+      const startAngle = index * sliceSize;
+      const endAngle = startAngle + sliceSize;
+      gradient += `${q.color} ${startAngle}deg ${endAngle}deg`;
+      if (index < available.length - 1) gradient += ', ';
+    });
+    
+    return gradient + ')';
+  }
 
   ngOnInit() {
     setTimeout(() => {
@@ -85,39 +114,28 @@ export class Minijuego implements OnInit {
   }
 
   spinRoulette() {
-    if (this.isSpinning || this.questionsList.length === this.askedQuestionsIds.length) return;
-
+    const available = this.availableQuestions;
+    if (this.isSpinning || available.length === 0) return;
+    
     this.isSpinning = true;
 
-    // 1. Filtramos las preguntas para no repetir las que ya salieron
-    const availableQuestions = this.questionsList.filter(q => !this.askedQuestionsIds.includes(q.id));
-    
-    // 2. Elegimos una al azar
-    const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-    const selectedQ = availableQuestions[randomIndex];
+    const randomIndex = Math.floor(Math.random() * available.length);
+    const selectedQ = available[randomIndex];
 
-    // 3. Buscamos el índice original para saber qué "gajo" (color) le corresponde
-    const originalIndex = this.questionsList.findIndex(q => q.id === selectedQ.id);
-
-    // 4. Matemáticas de la ruleta:
-    // Cada gajo mide 72 grados. Su centro está a la mitad (+36).
-    // Restamos de 360 para que ese centro quede alineado arriba (con la flecha roja).
-    const sliceCenter = (originalIndex * 72) + 36;
+    // Matemática dinámica según la cantidad de gajos que queden
+    const sliceSize = 360 / available.length;
+    const sliceCenter = (randomIndex * sliceSize) + (sliceSize / 2);
     const targetDegree = 360 - sliceCenter;
-
-    // Le damos 5 vueltas completas de suspenso (5 * 360 = 1800 grados)
-    const extraSpins = 360 * 5;
     
-    // Calculamos la rotación acumulada total para que no se "reinicie" visualmente el giro
+    const extraSpins = 360 * 5;
     const remainder = this.currentRotation % 360;
     this.currentRotation = this.currentRotation - remainder + extraSpins + targetDegree;
 
     setTimeout(() => {
       this.isSpinning = false;
       this.currentQuestion = selectedQ;
-      this.askedQuestionsIds.push(selectedQ.id);
       this.startTimer();
-      this.cdr.detectChanges();
+      this.cdr.detectChanges(); 
     }, 3000);
   }
 
@@ -172,6 +190,8 @@ export class Minijuego implements OnInit {
     if (selectedOption === this.currentQuestion?.correctAnswer) {
       this.answerResult = AnswerStatus.Correct;
       this.score++;
+    
+      this.wonQuestionsIds.push(this.currentQuestion.id); 
       this.playSoundCorrect();
     } else {
       this.answerResult = AnswerStatus.Incorrect;
@@ -183,13 +203,19 @@ export class Minijuego implements OnInit {
 
     setTimeout(() => {
       this.resetTurn();
-    }, 2000);
+    }, 2000); 
   }
 
   resetTurn() {
     this.currentQuestion = null;
     this.selectedAnswer = null;
     this.answerResult = null;
+    
+    // validamos si ganó todas las preguntas
+    if (this.wonQuestionsIds.length === this.questionsList.length) {
+      this.gameWon.emit(); // Avisar a Personajes que ganó el minijuego
+    }
+    
     this.cdr.detectChanges();
   }
 

@@ -133,15 +133,6 @@
   border-radius: 50%;
   border: 6px solid #fff;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  
-  background: conic-gradient(
-    #ffb6c1 0deg 72deg,    /* Rosa pastel (Arte) */
-    #add8e6 72deg 144deg,  /* Celeste (Historia) */
-    #fff5b4 144deg 216deg, /* Amarillito (Educación) */
-    #bdfcc9 216deg 288deg, /* Verde agua (Lugares) */
-    #dda0dd 288deg 360deg  /* Lila (Pregunta 5) */
-  );
-  
   transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1); /* Giro suave que frena de a poco */
 }
 
