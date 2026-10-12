@@ -97,7 +97,11 @@ export class Cortis {
          englishText: 'I think expressing myself is kind of difficult.',
          url: 'https://www.tiktok.com/@mrtincams/video/7678109638734187808'
         },
-        // agregar otro
+        {
+          text: 'aniyaa~~~',
+          englishText: 'Noou~',
+          url: 'https://www.tiktok.com/@junkxee/video/7673515512550149383'
+        },
         {
           text: `Siempre escribo sobre emociones que realmente he sentido como en <strong>JoyRide</strong>: No sun no sky a 
           ghostly pale face.`,
