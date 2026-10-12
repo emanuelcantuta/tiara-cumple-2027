@@ -9,7 +9,7 @@ El proyecto es una Single Page Application (SPA) pensada para ser una experienci
 ## 🎨 Diseño y Temática
 La interfaz está inspirada en una estética **Y2K / Kawaii**, buscando un balance entre lo moderno y lo tierno:
 * **UI/UX:** Componentes con efecto *Glassmorphism* (vidrio esmerilado) en la navegación, paletas de colores pastel adaptativas para las tarjetas, diálogos nativos (`<dialog>`) y layouts responsivos amigables para lectura.
-* **Pusheen:** GIFs del gatito integrados estratégicamente para acompañar las emociones y la interactividad (reacciones a contraseñas, globos decorativos, etc.).
+* **Pusheen:** GIFs del gatito integrados estratégicamente para acompañar las emociones y la interactividad (reacciones a contraseñas, globos decorativos, pantallas de Game Over, etc.).
 * **Música y K-Pop:** Ambientación musical dinámica enfocada 100% en sus artistas y grupos favoritos. El catálogo actual cuenta con pistas de CORTIS, ENHYPEN, EVAN, aespa y LOONA.
 
 ## 🚀 Logros y Estado Actual
@@ -28,12 +28,12 @@ La interfaz está inspirada en una estética **Y2K / Kawaii**, buscando un balan
 * [x] **Refactor UI Global:** Mejora de responsividad en la navegación superior (uso de padding dinámico en lugar de alturas fijas) y estandarización de variables CSS (ej. `--margin-bottom-text`).
 
 **Fase 3: Destinos y Escape Room (En curso)**
-* [x] **Zona Cortis (Completada):** Layout editorial con diseño *Bento Grid*, galería de imágenes con *Scroll Snapping*, y cierre inmersivo con video musical en reproducción automática (iframe moderno con `aspect-ratio`).
-* [x] **Pistas Ocultas - Nivel 1:** Integración de la primera pieza de la contraseña camuflada estéticamente en el carrusel de la galería de Martín.
+* [x] **Zona Cortis (Completada):** Layout editorial con diseño *Bento Grid*, galería de imágenes con *Scroll Snapping*, y cierre inmersivo con video musical en reproducción automática. 
+* [x] **Pistas Ocultas - Nivel 1:** Integración de la primera pieza de la contraseña camuflada estéticamente en el carrusel de la galería de Martín (diseño de terminal hacker/cyberpunk).
 * [x] **Personajes - UI Base (Completada):** Maquetado responsivo (estilo "cartas coleccionables") renderizado dinámicamente mediante un modelo de datos en TypeScript, con fondo animado de burbujas pastel.
+* [x] **Minijuego "Pusheen-tados" (Completado):** Trivia interactiva integrada dentro de "Personajes". Cuenta con una ruleta generada dinámicamente con CSS (`conic-gradient`), sistema de vidas, temporizador visual fluído, comodín 50/50, pantalla de "Game Over" con superposición, y validación estricta para liberar la segunda pista de la contraseña.
 
 ## 🗺️ Roadmap (Próximos Pasos)
-* [ ] **Minijuego "Pusheen-tados" (En curso):** Desarrollo de una trivia interactiva estilo ruleta oculta dentro de la sección "Personajes". Contará con sistema de vidas, comodines y validación lógica para liberar la segunda pista.
 * [ ] **Diseño de la Carta (Home):** Darle formato estético al texto interior de la sección central para que transmita la sensación de ser un pergamino o tarjeta física de bienvenida.
 * [ ] **Mensajes Pusheen:** Interfaz tierna con frases o mini-cartas.
 * [ ] **Regalo Sorpresa (Ruta Secreta):** La carta final y verdadera sorpresa una vez que descubre la contraseña oculta en las otras secciones.
