@@ -8,6 +8,14 @@
       <p class="subtitle">Personajes que tienen un pedacito de tu esencia (o de tu caos) ✨</p>
     </header>
 
+    @if (hasWonMinigame) {
+      <div class="victory-clue-box">
+        <h3>¡Sistema Desencriptado! 🔓</h3>
+        <p>Completaste la prueba de identidad. Una pieza de la contraseña ha sido revelada:</p>
+        <div class="clue-highlight">{{ clueWord }}</div>
+      </div>
+    }
+
     <section class="characters-grid">
       @for (character of charactersList; track character.id) {
         <article class="character-card">
@@ -41,7 +49,10 @@
     </section>
   } @else {
     <!-- VISTA 2: EL MINIJUEGO -->
-    <app-minijuego (gameLost)="showMinigame = false"></app-minijuego>
+    <app-minijuego 
+      (gameLost)="showMinigame = false" 
+      (gameWon)="onMinigameWon()">
+    </app-minijuego>
   }
 
 </main>

@@ -38,6 +38,7 @@ export class Minijuego implements OnInit, OnDestroy {
 
   selectedAnswer: string | null = null;
   answerResult: AnswerStatus | null = null;
+  hiddenOptions: string[] = [];
 
   questionsList: Question[] = [
     {
@@ -229,6 +230,7 @@ export class Minijuego implements OnInit, OnDestroy {
     this.currentQuestion = null;
     this.selectedAnswer = null;
     this.answerResult = null;
+    this.hiddenOptions = [];
     
     // 1. Verificamos si perdió todas las vidas
     if (this.lives <= 0) {
@@ -249,5 +251,18 @@ export class Minijuego implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
-  useBomb() {}
+  useBomb() {
+    if (!this.hasBomb || !this.currentQuestion || this.selectedAnswer) return;
+
+    this.hasBomb = false;
+
+    const correct = this.currentQuestion.correctAnswer;
+    const incorrects = this.currentQuestion.options.filter(opt => opt !== correct);
+
+    // Mezclamos las incorrectas y elegimos 2 al azar para ocultarlas
+    const shuffled = incorrects.sort(() => 0.5 - Math.random());
+    this.hiddenOptions = [shuffled[0], shuffled[1]];
+
+    this.cdr.detectChanges();
+  }
 }

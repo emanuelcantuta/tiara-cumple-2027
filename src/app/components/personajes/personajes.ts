@@ -12,8 +12,9 @@ import { Minijuego } from '@components/minijuego/minijuego';
   templateUrl: './personajes.html',
 })
 export class Personajes {
-  // Variable para controlar si mostramos las cartas o la pantalla del minijuego
   showMinigame: boolean = false;
+  hasWonMinigame: boolean = false;
+  clueWord: string = "extraño";
 
   charactersList: Character[] = [
     {
@@ -89,5 +90,12 @@ export class Personajes {
 
   launchSecretMinigame() {
     this.showMinigame = true;
+  }
+
+  onMinigameWon() {
+    this.showMinigame = false;
+    this.hasWonMinigame = true;
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
