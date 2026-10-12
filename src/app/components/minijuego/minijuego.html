@@ -37,7 +37,7 @@
             [style.background]="rouletteGradient">
           </div>
 
-          <button class="spin-btn" (click)="spinRoulette()" [disabled]="isSpinning">
+          <button class="spin-btn" (click)="spinRoulette()" [disabled]="isSpinning || isGameOver">
             GIRAR
           </button>
         </div>
@@ -102,4 +102,14 @@
     </footer>
 
   </section>
+}
+
+@if (isGameOver) {
+  <div class="game-over-overlay">
+    <div class="game-over-modal">
+      <h2>¡GAME OVER! 💔</h2>
+      <p>Te quedaste sin intentos... el sistema de seguridad te está expulsando de la zona restringida.</p>
+      <img src="assets/images/pusheen/game-over.gif" alt="Pusheen game over">
+    </div>
+  </div>
 }

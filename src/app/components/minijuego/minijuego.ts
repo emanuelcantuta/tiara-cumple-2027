@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
 import { Question } from './models/question';
 import { AnswerStatus } from './models/answer-status';
 
@@ -10,12 +10,15 @@ import { AnswerStatus } from './models/answer-status';
   styleUrl: './minijuego.css',
   templateUrl: './minijuego.html',
 })
-export class Minijuego implements OnInit {
+export class Minijuego implements OnInit, OnDestroy {
   @Output() gameWon = new EventEmitter<void>();
+  @Output() gameLost = new EventEmitter<void>();
 
   private cdr = inject(ChangeDetectorRef);
-  isSystemLoading: boolean = true;
   AnswerStatus = AnswerStatus;
+
+  isSystemLoading: boolean = true;
+  isGameOver: boolean = false;
 
   // estado del jugador
   lives: number = 3;
@@ -41,8 +44,8 @@ export class Minijuego implements OnInit {
       id: 1,
       category: '🎨 Arte',
       text: 'Cuando nos juntamos e hicimos un cuadro juntos, ¿qué animal fue el que dibujé yo?',
-      options: ['Un gato', 'Un perro', 'El Pingüino', 'Un sapo'],
-      correctAnswer: 'El Pingüino',
+      options: ['Un gato', 'Un perro', 'Un Pingüino', 'Un sapo'],
+      correctAnswer: 'Un Pingüino',
       color: '#ffb6c1' // Rosa pastel
     },
     {
@@ -115,7 +118,7 @@ export class Minijuego implements OnInit {
 
   spinRoulette() {
     const available = this.availableQuestions;
-    if (this.isSpinning || available.length === 0) return;
+    if (this.isSpinning || available.length === 0 || this.isGameOver) return;
     
     this.isSpinning = true;
 
@@ -171,12 +174,12 @@ export class Minijuego implements OnInit {
 
   handleTimeout() {
     this.answerResult = AnswerStatus.Timeout;
+    this.lives--; // 1. Restamos la vida al instante
     this.playSoundError();
     this.cdr.detectChanges();
 
     setTimeout(() => {
-      this.lives--;
-      this.resetTurn();
+      this.evaluateGameStatus(); // 2. Evaluamos qué pasa después de 2 segs
     }, 2000);
   }
 
@@ -190,20 +193,36 @@ export class Minijuego implements OnInit {
     if (selectedOption === this.currentQuestion?.correctAnswer) {
       this.answerResult = AnswerStatus.Correct;
       this.score++;
-    
       this.wonQuestionsIds.push(this.currentQuestion.id); 
       this.playSoundCorrect();
     } else {
       this.answerResult = AnswerStatus.Incorrect;
-      this.lives--;
+      this.lives--; // 1. Restamos la vida al instante
       this.playSoundError();
     }
     
     this.cdr.detectChanges();
 
     setTimeout(() => {
-      this.resetTurn();
+      this.evaluateGameStatus(); // 2. Evaluamos qué pasa después de 2 segs
     }, 2000); 
+  }
+
+  evaluateGameStatus() {
+    if (this.lives <= 0) {
+      this.isGameOver = true;
+      this.currentQuestion = null;
+      this.cdr.detectChanges();
+      
+      setTimeout(() => {
+        this.gameLost.emit();
+      }, 4000);
+      
+    } else if (this.wonQuestionsIds.length === this.questionsList.length) {
+      this.gameWon.emit(); 
+    } else {
+      this.resetTurn();
+    }
   }
 
   resetTurn() {
@@ -211,9 +230,20 @@ export class Minijuego implements OnInit {
     this.selectedAnswer = null;
     this.answerResult = null;
     
-    // validamos si ganó todas las preguntas
+    // 1. Verificamos si perdió todas las vidas
+    if (this.lives <= 0) {
+      this.isGameOver = true;
+      this.cdr.detectChanges();
+      
+      setTimeout(() => {
+        this.gameLost.emit(); // Le avisa al padre (Personajes) que cierre el juego
+      }, 4000);
+      return;
+    }
+    
+    // 2. Verificamos si ganó
     if (this.wonQuestionsIds.length === this.questionsList.length) {
-      this.gameWon.emit(); // Avisar a Personajes que ganó el minijuego
+      this.gameWon.emit(); 
     }
     
     this.cdr.detectChanges();

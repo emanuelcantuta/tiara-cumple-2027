@@ -31,7 +31,7 @@
             @if (character.hasSecretLink) {
               <div class="secret-container">
                 <button class="secret-trigger" (click)="launchSecretMinigame()">
-                  [ Iniciar Prueba de Identidad ]
+                  [Iniciar Prueba de Identidad]
                 </button>
               </div>
             }
@@ -41,7 +41,7 @@
     </section>
   } @else {
     <!-- VISTA 2: EL MINIJUEGO -->
-    <app-minijuego></app-minijuego>
+    <app-minijuego (gameLost)="showMinigame = false"></app-minijuego>
   }
 
 </main>
