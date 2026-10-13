@@ -1,13 +1,9 @@
 <app-top-nav></app-top-nav>
-
 <main class="cortis-container">
-  
-  <!-- SECCIÓN 1: INTRO (Estilo Editorial) -->
   <header class="editorial-header">
     <h1 class="main-title">CORTIS: The Tiara Edition</h1>
     <div class="subtitle">EDICIÓN EXCLUSIVA PARA TIARA • ABRIL 2027</div>
     
-    <!-- Imagen grupal -->
     <div class="group-hero">
       <img src="assets/images/kpop/cortis/cortis-group.webp" alt="Cortis Group" fetchpriority="high">
     </div>
@@ -22,24 +18,18 @@
     </div>
   </header>
 
-  <!-- SECCIÓN 2: EXCUSATIO -->
   <div class="vip-divider">
     <h2>Integrantes Destacados (Tus Bias)</h2>
     <p>Información de los demás miembros omitida intencionalmente por falta de espacio en tu corazón (ahre).</p>
   </div>
 
-  <!-- SECCIÓN 3: BENTO GRID POR BIAS -->
   <section class="biases-section">
     @for (bias of biases; track bias.id) {
-      <!-- Acá está la magia: le pasamos el color al CSS -->
       <article class="bias-bento" [style.--theme-color]="bias.themeColor">
-        
-        <!-- Caja 1: Foto Principal (Ocupa el doble de espacio) -->
         <div class="bento-box image-box">
           <img [src]="bias.mainImage" [alt]="bias.name" fetchpriority="high">
         </div>
 
-        <!-- Caja 2: Cabecera con Nombre y Roles -->
         <div class="bento-box header-box">
           <h2>{{ bias.name }} <span class="korean">{{ bias.koreanName }}</span></h2>
           <div class="roles">
@@ -54,7 +44,6 @@
           </div>
         </div>
 
-        <!-- Cajas 3+: Stats Generados dinámicamente -->
         @for (stat of bias.stats; track stat.label) {
           <div class="bento-box stat-box">
             <span class="label">{{ stat.label }}</span>
@@ -62,7 +51,6 @@
           </div>
         }
 
-        <!-- Caja 4: Frases -->
         <div class="bento-box quotes-box">
           <h3 class="quotes-title">Frases Icónicas</h3>
           <div class="quotes-list">
@@ -83,8 +71,7 @@
             }
           </div>
         </div>
-
-        <!-- Caja Final: Galería (Carrusel Scroll Snap) -->
+        
         <div class="bento-box gallery-box">
           <h3 class="gallery-title">Galería</h3>
           <div class="carousel">
@@ -93,7 +80,7 @@
                 <img [src]="photo" 
                      [alt]="'Polaroid de ' + bias.name" 
                      (click)="selectedPhoto = photo"
-                     [attr.loading]="$index <= 1 ? 'eager' : 'lazy'" 
+                     [attr.loading]="$index <= 2 ? 'eager' : 'lazy'" 
                      decoding="async"
                      class="clickable-photo">
               </div>
@@ -114,7 +101,6 @@
     }
   </section>
   
-  <!-- SECCIÓN FINAL: MV DE CIERRE -->
   <section>
     <div class="vip-divider">
       <h2>Para cerrar con broche de oro✨</h2>
@@ -134,9 +120,8 @@
       </iframe>
     </div>
   </section>
-
 </main>
-<!-- MODAL DE IMAGEN -->
+
 @if (selectedPhoto) {
   <div class="photo-modal">
     <button class="close-modal" (click)="selectedPhoto = null">✕</button>

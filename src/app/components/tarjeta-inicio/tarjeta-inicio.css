@@ -99,7 +99,7 @@ button {
 
 @keyframes fadeInOut {
   0% { opacity: 0; }
-  10% { opacity: 1; }  /* Aparece suavemente en el primer instante */
-  85% { opacity: 1; }  /* Se queda visible casi todo el tiempo */
-  100% { opacity: 0; } /* Se desvanece justo antes de desaparecer */
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
 }

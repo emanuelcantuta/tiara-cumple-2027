@@ -70,7 +70,7 @@ button:hover {
   }
   50% { 
     box-shadow: 0 0 40px rgba(214, 40, 40, 0.8); 
-    border-color: #ff3333; /* Este lo dejamos en hex porque es el brillo claro */
+    border-color: #ff3333;
     transform: scale(1.02); 
   }
   100% { 

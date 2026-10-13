@@ -1,6 +1,5 @@
 <app-top-nav></app-top-nav>
 <main class="main-content">
-  <!-- 1. SELECTOR DE MÚSICA HORIZONTAL -->
   <section class="gallery-section">
     <h2 class="section-title">Elegí qué escuchar 🎧</h2>
     <div class="horizontal-scroll">
@@ -25,7 +24,6 @@
     </div>
   </section>
 
-  <!-- 2. LA CARTA -->
   <section class="letter-section">
     <h2 class="section-title">
       Bienvenida al... MEJOR REGALO DEL MUNDO
@@ -57,7 +55,6 @@
     </p>
   </section>
 
-  <!-- 3. SELECCIÓN DE DESTINOS -->
   <section class="categories-section"> 
     <h2 class="section-title">¡Elegí tu próximo destino!</h2>
     <ul class="category-list">
@@ -71,7 +68,6 @@
     </ul>
   </section>
   
-  <!-- EL MODAL SECRETO -->
   <dialog #secretDialog class="secret-dialog card">
     @if (!showSecretInput()) {
       <div class="modal-icon" id="secret-icon">🔒</div>
@@ -90,6 +86,7 @@
              loading="lazy"
              decoding="async">
       </div>
+
       <h3 class="section-title">Ingresá la clave</h3>
       <p>Si ya exploraste todo, decime cuál es la palabra secreta:</p>
       

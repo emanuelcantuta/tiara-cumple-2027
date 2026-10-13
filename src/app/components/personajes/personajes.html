@@ -20,7 +20,10 @@
       @for (character of charactersList; track character.id) {
         <article class="character-card">
           <div class="card-image-wrapper">
-            <img [src]="character.image" [alt]="character.name" loading="lazy">
+            <img 
+              [src]="character.image" 
+              [alt]="character.name" 
+              [attr.loading]="$index <= 2 ? 'eager' : 'lazy'">
           </div>
           
           <div class="card-info">
