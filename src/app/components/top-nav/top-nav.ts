@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
@@ -12,9 +12,10 @@ import { filter } from 'rxjs/operators';
   styleUrl: './top-nav.css',
   templateUrl: './top-nav.html',
 })
-export class TopNav {
+export class TopNav implements OnInit {
   private auth = inject(Auth);
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
   
   isPlaying = signal(true);
   isHomePage = signal(this.router.url === '/regalo');
@@ -26,6 +27,24 @@ export class TopNav {
     ).subscribe(() => {
       this.isHomePage.set(this.router.url === '/regalo');
     });
+  }
+
+  ngOnInit(): void {
+    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
+    if (audioEl) {
+      this.isPlaying.set(!audioEl.paused);
+
+      const onPlay = () => this.isPlaying.set(true);
+      const onPause = () => this.isPlaying.set(false);
+
+      audioEl.addEventListener('play', onPlay);
+      audioEl.addEventListener('pause', onPause);
+
+      this.destroyRef.onDestroy(() => {
+        audioEl.removeEventListener('play', onPlay);
+        audioEl.removeEventListener('pause', onPause);
+      });
+    }
   }
 
   toggleAudio(): void {

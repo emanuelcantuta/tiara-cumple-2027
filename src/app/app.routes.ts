@@ -5,6 +5,8 @@ import { Home } from '@components/home/home';
 import { authGuard } from '@guards/auth';
 import { Cortis } from '@components/cortis/cortis';
 import { Personajes } from '@components/personajes/personajes';
+import { MensajesPusheen } from '@components/mensajes-pusheen/mensajes-pusheen';
+import { DestinationId } from '@components/home/models/destination';
 
 export const routes: Routes = [
     {
@@ -22,8 +24,9 @@ export const routes: Routes = [
         canActivate: [authGuard],
         children: [
             { path: '', component: Home, title: 'Tu Regalo - Tiara cumple' },
-            { path: 'cortis', component: Cortis, title: 'Zona Cortis 🎸- Tiara cumple' },
-            { path: 'personajes', component: Personajes, title: 'Personajes - Tiara cumple' }
+            { path: DestinationId.CORTIS, component: Cortis, title: 'Zona Cortis 🎸- Tiara cumple' },
+            { path: DestinationId.PERSONAJES, component: Personajes, title: 'Personajes - Tiara cumple' },
+            { path: DestinationId.PUSHEEN, component: MensajesPusheen, title: 'Mensajes Pusheen 😽 - Tiara cumple' }
         ]
     },
     { 

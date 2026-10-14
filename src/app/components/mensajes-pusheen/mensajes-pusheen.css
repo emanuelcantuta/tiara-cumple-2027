@@ -1,0 +1,234 @@
+/* =========================================
+   FONDO GLOBAL (Estilo Cálido Kawaii)
+========================================= */
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  z-index: 0;
+  color: #1a1a1a;
+}
+
+:host::before {
+  content: '';
+  position: fixed;
+  top: -10vh;
+  left: 0;
+  width: 100vw;
+  height: 120vh;
+  z-index: -1;
+  background-color: #fff9fb;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(255, 179, 186, 0.4) 0%, transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(255, 223, 186, 0.4) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(214, 194, 255, 0.35) 0%, transparent 50%);
+}
+
+.pusheen-container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+/* =========================================
+   CABECERA Y CONTADOR
+========================================= */
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.main-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.progress-pill {
+  display: inline-block;
+  background: #ffffff;
+  border: 2px solid #ffd1dc;
+  color: #444;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================
+   GRILLA DE SOBRES / MINICARTAS
+========================================= */
+.envelopes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+@media (min-width: 650px) {
+  .envelopes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================
+   ESTADO 1: SOBRE CERRADO
+========================================= */
+.envelope-closed {
+  position: relative;
+  background: #ffffff;
+  border: 3px solid var(--card-color);
+  border-radius: 18px;
+  min-height: 220px;
+  padding: 30px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #333;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.envelope-closed:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Solapa superior del sobre */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background-color: var(--card-color);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  opacity: 0.65;
+}
+
+.envelope-seal {
+  width: 54px;
+  height: 54px;
+  background: var(--card-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  border: 3px solid #fff;
+}
+
+.envelope-label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  z-index: 2;
+}
+
+.envelope-hint {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* =========================================
+   ESTADO 2: MINICARTA ABIERTA
+========================================= */
+.mini-card-open {
+  background: #ffffff;
+  border: 3px solid var(--card-color);
+  border-radius: 18px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gif-wrapper {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gif-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.card-content h2 {
+  font-size: 1.35rem;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.card-content p {
+  font-size: 0.98rem;
+  color: #444;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* =========================================
+   SECCIÓN DE VIDEO FINAL (Formato Celular 9:16)
+========================================= */
+.final-video-box {
+  padding: 35px 20px;
+  max-width: 550px;
+  margin: 0 auto;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.final-video-box .secret-clue-content {
+  gap: 16px;
+}
+
+.final-video-box .secret-clue-title {
+  font-size: 1.5rem;
+}
+
+.final-video-box .secret-clue-text {
+  font-size: 1rem;
+  max-width: 440px;
+}
+
+.phone-video-frame {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border-radius: 24px;
+  border: 6px solid #155724;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  margin-top: 8px;
+}
+
+.phone-video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

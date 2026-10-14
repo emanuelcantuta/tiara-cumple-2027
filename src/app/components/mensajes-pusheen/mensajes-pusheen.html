@@ -1,0 +1,61 @@
+<app-top-nav></app-top-nav>
+
+<main class="pusheen-container">
+  <header class="section-header">
+    <h1 class="main-title">Buzón de Pusheen 🐾</h1>
+    <p class="subtitle">Tocá cada sobrecito para descubrir los mensajes sorpresa que tengo guardados para vos :b</p>
+    
+    <div class="progress-pill">
+      Sobres abiertos: <strong>{{ openedIds.length }} / {{ messagesList.length }}</strong> 💌
+    </div>
+  </header>
+
+  <section class="envelopes-grid">
+    @for (item of messagesList; track item.id) {
+      @if (!isOpened(item.id)) {
+        <!-- ESTADO 1: SOBRE CERRADO -->
+        <button class="envelope-closed" 
+                [style.--card-color]="item.themeColor"
+                (click)="openEnvelope(item.id)">
+          <div class="envelope-flap"></div>
+          <div class="envelope-seal">{{ item.stampEmoji }}</div>
+          <span class="envelope-label">{{ item.envelopeLabel }}</span>
+          <span class="envelope-hint">✨Tocar para abrir✨</span>
+        </button>
+      } @else {
+        <!-- ESTADO 2: MINICARTA ABIERTA -->
+        <article class="mini-card-open" [style.--card-color]="item.themeColor">
+          <div class="gif-wrapper">
+            <img [src]="item.gif" [alt]="item.title" loading="lazy" decoding="async">
+          </div>
+          <div class="card-content">
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.text }}</p>
+          </div>
+        </article>
+      }
+    }
+  </section>
+
+  <!-- SECCIÓN FINAL: VIDEO Y ÚLTIMA PISTA (Se desbloquea al abrir todos los sobres) -->
+  @if (allOpened) {
+    <section class="secret-clue-card final-video-box">
+      <div class="secret-clue-content">
+        <h3 class="secret-clue-title">¡Último Secreto Desbloqueado! 🎥🔓</h3>
+        <p class="secret-clue-text">
+          Abriste todas las cartitas. Para conseguir la última parte de la contraseña, dale play a este video (la música de fondo se pausará sola):
+        </p>
+
+        <div class="phone-video-frame">
+          <video [src]="videoUrl" 
+                 controls 
+                 playsinline 
+                 preload="metadata"
+                 (play)="onVideoPlay()">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+      </div>
+    </section>
+  }
+</main>
