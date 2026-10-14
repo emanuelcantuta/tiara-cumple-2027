@@ -29,7 +29,7 @@ export class Personajes {
     {
       id: 'p2',
       name: 'Hinata',
-      origin: 'Hinata (Naruto)',
+      origin: 'Naruto (Anime)',
       image: 'assets/images/personajes/hinata.webp',
       stat: 'Nerviosismo: 90%',
       description: `Algo que tienen muchos personajes en común, es que todos son mis favoritos.
