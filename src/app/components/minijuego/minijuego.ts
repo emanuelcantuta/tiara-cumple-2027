@@ -20,19 +20,16 @@ export class Minijuego implements OnInit, OnDestroy {
   isSystemLoading: boolean = true;
   isGameOver: boolean = false;
 
-  // estado del jugador
   lives: number = 3;
   score: number = 0;
   hasBomb: boolean = true;
 
-  // estado del juego
   isSpinning: boolean = false;
   currentQuestion: Question | null = null;
   askedQuestionsIds: number[] = [];
   currentRotation: number = 0;
   wonQuestionsIds: number[] = [];
 
-  // Variables para el reloj
   timeLeft: number = 15;
   private timerInterval: any;
 
@@ -108,15 +105,13 @@ export class Minijuego implements OnInit, OnDestroy {
 
   ];
 
-  // FILTRO: Trae solo las preguntas que todavía no ganó
   get availableQuestions(): Question[] {
     return this.questionsList.filter(q => !this.wonQuestionsIds.includes(q.id));
   }
 
-  // DIBUJA EL GRADIENTE DE LA RULETA SEGÚN LAS PREGUNTAS DISPONIBLES
   get rouletteGradient(): string {
     const available = this.availableQuestions;
-    if (available.length === 0) return '#f0f0f0'; // Gris si no quedan preguntas
+    if (available.length === 0) return '#f0f0f0';
 
     const sliceSize = 360 / available.length;
     let gradient = 'conic-gradient(';
@@ -151,7 +146,6 @@ export class Minijuego implements OnInit, OnDestroy {
     const randomIndex = Math.floor(Math.random() * available.length);
     const selectedQ = available[randomIndex];
 
-    // Matemática dinámica según la cantidad de gajos que queden
     const sliceSize = 360 / available.length;
     const sliceCenter = (randomIndex * sliceSize) + (sliceSize / 2);
     const targetDegree = 360 - sliceCenter;
@@ -168,7 +162,6 @@ export class Minijuego implements OnInit, OnDestroy {
     }, 3000);
   }
 
-  // --- LÓGICA DEL TIEMPO ---
   startTimer() {
     this.timeLeft = 15;
     this.timerInterval = setInterval(() => {
@@ -199,16 +192,15 @@ export class Minijuego implements OnInit, OnDestroy {
 
   handleTimeout() {
     this.answerResult = AnswerStatus.Timeout;
-    this.lives--; // 1. Restamos la vida al instante
+    this.lives--;
     this.playSoundError();
     this.cdr.detectChanges();
 
     setTimeout(() => {
-      this.evaluateGameStatus(); // 2. Evaluamos qué pasa después de 2 segs
+      this.evaluateGameStatus();
     }, 2000);
   }
 
-  // --- LÓGICA DE RESPUESTA BÁSICA ---
   checkAnswer(selectedOption: string) {
     if (this.selectedAnswer) return; 
 
@@ -222,14 +214,14 @@ export class Minijuego implements OnInit, OnDestroy {
       this.playSoundCorrect();
     } else {
       this.answerResult = AnswerStatus.Incorrect;
-      this.lives--; // 1. Restamos la vida al instante
+      this.lives--;
       this.playSoundError();
     }
     
     this.cdr.detectChanges();
 
     setTimeout(() => {
-      this.evaluateGameStatus(); // 2. Evaluamos qué pasa después de 2 segs
+      this.evaluateGameStatus();
     }, 2000); 
   }
 
@@ -256,21 +248,17 @@ export class Minijuego implements OnInit, OnDestroy {
     this.answerResult = null;
     this.hiddenOptions = [];
     
-    // 1. Verificamos si perdió todas las vidas
     if (this.lives <= 0) {
       this.isGameOver = true;
       this.cdr.detectChanges();
       
       setTimeout(() => {
-        this.gameLost.emit(); // Le avisa al padre (Personajes) que cierre el juego
+        this.gameLost.emit();
       }, 4000);
       return;
     }
     
-    // 2. Verificamos si ganó
-    if (this.wonQuestionsIds.length === this.questionsList.length) {
-      this.gameWon.emit(); 
-    }
+    if (this.wonQuestionsIds.length === this.questionsList.length) this.gameWon.emit();
     
     this.cdr.detectChanges();
   }
@@ -283,7 +271,6 @@ export class Minijuego implements OnInit, OnDestroy {
     const correct = this.currentQuestion.correctAnswer;
     const incorrects = this.currentQuestion.options.filter(opt => opt !== correct);
 
-    // Mezclamos las incorrectas y elegimos 2 al azar para ocultarlas
     const shuffled = incorrects.sort(() => 0.5 - Math.random());
     this.hiddenOptions = [shuffled[0], shuffled[1]];
 
