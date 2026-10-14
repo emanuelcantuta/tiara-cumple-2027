@@ -2,7 +2,6 @@
 <main class="personajes-container">
   
   @if (!showMinigame) {
-    <!-- VISTA 1: COLECCIÓN DE CARTAS -->
     <header class="section-header">
       <h1 class="main-title">El Multiverso de Tiara</h1>
       <p class="subtitle">Personajes que tienen un pedacito de tu esencia (o de tu caos) ✨</p>
@@ -40,7 +39,6 @@
             
             <p class="description">{{ character.description }}</p>
 
-            <!-- EL ACCESO SECRETO -->
             @if (character.hasSecretLink) {
               <div class="secret-container">
                 <button class="secret-trigger" (click)="launchSecretMinigame()">
@@ -53,7 +51,6 @@
       }
     </section>
   } @else {
-    <!-- VISTA 2: EL MINIJUEGO -->
     <app-minijuego 
       (gameLost)="showMinigame = false" 
       (gameWon)="onMinigameWon()">
