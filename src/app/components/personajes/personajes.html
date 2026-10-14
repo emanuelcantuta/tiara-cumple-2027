@@ -9,10 +9,12 @@
     </header>
 
     @if (hasWonMinigame) {
-      <div class="victory-clue-box">
-        <h3>¡Sistema Desencriptado! 🔓</h3>
-        <p>Completaste la prueba de identidad. Una pieza de la contraseña ha sido revelada:</p>
-        <div class="clue-highlight">{{ clueWord }}</div>
+      <div class="secret-clue-card victory-clue-box">
+        <div class="secret-clue-content">
+          <h3 class="secret-clue-title">¡Sistema Desencriptado! 🔓</h3>
+          <p class="secret-clue-text">Completaste la prueba de identidad. Una pieza de la contraseña ha sido revelada:</p>
+          <strong class="secret-clue-badge">{{ clueWord }}</strong>
+        </div>
       </div>
     }
 

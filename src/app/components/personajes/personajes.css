@@ -212,39 +212,26 @@
    CARTEL DE VICTORIA / PISTA
 ========================================= */
 .victory-clue-box {
-  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-  border: 2px solid #28a745;
-  border-radius: 16px;
-  padding: 30px;
-  text-align: center;
+  padding: 30px 25px;
   max-width: 600px;
   margin: 0 auto 40px auto;
-  box-shadow: 0 10px 25px rgba(40, 167, 69, 0.2);
   animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.victory-clue-box h3 {
-  color: #155724;
+.victory-clue-box .secret-clue-content {
+  gap: 14px;
+}
+
+.victory-clue-box .secret-clue-title {
   font-size: 1.5rem;
-  margin-bottom: 10px;
-  font-weight: 800;
 }
 
-.victory-clue-box p {
-  color: #222;
-  font-size: 1.05rem;
-  margin-bottom: 20px;
+.victory-clue-box .secret-clue-text {
+  font-size: 1rem;
 }
 
-.clue-highlight {
-  display: inline-block;
-  background: #155724;
-  color: #fff;
-  font-family: monospace;
+.victory-clue-box .secret-clue-badge {
   font-size: 1.8rem;
-  font-weight: bold;
   padding: 10px 25px;
-  border-radius: 12px;
-  letter-spacing: 3px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  margin-top: 4px;
 }
