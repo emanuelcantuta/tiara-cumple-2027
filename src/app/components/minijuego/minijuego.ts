@@ -33,7 +33,7 @@ export class Minijuego implements OnInit, OnDestroy {
   wonQuestionsIds: number[] = [];
 
   // Variables para el reloj
-  timeLeft: number = 20;
+  timeLeft: number = 15;
   private timerInterval: any;
 
   selectedAnswer: string | null = null;
@@ -170,7 +170,7 @@ export class Minijuego implements OnInit, OnDestroy {
 
   // --- LÓGICA DEL TIEMPO ---
   startTimer() {
-    this.timeLeft = 20;
+    this.timeLeft = 15;
     this.timerInterval = setInterval(() => {
       this.timeLeft--;
       this.cdr.detectChanges();
@@ -186,16 +186,15 @@ export class Minijuego implements OnInit, OnDestroy {
     if (this.timerInterval) clearInterval(this.timerInterval);
   }
 
-  playSoundCorrect() {
-    // TODO: A futuro, descomentar y poner la ruta de tu sonido de acierto
-    // const audio = new Audio('assets/audio/correcto.mp3');
-    // audio.play();
+  playSoundCorrect() { 
+    const audio = new Audio('assets/audio/ui/correct-answer.wav');
+    audio.volume = 0.5;
+    audio.play();
   }
 
   playSoundError() {
-    // TODO: A futuro, descomentar y poner la ruta de tu sonido de error/perder vida
-    // const audio = new Audio('assets/audio/error.mp3');
-    // audio.play();
+    const audio = new Audio('assets/audio/ui/incorrect-answer.wav');
+    audio.play();
   }
 
   handleTimeout() {
