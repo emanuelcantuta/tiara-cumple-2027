@@ -33,7 +33,7 @@ export class Minijuego implements OnInit, OnDestroy {
   wonQuestionsIds: number[] = [];
 
   // Variables para el reloj
-  timeLeft: number = 10;
+  timeLeft: number = 20;
   private timerInterval: any;
 
   selectedAnswer: string | null = null;
@@ -170,7 +170,7 @@ export class Minijuego implements OnInit, OnDestroy {
 
   // --- LÓGICA DEL TIEMPO ---
   startTimer() {
-    this.timeLeft = 10; 
+    this.timeLeft = 20;
     this.timerInterval = setInterval(() => {
       this.timeLeft--;
       this.cdr.detectChanges();
