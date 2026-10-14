@@ -96,7 +96,7 @@
   scroll-snap-align: start; 
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  color: white; /*VER*/
+  color: var(--white);
   border: none;
 }
 
