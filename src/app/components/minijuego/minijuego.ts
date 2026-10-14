@@ -47,7 +47,7 @@ export class Minijuego implements OnInit, OnDestroy {
       text: 'Cuando nos juntamos e hicimos un cuadro juntos, ¿qué animal fue el que dibujé yo?',
       options: ['Un gato', 'Un perro', 'Un Pingüino', 'Un sapo'],
       correctAnswer: 'Un Pingüino',
-      color: '#ffb6c1' // Rosa pastel
+      color: '#FFB3BA' // Rosa pastel
     },
     {
       id: 2,
@@ -55,7 +55,7 @@ export class Minijuego implements OnInit, OnDestroy {
       text: '¿Dónde o cómo fue la primera vez que interactuamos?',
       options: ['En la escuela', 'En un cumple familiar', 'En una plaza', 'Por chat'],
       correctAnswer: 'En un cumple familiar',
-      color: '#add8e6' // Celeste
+      color: '#A8D8FF' // Celeste
     },
     {
       id: 3,
@@ -63,7 +63,7 @@ export class Minijuego implements OnInit, OnDestroy {
       text: 'Cuando me colé en tu aula como "ayudanteJAKS", ¿qué clase tocaba?',
       options: ['Matemática', 'Literatura', 'Inglés', 'Geografía'],
       correctAnswer: 'Inglés',
-      color: '#fff5b4' // Amarillo
+      color: '#FFF4A3' // Amarillo pastel
     },
     {
       id: 4,
@@ -71,16 +71,41 @@ export class Minijuego implements OnInit, OnDestroy {
       text: '¡Esta seguro la sabésXD! ¿A qué lugar todavía no fuimos y es el que más veces dijimos para ir?',
       options: ['Al cine', 'Al Barrio Chino', 'A merendar', 'A mi casa'],
       correctAnswer: 'Al cine',
-      color: '#bdfcc9' // Verde agua
-    },/*
+      color: '#B8F2D0' // Verde menta
+    },
     {
       id: 5,
-      category: '🍿 Espectáculos',
-      text: '¿Acá va tu quinta pregunta?',
-      options: ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4'],
-      correctAnswer: 'Opción Correcta'
+      category: '⏰ Tiempo',
+      text: '¿Cuánto tiempo hace que nos conocemos?',
+      options: ['No nos conocemos...(deah)', '1 año', '4 años', '10 años'],
+      correctAnswer: '4 años',
+      color: '#D6C2FF' // Lila suave
+    },
+    {
+      id: 6,
+      category: '💌 Mensajes',
+      text: ' ¿Qué es lo que me dijiste que sentís que me debes?',
+      options: ['Una salida si o si😭', 'Un peluche de perro salchicha🦴', 'Un audio de voz cantando (pofavor:3)', 'Un pin de martín'],
+      correctAnswer: 'Una salida si o si😭',
+      color: '#FFD6A5' // Naranja pastel
+    },
+    {
+      id: 7,
+      category: '💭 Sueños',
+      text: '¿De que se trataban (principalmente) mis sueños en el que estabas presente?',
+      options: ['De ir al cine Ali, vos y yo', 'De que nos peleábamos y nos reconciliábamos', 'De que me pedias que te dibuje', 'De ir a una plaza'],
+      correctAnswer: 'De ir al cine Ali, vos y yo',
+      color: '#CFE8FF' // azul cielo muy claro
+    },
+    {
+      id: 8,
+      category: '🧩 Misterio',
+      text: 'Pregunta trampa: ¿Qué es aquello que perdimos y que no volveremos a recuperar?',
+      options: ['El tiempo que pasamos separados', 'La oportunidad de ir al cine (ahre y seguia con eso)', 'La chance de llegar a ser más cercanos y así tener todavía más tiempo para arruinarnos mutuamente la paz mental. Porque estoy harto de estar tan tranquilo y no poder decirte lo que siento', 'TODAS las anteriores (menos la últimaxD)'],
+      correctAnswer: 'TODAS las anteriores (menos la últimaxD)',
+      color: '#C7F0A1' // Verde lima pastel
     }
-       */
+
   ];
 
   // FILTRO: Trae solo las preguntas que todavía no ganó
