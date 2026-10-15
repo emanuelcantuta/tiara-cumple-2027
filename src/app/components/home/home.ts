@@ -86,13 +86,13 @@ export class Home {
   secretError = signal<boolean>(false);
 
   destinations: Destination[] = [
-    { id: DestinationId.CORTIS, title: 'Cortis (porque sé que los amás)', icon: '🎸', isLocked: false },
-    { id: DestinationId.PERSONAJES, title: 'Personajes que me recuerdan a vos', icon: '👩🏻‍🦰', isLocked: false },
-    { id: DestinationId.PUSHEEN, title: 'Mensajes pusheen', icon: '😽', isLocked: false },
-    { id: DestinationId.SECRETO, title: 'Regalo sorpresa', icon: '🎁', isLocked: true }
+    { id: DestinationId.CORTIS, title: 'Cortis (porque sé que los amás)', icon: 'assets/images/icon/destinations/cortis.gif', isLocked: false },
+    { id: DestinationId.PERSONAJES, title: 'Personajes que me recuerdan a vos', icon: 'assets/images/icon/destinations/personajes.gif', isLocked: false },
+    { id: DestinationId.PUSHEEN, title: 'Mensajes pusheen', icon: 'assets/images/icon/destinations/pusheen.gif', isLocked: false },
+    { id: DestinationId.SECRETO, title: 'Regalo sorpresa', icon: 'assets/images/icon/destinations/secreto.gif', isLocked: true }
   ];
 
-  // categoría de destinos bloqueados: Cortis, Personajes, Pusheen, Secreto
+
   handleDestinationClick(destination: Destination): void {
     if (destination.isLocked) {
       this.secretDialog()?.nativeElement.showModal();

@@ -59,12 +59,13 @@
     <h2 class="section-title">¡Elegí tu próximo destino!</h2>
     <ul class="category-list">
       @for (destination of destinations; track destination.id) {
-      <li>
-        <a  title="Ir a {{ destination.title }}" (click)="handleDestinationClick(destination)">
-          {{ destination.icon }} {{ destination.title }}
-        </a>
-      </li>
-    }
+        <li>
+          <a (click)="handleDestinationClick(destination)">
+            <img [src]="destination.icon" [alt]="destination.id" class="dest-icon" loading="lazy">
+            <span>{{ destination.title }}</span>
+          </a>
+        </li>
+      }
     </ul>
   </section>
   
