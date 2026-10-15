@@ -74,8 +74,8 @@ export class Minijuego implements OnInit, OnDestroy {
       id: 5,
       category: '⏰ Tiempo',
       text: '¿Cuánto tiempo hace que nos conocemos?',
-      options: ['No nos conocemos...(deah)', '1 año', '4 años', '10 años'],
-      correctAnswer: '4 años',
+      options: ['No nos conocemos...(deah)', '1 año', '3 años', '10 años'],
+      correctAnswer: '3 años',
       color: '#D6C2FF' // Lila suave
     },
     {

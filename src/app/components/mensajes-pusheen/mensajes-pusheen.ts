@@ -17,38 +17,38 @@ export class MensajesPusheen {
   messagesList: PusheenMessage[] = [
     {
       id: 1,
-      envelopeLabel: 'Sobre #1 • Para empezar tu cumple',
+      envelopeLabel: 'Sobre #1 • Para desearte un feliz cumpleaños',
       stampEmoji: '🎂',
       title: '¡Feliz Cumpleaños! 🎉',
-      text: 'Acá va tu primera frase tierna o minicarta para desearle un día hermoso.',
-      gif: 'assets/images/pusheen/celebrate/pusheen-cake.gif',
+      text: 'Ojalá donde sea que te encuentres en este momento, estés pasandola bien. Ánimo meju <3',
+      gif: 'assets/images/pusheen/messages/pusheen-hb.gif',
       themeColor: '#FFB3BA' // Rosa pastel
     },
     {
       id: 2,
-      envelopeLabel: 'Sobre #2 • Un pequeño regalo',
-      stampEmoji: '🎁',
-      title: 'Para vos ✨',
-      text: 'Acá va tu segunda frase tierna acompañada del gatito.',
-      gif: 'assets/images/pusheen/celebrate/pusheen-gift.gif',
+      envelopeLabel: 'Sobre #2 • Para cuando necesites un abrazo virtual',
+      stampEmoji: '💌',
+      title: 'For you (vs)',
+      text: 'Tal vez no sea tu Amistad Fav, mucho menos una de las mejores, pero si algún día me necesitas, aquí toy for you (vs) :3.',
+      gif: 'assets/images/pusheen/messages/pusheen-writing-paper.gif',
       themeColor: '#A8D8FF' // Celeste pastel
     },
     {
       id: 3,
-      envelopeLabel: 'Sobre #3 • Modo festejo',
-      stampEmoji: '🎶',
-      title: 'A celebrar 🐾',
-      text: 'Acá va tu tercera minicarta o recuerdo lindo.',
-      gif: 'assets/images/pusheen/celebrate/pusheen-dancing.gif',
+      envelopeLabel: 'Sobre #3 • Para cuando no nos veamos por un tiempo',
+      stampEmoji: '👋',
+      title: 'En otra vida será deah',
+      text: `Si algún día dejamos de hablar o nos distanciamos por cosas de la vida, que sepas que siempre me pareciste muy copada, cada cosa tuya era nueva para mí y se que soy malísimo socializandoxd y a veces no sé que decir. Pero gracias por bancarme, a veces siento que querías hacerme creer que era copadoxD`,
+      gif: 'assets/images/pusheen/messages/pusheen-coffe.gif',
       themeColor: '#FFF4A3' // Amarillo pastel
     },
     {
       id: 4,
-      envelopeLabel: 'Sobre #4 • Algo que siempre pienso',
-      stampEmoji: '💌',
-      title: 'Un recordatorio 💖',
-      text: 'Acá podés usar uno de la carpeta nueva (por ejemplo: assets/images/pusheen/messages/...).',
-      gif: 'assets/images/pusheen/celebrate/pusheen-dj.gif',
+      envelopeLabel: 'Sobre #4 • Recuerdo chistoso',
+      stampEmoji: '😂',
+      title: 'Un recordatorio vergonzoso para mi 💗xD',
+      text: 'Hasta el día de hoy me da pena y risa lo que te dije ese díaxDD. Pero realmente no importa porque lohice con esa intenciónx/D que wsachin soy',
+      gif: 'assets/images/pusheen/messages/chat.webp',
       themeColor: '#D6C2FF' // Lila suave
     }
   ];
@@ -57,7 +57,6 @@ export class MensajesPusheen {
     return this.openedIds.includes(id);
   }
 
-  // Abre el sobre al hacer clic
   openEnvelope(id: number): void {
     if (!this.openedIds.includes(id)) {
       this.openedIds.push(id);

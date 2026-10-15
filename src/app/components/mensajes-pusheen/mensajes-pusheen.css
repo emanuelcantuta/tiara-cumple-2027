@@ -179,6 +179,10 @@
   object-fit: contain;
 }
 
+.mini-card-open:last-child .gif-wrapper {
+  width: 100%;
+}
+
 .card-content h2 {
   font-size: 1.35rem;
   color: var(--text-color);

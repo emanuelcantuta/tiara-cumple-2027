@@ -46,8 +46,9 @@ export class Cortis {
         },
         {
           text: `Si estás estudiando, espero que te vaya bien en tus estudios, también tienes que comer bien y estar 
-          saludable. Nunca estés triste, por favor sé feliz, y te mostraré muchas cosas buenas para que siempre 
-          puedas ser feliz.`,
+          saludable. Nunca estés triste, <strong>por favor sé feliz, y te mostraré muchas cosas buenas para que siempre 
+          puedas ser feliz.</strong>`,
+          englishText: '"Please be happy, and I will show you many good things so that you can always be happy."',
           url: 'https://www.tiktok.com/@vaehcor/video/7612111158069251359' 
         },
         {
@@ -93,17 +94,17 @@ export class Cortis {
       ],
       quotes: [
         {
-         text: 'Creo que expresarme es difícil. Todavía soy tímido y no tengo confianza aún.',
+         text: '<strong>Creo que expresarme es difícil</strong>. Todavía soy tímido y no tengo confianza aún.',
          englishText: 'I think expressing myself is kind of difficult.',
          url: 'https://www.tiktok.com/@mrtincams/video/7678109638734187808'
         },
         {
-          text: 'aniyaa~~~',
-          englishText: 'Noou~',
+          text: 'Noou~',
+          englishText: 'aniyaa~~~',
           url: 'https://www.tiktok.com/@junkxee/video/7673515512550149383'
         },
         {
-          text: `Siempre escribo sobre emociones que realmente he sentido como en <strong>JoyRide</strong>: No sun no sky a 
+          text: `<strong> Siempre escribo sobre emociones que realmente he sentido</strong> como en JoyRide: No sun no sky a 
           ghostly pale face.`,
           englishText: 'I always write about emotions I have really felt.',
           url: 'https://x.com/huecortis/status/2105825274759950822' 
