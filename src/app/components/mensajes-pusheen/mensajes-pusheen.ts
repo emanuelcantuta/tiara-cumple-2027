@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TopNav } from '@components/top-nav/top-nav';
 import { PusheenMessage } from './models/pusheen-message';
+import { Audio } from '@services/audio';
 
 @Component({
   imports: [CommonModule, TopNav],
@@ -11,6 +12,7 @@ import { PusheenMessage } from './models/pusheen-message';
   templateUrl: './mensajes-pusheen.html',
 })
 export class MensajesPusheen {
+  protected audio = inject(Audio);
   openedIds: number[] = [];
   videoUrl: string = 'assets/video/pista-final.mp4';
 
@@ -65,13 +67,6 @@ export class MensajesPusheen {
 
   get allOpened(): boolean {
     return this.openedIds.length === this.messagesList.length;
-  }
-
-  onVideoPlay(): void {
-    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
-    if (audioEl && !audioEl.paused) {
-      audioEl.pause();
-    }
   }
 
 }

@@ -13,4 +13,11 @@ export class Audio {
     changeSong(newSong: SongSource): void {
         this.currentSong.set(newSong);
     }
+
+    pauseBackgroundMusic(): void {
+        const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
+        if (audioEl && !audioEl.paused) {
+            audioEl.pause();
+        }
+    }
 }

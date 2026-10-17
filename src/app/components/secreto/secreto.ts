@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TopNav } from '@components/top-nav/top-nav';
+import { Audio } from '@services/audio';
 
 @Component({
   imports: [CommonModule, FormsModule, TopNav],
@@ -11,6 +12,7 @@ import { TopNav } from '@components/top-nav/top-nav';
   templateUrl: './secreto.html',
 })
 export class Secreto {
+  protected audio = inject(Audio);
   videoUrl: string = 'assets/video/kpop-edit.mp4';
   videoPoster: string = 'assets/images/kpop/cortis/cortis-group.webp'; // cambiar
 
@@ -30,13 +32,6 @@ export class Secreto {
   isSending = signal<boolean>(false);
   isSent = signal<boolean>(false);
   sendError = signal<boolean>(false);
-
-  onVideoPlay(): void {
-    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
-    if (audioEl && !audioEl.paused) {
-      audioEl.pause();
-    }
-  }
 
   setRating(value: number): void {
     this.rating.set(value);
