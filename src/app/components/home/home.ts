@@ -114,10 +114,14 @@ export class Home {
   }
 
   verifySecret(inputElement: HTMLInputElement): void {
-    const pass = inputElement.value.trim().toLowerCase();
-    if (pass === 'pusheen2027') { 
+    const pass = inputElement.value.trim().toLowerCase().replace(/\s+/g, '');
+    
+    if (pass === 'pusheen2027') { // Acá ponemos las 3 pistas unidas sin espacios
+      const secretDest = this.destinations.find(d => d.id === DestinationId.SECRETO);
+      if (secretDest) secretDest.isLocked = false;
+
       this.closeModal();
-      this.router.navigate([`/regalo/${DestinationId.SECRETO}`]); // cambiar a la ruta del destino secreto
+      this.router.navigate([`/regalo/${DestinationId.SECRETO}`]);
     } else {
       this.secretError.set(true);
       inputElement.value = '';
