@@ -6,7 +6,6 @@ import { BiasProfile } from './models/BiasProfile';
 @Component({
   imports: [CommonModule, TopNav],
   selector: 'app-cortis',
-  standalone: true,
   styleUrl: './cortis.css',
   templateUrl: './cortis.html',
 })

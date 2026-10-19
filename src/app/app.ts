@@ -4,7 +4,6 @@ import { Audio } from '@services/audio';
 
 @Component({
   imports: [RouterOutlet],
-  standalone: true,
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

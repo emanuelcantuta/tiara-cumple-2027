@@ -10,7 +10,6 @@ import { Destination, DestinationId } from './models/destination';
 @Component({
   imports: [TopNav],
   selector: 'app-home',
-  standalone: true,
   styleUrl: './home.css',
   templateUrl: './home.html',
 })

@@ -7,7 +7,6 @@ import { Audio } from '@services/audio';
 @Component({
   imports: [CommonModule, TopNav],
   selector: 'app-mensajes-pusheen',
-  standalone: true,
   styleUrl: './mensajes-pusheen.css',
   templateUrl: './mensajes-pusheen.html',
 })

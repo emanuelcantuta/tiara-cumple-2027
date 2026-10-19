@@ -7,7 +7,6 @@ import { Audio } from '@services/audio';
 @Component({
   imports: [CommonModule, FormsModule, TopNav],
   selector: 'app-secreto',
-  standalone: true,
   styleUrl: './secreto.css',
   templateUrl: './secreto.html',
 })

@@ -8,7 +8,6 @@ import { filter } from 'rxjs/operators';
 @Component({
   imports: [CommonModule],
   selector: 'app-top-nav',
-  standalone: true,
   styleUrl: './top-nav.css',
   templateUrl: './top-nav.html',
 })

@@ -7,7 +7,6 @@ import { Minijuego } from '@components/minijuego/minijuego';
 @Component({
   imports: [CommonModule, TopNav, Minijuego],
   selector: 'app-personajes',
-  standalone: true,
   styleUrl: './personajes.css',
   templateUrl: './personajes.html',
 })

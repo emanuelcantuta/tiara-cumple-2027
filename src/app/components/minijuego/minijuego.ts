@@ -6,7 +6,6 @@ import { AnswerStatus } from './models/answer-status';
 @Component({
   imports: [CommonModule],
   selector: 'app-minijuego',
-  standalone: true,
   styleUrl: './minijuego.css',
   templateUrl: './minijuego.html',
 })
