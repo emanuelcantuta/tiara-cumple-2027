@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TopNav } from '@components/top-nav/top-nav';
 import { Character } from './models/character';
 import { Minijuego } from '@components/minijuego/minijuego';
+import { SECRET_CLUES } from '@models/secret-clues';
 
 @Component({
   imports: [CommonModule, TopNav, Minijuego],
@@ -13,7 +14,7 @@ import { Minijuego } from '@components/minijuego/minijuego';
 export class Personajes {
   showMinigame: boolean = false;
   hasWonMinigame: boolean = false;
-  clueWord: string = "extraño";
+  clueWord: string = SECRET_CLUES[1];
 
   charactersList: Character[] = [
     {

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TopNav } from '@components/top-nav/top-nav';
 import { BiasProfile } from './models/BiasProfile';
+import { SECRET_CLUES } from '@models/secret-clues';
 
 @Component({
   imports: [CommonModule, TopNav],
@@ -11,6 +12,7 @@ import { BiasProfile } from './models/BiasProfile';
 })
 export class Cortis {
   selectedPhoto: string | null = null;
+  clueWord: string = SECRET_CLUES[0];
   biases: BiasProfile[] = [
     {
       id: 'martin',

@@ -6,6 +6,7 @@ import { Artist } from '@models/artist';
 import { SongSource } from '@models/song-source';
 import { Track } from './models/track';
 import { Destination, DestinationId } from './models/destination';
+import { FULL_SECRET_PASSWORD } from '@models/secret-clues';
 
 @Component({
   imports: [TopNav],
@@ -115,7 +116,7 @@ export class Home {
   verifySecret(inputElement: HTMLInputElement): void {
     const pass = inputElement.value.trim().toLowerCase().replace(/\s+/g, '');
     
-    if (pass === 'pusheen2027') { // Acá ponemos las 3 pistas unidas sin espacios
+    if (pass === FULL_SECRET_PASSWORD) {
       const secretDest = this.destinations.find(d => d.id === DestinationId.SECRETO);
       if (secretDest) secretDest.isLocked = false;
 
