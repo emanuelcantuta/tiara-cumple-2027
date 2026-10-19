@@ -1,45 +1,46 @@
-# 🎂 Sorpresa para Tiara 🎁 (En progreso)
+# 🎂 Sorpresa para Tiara 🎁
 
 🌐 **[🚀 Visitar la página web en vivo acá](https://tiara-cumple-2027.vercel.app/)** 🌐
 
 Este repositorio contiene el código fuente de un regalo digital interactivo creado especialmente para el cumpleaños de mi amiga, Tiara. 
 
-El proyecto es una Single Page Application (SPA) pensada para ser una experiencia visual y personalizada, combinando sus gustos favoritos en un formato de "tarjeta web" moderna.
+El proyecto es una Single Page Application (SPA) pensada para ser una experiencia visual, gamificada y personalizada, combinando sus gustos favoritos en un formato de "tarjeta web" moderna con dinámicas de *Escape Room*.
 
 ## 🎨 Diseño y Temática
-La interfaz está inspirada en una estética **Y2K / Kawaii**, buscando un balance entre lo moderno y lo tierno:
-* **UI/UX:** Componentes con efecto *Glassmorphism* (vidrio esmerilado) en la navegación, paletas de colores pastel adaptativas para las tarjetas, diálogos nativos (`<dialog>`) y layouts responsivos amigables para lectura.
-* **Pusheen:** GIFs del gatito integrados estratégicamente para acompañar las emociones y la interactividad (reacciones a contraseñas, globos decorativos, pantallas de Game Over, etc.).
-* **Música y K-Pop:** Ambientación musical dinámica enfocada 100% en sus artistas y grupos favoritos. El catálogo actual cuenta con pistas de CORTIS, ENHYPEN, EVAN, aespa y LOONA.
+La interfaz está inspirada en una estética **Y2K / Kawaii**, buscando un balance entre lo moderno, lo editorial y lo tierno:
+* **UI/UX:** Componentes con efecto *Glassmorphism* (vidrio esmerilado), paletas de colores pastel adaptativas, tipografías globales unificadas (`Fredoka Variable` y `Quicksand Variable`), diálogos nativos (`<dialog>`) y layouts responsivos amigables para lectura.
+* **Pusheen:** GIFs e iconos personalizados integrados estratégicamente para acompañar las emociones y la interactividad (botones de destinos, sobrecitos interactivos, reacciones a contraseñas, pantallas de Game Over, etc.).
+* **Música y K-Pop:** Ambientación musical dinámica enfocada 100% en sus artistas y grupos favoritos. El catálogo cuenta con pistas de CORTIS, ENHYPEN, EVAN, aespa y LOONA.
 
-## 🚀 Logros y Estado Actual
+## 🚀 Arquitectura y Funcionalidades Completadas
+
 **Fase 1: Arquitectura, Rendimiento y Seguridad (Completada)**
-* [x] Configuración de rutas hijas (`children`) y transiciones de vista nativas (View Transitions API).
-* [x] **Arquitectura Limpia:** Implementación de Path Aliasing (`@components`, `@services`, etc.) y refactorización total del HTML/CSS.
-* [x] **Seguridad:** Protección de rutas mediante `authGuard`, servicio de autenticación con Angular Signals, y variables de entorno inyectadas.
-* [x] **Optimización de Rendimiento:** Aislamiento de animaciones CSS pesadas, uso de `loading="lazy"` para la carga diferida de GIFs/imágenes ocultas, y `preload="metadata"` en el reproductor de audio global.
-* [x] **Accesibilidad (a11y) y SEO:** Configuración de metadatos OpenGraph para previsualizaciones en redes sociales y uso semántico de atributos `title` y `aria-label`.
+* [x] Configuración de rutas hijas (`children`) dinámicas basadas en `DestinationId` y transiciones de vista nativas (View Transitions API).
+* [x] **Arquitectura Limpia:** Implementación de Path Aliasing (`@components`, `@services`, `@models`, `@guards`) y estandarización de variables globales y tipografías en `styles.css`.
+* [x] **Seguridad:** Protección de rutas mediante `authGuard`, servicio de autenticación con Angular Signals y variables de entorno en producción.
+* [x] **Optimización de Rendimiento:** Aislamiento de animaciones CSS, uso de `loading="lazy"`, `fetchpriority` y `decoding="async"` en imágenes/GIFs, y `preload="metadata"` en reproductores multimedia.
+* [x] **Accesibilidad (a11y) y SEO:** Configuración completa de metadatos Open Graph, Twitter Cards, set completo de Favicons (`apple-touch-icon`, `webmanifest`) y uso semántico de botones interactivos (`<button>`, `title` y `aria-label`).
 
 **Fase 2: Componentes e Interacción Global (Completada)**
-* [x] **Selector de Música (Scroll Horizontal):** Galería nativa (CSS puro) con portadas clickeables que asignan dinámicamente colores de fondo según la posición matemática de la tarjeta (`:nth-child`).
-* [x] **Motor de Audio Reactivo:** Servicio global conectado a Angular Signals con Play/Pause dinámico.
-* [x] **Gamificación y Rutas Dinámicas:** Generación de la lista de destinos consumiendo un `Enum` y una Interfaz (`Destination`) desde TypeScript.
-* [x] **Modal Secreto ("Escape Room"):** Implementación de una sección bloqueada utilizando la etiqueta HTML5 `<dialog>` con alternancia de vistas usando Signals, validación interna y animaciones de error (`.shake`).
-* [x] **Refactor UI Global:** Mejora de responsividad en la navegación superior (uso de padding dinámico en lugar de alturas fijas) y estandarización de variables CSS (ej. `--margin-bottom-text`).
+* [x] **Selector de Música (Scroll Horizontal):** Galería interactiva con portadas que inyectan su propio color de fondo de forma dinámica desde el modelo de datos (`Track`).
+* [x] **Motor de Audio Reactivo y Sincronizado:** Servicio global (`Audio`) conectado a Angular Signals, sincronizado en tiempo real con la barra de navegación (`TopNav`) mediante eventos nativos del DOM y preparado para pausarse automáticamente al reproducir videos locales.
+* [x] **Gamificación y Destinos:** Lista de destinos con iconografía personalizada y estado de bloqueo gestionado desde TypeScript.
+* [x] **Modal Secreto ("Escape Room"):** Sección bloqueada con `<dialog>` nativo, validación contra un array centralizado de pistas (`SECRET_CLUES` y `FULL_SECRET_PASSWORD`) que normaliza espacios y mayúsculas, y animaciones de feedback (`.shake`).
 
-**Fase 3: Destinos y Escape Room (En curso)**
-* [x] **Zona Cortis (Completada):** Layout editorial con diseño *Bento Grid*, galería de imágenes con *Scroll Snapping*, y cierre inmersivo con video musical en reproducción automática. 
-* [x] **Pistas Ocultas - Nivel 1:** Integración de la primera pieza de la contraseña camuflada estéticamente en el carrusel de la galería de Martín (diseño de terminal hacker/cyberpunk).
-* [x] **Personajes - UI Base (Completada):** Maquetado responsivo (estilo "cartas coleccionables") renderizado dinámicamente mediante un modelo de datos en TypeScript, con fondo animado de burbujas pastel.
-* [x] **Minijuego "Pusheen-tados" (Completado):** Trivia interactiva integrada dentro de "Personajes". Cuenta con una ruleta generada dinámicamente con CSS (`conic-gradient`), sistema de vidas, temporizador visual fluído, comodín 50/50, pantalla de "Game Over" con superposición, y validación estricta para liberar la segunda pista de la contraseña.
+**Fase 3: Destinos, Escape Room y Sorpresa Final (Completada)**
+* [x] **Zona Cortis:** Layout editorial estilo revista/wiki con diseño *Bento Grid*, visor de fotos a pantalla completa, carrusel con *Scroll Snapping*, video musical y la **Pista #1** camuflada en la galería de Martin.
+* [x] **Multiverso de Personajes:** Maquetado responsivo estilo "cartas coleccionables" renderizado dinámicamente con acceso oculto al minijuego.
+* [x] **Minijuego "Pusheen-tados":** Trivia interactiva con ruleta generada en CSS (`conic-gradient`), sistema de vidas, temporizador visual, comodín 50/50, modal de "Game Over" y entrega de la **Pista #2** al ganar.
+* [x] **Buzón de Pusheen (`mensajes-pusheen`):** Cuadrícula de sobres cerrados con solapa y sello en CSS puro que revelan minicartas personalizadas al abrirse, contador de progreso y desbloqueo automático de un reproductor de video vertical (`9:16`) con la **Pista #3**.
+* [x] **Regalo Sorpresa (`secreto`):** Destino final desbloqueable con insignia de logro, carta principal estilo papelería (`From / To`) de altura libre, reproductor de video horizontal (`16:9`) con auto-pausa de música de fondo y footer de despedida.
+* [x] **Buzón de Respuesta Directa (Resend API):** Formulario interactivo al final del recorrido (calificación con estrellas, selección de sección favorita por *chips* y mensaje libre) conectado a una *Vercel Serverless Function* (`/api/send.js`) que envía la respuesta por correo electrónico en tiempo real.
 
-## 🗺️ Roadmap (Próximos Pasos)
-* [ ] **Diseño de la Carta (Home):** Darle formato estético al texto interior de la sección central para que transmita la sensación de ser un pergamino o tarjeta física de bienvenida.
-* [ ] **Mensajes Pusheen:** Interfaz tierna con frases o mini-cartas.
-* [ ] **Regalo Sorpresa (Ruta Secreta):** La carta final y verdadera sorpresa una vez que descubre la contraseña oculta en las otras secciones.
-* [ ] **Formulario de Feedback:** Sistema de calificación (1 al 10) con envío de mensaje directo por email al finalizar la experiencia.
+## 📝 Pendientes de Contenido (Pre-Lanzamiento)
+* [ ] Redactar el texto definitivo de la carta final en el componente `Secreto`.
+* [ ] Grabar y subir el video vertical con la pista final (`mensajes-pusheen`) y el video musical editado con subtítulos (`secreto`).
 
 ## 🛠️ Tecnologías Utilizadas
-* **Frontend:** Angular (Standalone Components, Routing, **Signals**, Inyección de dependencias), TypeScript, HTML5 semántico.
-* **Estilos:** CSS3 Puro (Variables semánticas, Responsive Design, CSS Grid/Bento Layout, Scroll Snapping, Glassmorphism, animaciones `@keyframes`).
+* **Frontend:** Angular (Standalone Components, Routing, **Signals**, FormsModule, Inyección de dependencias), TypeScript, HTML5 semántico.
+* **Estilos:** CSS3 Puro (Variables globales, Responsive Design, CSS Grid / Bento Layout, Flexbox, Scroll Snapping, Glassmorphism, `@keyframes`), `@fontsource-variable` (Fredoka y Quicksand).
+* **Backend & Email:** Vercel Serverless Functions (Node.js) + **Resend API**.
 * **Despliegue y Hosting:** Vercel (CI/CD automático).
