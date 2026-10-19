@@ -45,7 +45,7 @@ export class Home {
       title: 'FaSHion',
       artist: Artist.CORTIS,
       audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-fashion'),
-      color: '#9f7361'
+      color: '#6b839f'
     },
     {
       coverUrl: 'assets/images/kpop/enhypen/bloody-paradise-portada.webp',

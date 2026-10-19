@@ -5,7 +5,11 @@
     <div class="horizontal-scroll">
       @for (track of tracks; track $index) {
         
-        <figure class="gallery-item card" [style.background-color]="track.color" title="Reproducir {{ track.title }}" aria-label="Reproducir {{ track.title }}" (click)="playTrack(track)">
+        <button class="gallery-item card" 
+            [style.background-color]="track.color" 
+            title="Reproducir {{ track.title }}" 
+            aria-label="Reproducir {{ track.title }}" 
+            (click)="playTrack(track)">
           <div class="img-placeholder">
             <img id="portada" 
                  [src]="track.coverUrl" 
@@ -14,11 +18,11 @@
                  [attr.fetchpriority]="$index <= 2 ? 'high' : 'auto'"
                  decoding="async">
           </div>
-          <figcaption>
+          <div class="track-caption">
             <strong>{{ track.title }}</strong>
             <span class="muted">{{ track.artist }}</span>
-          </figcaption>
-        </figure>
+          </div>
+        </button>
 
       }
     </div>
