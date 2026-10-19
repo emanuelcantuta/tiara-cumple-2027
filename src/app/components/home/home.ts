@@ -30,49 +30,64 @@ export class Home {
       coverUrl: 'assets/images/kpop/cortis/joyride-portada.webp', 
       title: 'JoyRide',
       artist: Artist.CORTIS,
-      audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-joyride')
+      audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-joyride'),
+      color: '#61669f'
     },
     {
       coverUrl: 'assets/images/kpop/cortis/lullaby-portada.webp',
       title: 'Lullaby',
       artist: Artist.CORTIS,
-      audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-lullaby')
+      audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-lullaby'),
+      color: '#889f61'
+    },
+    {
+      coverUrl: 'assets/images/kpop/cortis/FaSHion-portada.webp',
+      title: 'FaSHion',
+      artist: Artist.CORTIS,
+      audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-fashion'),
+      color: '#9f7361'
     },
     {
       coverUrl: 'assets/images/kpop/enhypen/bloody-paradise-portada.webp',
       title: 'Bloody Paradise',
       artist: Artist.ENHYPEN,
-      audioSource: this.buildAudioSource('assets/audio/music/enhypen/enhypen-bloody-paradise')
+      audioSource: this.buildAudioSource('assets/audio/music/enhypen/enhypen-bloody-paradise'),
+      color: '#9f6166'
     },
     { 
       coverUrl: 'assets/images/kpop/evan/death-of-me-portada.webp',
       title: 'Death of Me',
       artist: Artist.EVAN,
-      audioSource: this.buildAudioSource('assets/audio/music/evan/evan-death-of-me')
+      audioSource: this.buildAudioSource('assets/audio/music/evan/evan-death-of-me'),
+      color: '#9f8861'
     },
     {
       coverUrl: 'assets/images/kpop/aespa/kiss-n-tell-portada.webp',
       title: 'Kiss N Tell',
       artist: Artist.AESPA,
-      audioSource: this.buildAudioSource('assets/audio/music/aespa/aespa-kiss-n-tell')
+      audioSource: this.buildAudioSource('assets/audio/music/aespa/aespa-kiss-n-tell'),
+      color: '#619f88'
     },
     {
       coverUrl: 'assets/images/kpop/aespa/lemonade-portada.webp',
       title: 'Lemonade',
       artist: Artist.AESPA,
-      audioSource: this.buildAudioSource('assets/audio/music/aespa/aespa-lemonade')
+      audioSource: this.buildAudioSource('assets/audio/music/aespa/aespa-lemonade'),
+      color: '#88619f'
     },
     {
       coverUrl: 'assets/images/kpop/loona/hi-high-portada.webp',
       title: 'Hi High',
       artist: Artist.LOONA,
-      audioSource: this.buildAudioSource('assets/audio/music/loona/loona-hi-high')
+      audioSource: this.buildAudioSource('assets/audio/music/loona/loona-hi-high'),
+      color: '#9f6188'
     },
     {
       coverUrl: 'assets/images/kpop/loona/butterfly-portada.webp',
       title: 'Butterfly',
       artist: Artist.LOONA,
-      audioSource: this.buildAudioSource('assets/audio/music/loona/loona-butterfly')
+      audioSource: this.buildAudioSource('assets/audio/music/loona/loona-butterfly'),
+      color: '#61889f'
     },
 
   ];

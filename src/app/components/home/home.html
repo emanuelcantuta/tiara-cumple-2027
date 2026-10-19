@@ -5,7 +5,7 @@
     <div class="horizontal-scroll">
       @for (track of tracks; track $index) {
         
-        <figure class="gallery-item card" title="Reproducir {{ track.title }}" aria-label="Reproducir {{ track.title }}" (click)="playTrack(track)">
+        <figure class="gallery-item card" [style.background-color]="track.color" title="Reproducir {{ track.title }}" aria-label="Reproducir {{ track.title }}" (click)="playTrack(track)">
           <div class="img-placeholder">
             <img id="portada" 
                  [src]="track.coverUrl" 

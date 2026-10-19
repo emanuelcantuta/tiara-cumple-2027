@@ -6,4 +6,5 @@ export interface Track {
   title: string;
   artist: Artist;
   audioSource: SongSource;
+  color: string;
 }
