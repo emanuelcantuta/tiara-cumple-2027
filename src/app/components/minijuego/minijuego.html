@@ -5,8 +5,6 @@
   </section>
 } @else {
   <section class="game-container">
-    
-    <!-- BARRA SUPERIOR -->
     <header class="game-header">
       <div class="lives-container">
         @for (i of [1, 2, 3]; track $index) {
@@ -22,7 +20,6 @@
     </header>
 
     @if (!currentQuestion) {
-      <!-- VISTA A: LA RULETA -->
       <main class="game-board">
         <div class="roulette-wrapper">
           <div class="roulette-pointer"></div>
@@ -38,11 +35,9 @@
         </div>
       </main>
     } @else {
-      <!-- VISTA B: LA TARJETA DE PREGUNTA -->
       <main class="question-board">
         <div class="question-card">
           
-          <!-- EL RELOJ -->
           <div class="timer-wrapper">
             <div class="timer-bar-bg">
               <div class="timer-bar-fill" 
@@ -59,7 +54,6 @@
           <div class="options-grid">
             @for (option of currentQuestion.options; track $index) {
               
-              <!-- OCULTAMOS LAS OPCIONES QUE LA BOMBA ELIMINA -->
               @if (!hiddenOptions.includes(option)) {
                 <button class="option-btn" 
                         [disabled]="selectedAnswer !== null || answerResult === AnswerStatus.Timeout"
@@ -69,11 +63,9 @@
                   {{ option }}
                 </button>
               }
-              
             }
           </div>
 
-          <!-- CARTEL DE FEEDBACK -->
           @if (answerResult) {
             <div class="result-message" 
                  [class.success]="answerResult === AnswerStatus.Correct" 
@@ -86,11 +78,9 @@
               } @else {
                 <h3>¡Tiempo Agotado! ⏰</h3>
               }
-              
             </div>
           }
 
-          <!-- BOTÓN DE LA BOMBA (Solo visible durante la pregunta) -->
           <footer class="game-footer" style="margin-top: 20px;">
             <button class="bomb-btn" 
                     [disabled]="!hasBomb || selectedAnswer !== null || answerResult === AnswerStatus.Timeout" 
@@ -98,7 +88,6 @@
               💣 Usar Ayuda 50/50
             </button>
           </footer>
-
         </div>
       </main>
     }

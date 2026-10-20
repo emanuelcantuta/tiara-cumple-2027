@@ -4,7 +4,6 @@
     <h2 class="section-title">Elegí qué escuchar 🎧</h2>
     <div class="horizontal-scroll">
       @for (track of tracks; track $index) {
-        
         <button class="gallery-item card" 
             [style.background-color]="track.color" 
             title="Reproducir {{ track.title }}" 
@@ -23,7 +22,6 @@
             <span class="muted">{{ track.artist }}</span>
           </div>
         </button>
-
       }
     </div>
   </section>

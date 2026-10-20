@@ -20,6 +20,7 @@
   width: 100vw;
   height: 120vh;
   z-index: -1;
+
   background-color: #fff9fb;
   background-image: 
     radial-gradient(circle at 15% 20%, rgba(255, 179, 186, 0.4) 0%, transparent 45%),
@@ -108,7 +109,6 @@
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Solapa superior del sobre */
 .envelope-flap {
   position: absolute;
   top: 0;

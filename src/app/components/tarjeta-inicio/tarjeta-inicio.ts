@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from '@services/auth';
 import { LoginState } from './models/login-state';
 import { LOGIN_CONFIG } from './models/login.config';
-import { Auth } from '@services/auth';
 
 @Component({
   imports: [CommonModule],

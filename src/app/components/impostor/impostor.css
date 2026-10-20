@@ -58,7 +58,6 @@ button:hover {
 /* =========================================
    ANIMACIÓN DE SIRENA (ALERTA ROJA)
 ========================================= */
-
 .impostor-card {
   animation: sirena 1.5s ease-in-out infinite;
 }

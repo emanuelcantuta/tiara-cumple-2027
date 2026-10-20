@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { TopNav } from '@components/top-nav/top-nav';
-import { Character } from './models/character';
-import { Minijuego } from '@components/minijuego/minijuego';
 import { SECRET_CLUES } from '@models/secret-clues';
+import { Character } from './models/character';
+import { TopNav } from '@components/top-nav/top-nav';
+import { Minijuego } from '@components/minijuego/minijuego';
 
 @Component({
   imports: [CommonModule, TopNav, Minijuego],

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TopNav } from '@components/top-nav/top-nav';
-import { BiasProfile } from './models/BiasProfile';
 import { SECRET_CLUES } from '@models/secret-clues';
+import { BiasProfile } from './models/BiasProfile';
 
 @Component({
   imports: [CommonModule, TopNav],

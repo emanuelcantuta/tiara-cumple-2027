@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
+import { authGuard } from '@guards/auth';
 import { TarjetaInicio } from '@components/tarjeta-inicio/tarjeta-inicio';
 import { Impostor } from '@components/impostor/impostor';
 import { Home } from '@components/home/home';
-import { authGuard } from '@guards/auth';
 import { Cortis } from '@components/cortis/cortis';
 import { Personajes } from '@components/personajes/personajes';
 import { MensajesPusheen } from '@components/mensajes-pusheen/mensajes-pusheen';

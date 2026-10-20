@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TopNav } from '@components/top-nav/top-nav';
 import { Audio } from '@services/audio';
+import { TopNav } from '@components/top-nav/top-nav';
 
 @Component({
   imports: [CommonModule, FormsModule, TopNav],
@@ -15,7 +15,6 @@ export class Secreto {
   videoUrl: string = 'assets/video/kpop-edit.mp4';
   videoPoster: string = 'assets/images/kpop/cortis/cortis-group.webp'; // cambiar
 
-  // Estado del formulario interactivo
   rating = signal<number>(5);
   favoritePart = signal<string>('✨ ¡Todo el regalo!');
   message: string = '';

@@ -1,12 +1,12 @@
 import { Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { TopNav } from '@components/top-nav/top-nav';
 import { Audio } from '@services/audio';
+import { TopNav } from '@components/top-nav/top-nav';
 import { Artist } from '@models/artist';
 import { SongSource } from '@models/song-source';
+import { FULL_SECRET_PASSWORD } from '@models/secret-clues';
 import { Track } from './models/track';
 import { Destination, DestinationId } from './models/destination';
-import { FULL_SECRET_PASSWORD } from '@models/secret-clues';
 
 @Component({
   imports: [TopNav],

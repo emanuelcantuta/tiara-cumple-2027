@@ -2,8 +2,8 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
-import { Auth } from '@services/auth';
 import { filter } from 'rxjs/operators';
+import { Auth } from '@services/auth';
 
 @Component({
   imports: [CommonModule],

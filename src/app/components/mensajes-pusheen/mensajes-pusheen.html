@@ -13,7 +13,6 @@
   <section class="envelopes-grid">
     @for (item of messagesList; track item.id) {
       @if (!isOpened(item.id)) {
-        <!-- ESTADO 1: SOBRE CERRADO -->
         <button class="envelope-closed" 
                 [style.--card-color]="item.themeColor"
                 (click)="openEnvelope(item.id)">
@@ -23,7 +22,6 @@
           <span class="envelope-hint">✨Tocar para abrir✨</span>
         </button>
       } @else {
-        <!-- ESTADO 2: MINICARTA ABIERTA -->
         <article class="mini-card-open" [style.--card-color]="item.themeColor">
           <div class="gif-wrapper">
             <img [src]="item.gif" [alt]="item.title" loading="lazy" decoding="async">
@@ -37,7 +35,6 @@
     }
   </section>
 
-  <!-- SECCIÓN FINAL: VIDEO Y ÚLTIMA PISTA (Se desbloquea al abrir todos los sobres) -->
   @if (allOpened) {
     <section class="secret-clue-card final-video-box">
       <div class="secret-clue-content">

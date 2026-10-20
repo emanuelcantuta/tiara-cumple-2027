@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { Audio } from '@services/audio';
 import { TopNav } from '@components/top-nav/top-nav';
 import { PusheenMessage } from './models/pusheen-message';
-import { Audio } from '@services/audio';
 
 @Component({
   imports: [CommonModule, TopNav],
@@ -23,7 +23,7 @@ export class MensajesPusheen {
       title: '¡Feliz Cumpleaños! 🎉',
       text: 'Ojalá donde sea que te encuentres en este momento, estés pasandola bien. Ánimo meju <3',
       gif: 'assets/images/pusheen/messages/pusheen-hb.gif',
-      themeColor: '#FFB3BA' // Rosa pastel
+      themeColor: '#FFB3BA'
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ export class MensajesPusheen {
       title: 'For you (vs)',
       text: 'Tal vez no sea tu Amistad Fav, mucho menos una de las mejores, pero si algún día me necesitas, aquí toy for you (vs) :3.',
       gif: 'assets/images/pusheen/messages/pusheen-writing-paper.gif',
-      themeColor: '#A8D8FF' // Celeste pastel
+      themeColor: '#A8D8FF'
     },
     {
       id: 3,
@@ -41,7 +41,7 @@ export class MensajesPusheen {
       title: 'En otra vida será deah',
       text: `Si algún día dejamos de hablar o nos distanciamos por cosas de la vida, que sepas que siempre me pareciste muy copada, cada cosa tuya era nueva para mí y se que soy malísimo socializandoxd y a veces no sé que decir. Pero gracias por bancarme, a veces siento que querías hacerme creer que era copadoxD`,
       gif: 'assets/images/pusheen/messages/pusheen-coffe.gif',
-      themeColor: '#FFF4A3' // Amarillo pastel
+      themeColor: '#FFF4A3'
     },
     {
       id: 4,
@@ -50,7 +50,7 @@ export class MensajesPusheen {
       title: 'Un recordatorio vergonzoso para mi 💗xD',
       text: 'Hasta el día de hoy me da pena y risa lo que te dije ese díaxDD. Pero realmente no importa porque lohice con esa intenciónx/D que wsachin soy',
       gif: 'assets/images/pusheen/messages/chat.webp',
-      themeColor: '#D6C2FF' // Lila suave
+      themeColor: '#D6C2FF'
     }
   ];
 

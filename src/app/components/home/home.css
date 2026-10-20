@@ -39,8 +39,6 @@
 /* =========================================
    ALINEACIÓN GENERAL
 ========================================= */
-
-/* 2. Sección con fondo de vidrio (La Carta) */
 .letter-section {
   max-width: 700px;
   padding: var(--space-lg);
@@ -65,7 +63,6 @@
   right: -10px;
 }
 
-/* 3. Títulos de las secciones */
 .section-title {
   margin-bottom: var(--margin-bottom-text);
   color: var(--primary-color);
@@ -351,7 +348,6 @@
   opacity: 1;
 }
 
-/* Input dentro del modal */
 .modal-input-group {
   margin: 20px 0;
 }
@@ -417,7 +413,6 @@
   }
 }
 
-/* Animación de entrada*/
 @keyframes home-entrance {
   from {
     opacity: 0;
