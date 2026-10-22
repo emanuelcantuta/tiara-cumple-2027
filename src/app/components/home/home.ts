@@ -31,7 +31,7 @@ export class Home {
       title: 'JoyRide',
       artist: Artist.CORTIS,
       audioSource: this.buildAudioSource('assets/audio/music/cortis/cortis-joyride'),
-      color: '#61669f'
+      color: '#58608f'
     },
     {
       coverUrl: 'assets/images/kpop/cortis/lullaby-portada.webp',
@@ -74,6 +74,13 @@ export class Home {
       artist: Artist.AESPA,
       audioSource: this.buildAudioSource('assets/audio/music/aespa/aespa-lemonade'),
       color: '#88619f'
+    },
+    {
+      coverUrl: 'assets/images/kpop/loona/around-you-portada.webp',
+      title: 'Around You / Hyunjin',
+      artist: Artist.LOONA,
+      audioSource: this.buildAudioSource('assets/audio/music/loona/loona-around-you'),
+      color: '#9f9a61'
     },
     {
       coverUrl: 'assets/images/kpop/loona/hi-high-portada.webp',
