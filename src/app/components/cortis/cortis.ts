@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, DestroyRef, ElementRef, OnInit, inject, signal, viewChild } from '@angular/core';
 import { TopNav } from '@components/top-nav/top-nav';
 import { SECRET_CLUES } from '@models/secret-clues';
 import { BiasProfile } from './models/BiasProfile';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   imports: [CommonModule, TopNav],
@@ -10,9 +11,12 @@ import { BiasProfile } from './models/BiasProfile';
   styleUrl: './cortis.css',
   templateUrl: './cortis.html',
 })
-export class Cortis {
+export class Cortis implements OnInit {
+  private destroyRef = inject(DestroyRef);
+  youtubePlayer = viewChild<ElementRef<HTMLIFrameElement>>('youtubePlayer');
   selectedPhoto: string | null = null;
   clueWord: string = SECRET_CLUES[0];
+
   biases: BiasProfile[] = [
     {
       id: 'martin',
@@ -125,4 +129,34 @@ export class Cortis {
     }
   ];
 
+  ngOnInit(): void {
+    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
+    
+    if (audioEl) {
+      const onPlay = () => this.sendYoutubeCommand('mute'); 
+      const onPause = () => this.sendYoutubeCommand('unMute'); 
+
+      audioEl.addEventListener('play', onPlay);
+      audioEl.addEventListener('pause', onPause);
+
+      this.destroyRef.onDestroy(() => {
+        audioEl.removeEventListener('play', onPlay);
+        audioEl.removeEventListener('pause', onPause);
+      });
+    }
+  }
+
+  private sendYoutubeCommand(command: string): void {
+    const iframe = this.youtubePlayer()?.nativeElement;
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: command, args: [] }), '*');
+    }
+  }
+
+  onIframeLoad(): void {
+    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
+    if (audioEl && audioEl.paused) {
+      this.sendYoutubeCommand('unMute');
+    }
+  }
 }

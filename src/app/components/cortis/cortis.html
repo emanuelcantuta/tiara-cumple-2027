@@ -112,11 +112,13 @@
     
     <div class="video-container">
       <iframe 
-        src="https://www.youtube.com/embed/nCElUD0jvgo?autoplay=1&mute=1&loop=1&playlist=nCElUD0jvgo" 
+        #youtubePlayer
+        src="https://www.youtube.com/embed/nCElUD0jvgo?autoplay=1&mute=1&loop=1&playlist=nCElUD0jvgo&enablejsapi=1" 
         title="CORTIS 'ACAI' Official MV" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen
-        loading="lazy">
+        loading="lazy"
+        (load)="onIframeLoad()">
       </iframe>
     </div>
   </section>
