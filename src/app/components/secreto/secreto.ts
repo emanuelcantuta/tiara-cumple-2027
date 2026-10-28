@@ -12,7 +12,7 @@ import { TopNav } from '@components/top-nav/top-nav';
 })
 export class Secreto {
   protected audio = inject(Audio);
-  videoUrl: string = 'assets/video/kpop-edit.mp4';
+  videoUrl: string = 'assets/video/regalo.mp4';
   videoPoster: string = 'assets/images/kpop/cortis/cortis-group.webp'; // cambiar
 
   rating = signal<number>(5);
