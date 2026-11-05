@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '@guards/auth';
+import { secretGuard } from '@guards/secret';
 import { TarjetaInicio } from '@components/tarjeta-inicio/tarjeta-inicio';
 import { Impostor } from '@components/impostor/impostor';
 import { Home } from '@components/home/home';
@@ -28,7 +29,12 @@ export const routes: Routes = [
             { path: DestinationId.CORTIS, component: Cortis, title: 'Zona Cortis 🎸- Tiara cumple' },
             { path: DestinationId.PERSONAJES, component: Personajes, title: 'Personajes - Tiara cumple' },
             { path: DestinationId.PUSHEEN, component: MensajesPusheen, title: 'Mensajes Pusheen 😽 - Tiara cumple' },
-            { path: DestinationId.SECRETO, component: Secreto, title: 'Regalo Sorpresa 🎁 - Tiara cumple' }
+            { 
+                path: DestinationId.SECRETO, 
+                component: Secreto, 
+                canActivate: [secretGuard], 
+                title: 'Regalo Sorpresa 🎁 - Tiara cumple' 
+            }
         ]
     },
     { 

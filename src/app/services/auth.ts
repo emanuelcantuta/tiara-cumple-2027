@@ -1,4 +1,5 @@
 import { Service, signal } from '@angular/core';
+import { resetSecret } from '@guards/secret';
 
 @Service()
 export class Auth {
@@ -10,7 +11,8 @@ export class Auth {
     }
 
     logOut() {
-    this.isLoggedIn.set(false);
-    localStorage.removeItem('tiara_session');
-  }
+        this.isLoggedIn.set(false);
+        localStorage.removeItem('tiara_session');
+        resetSecret();
+    }
 }
