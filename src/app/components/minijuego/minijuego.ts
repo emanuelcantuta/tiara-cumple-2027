@@ -31,6 +31,7 @@ export class Minijuego implements OnInit, OnDestroy {
 
   timeLeft: number = 15;
   private timerInterval: any;
+  private timeoutIds: ReturnType<typeof setTimeout>[] = [];
 
   selectedAnswer: string | null = null;
   answerResult: AnswerStatus | null = null;
@@ -126,7 +127,7 @@ export class Minijuego implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    setTimeout(() => {
+    this.addTimeout(() => {
       this.isSystemLoading = false;
       this.cdr.detectChanges();
     }, 2000);
@@ -134,6 +135,20 @@ export class Minijuego implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.stopTimer();
+    this.clearAllTimeouts();
+  }
+
+  private addTimeout(callback: () => void, delay: number): void {
+    const id = setTimeout(() => {
+      this.timeoutIds = this.timeoutIds.filter(t => t !== id);
+      callback();
+    }, delay);
+    this.timeoutIds.push(id);
+  }
+
+  private clearAllTimeouts(): void {
+    this.timeoutIds.forEach(id => clearTimeout(id));
+    this.timeoutIds = [];
   }
 
   spinRoulette() {
@@ -153,7 +168,7 @@ export class Minijuego implements OnInit, OnDestroy {
     const remainder = this.currentRotation % 360;
     this.currentRotation = this.currentRotation - remainder + extraSpins + targetDegree;
 
-    setTimeout(() => {
+    this.addTimeout(() => {
       this.isSpinning = false;
       this.currentQuestion = selectedQ;
       this.startTimer();
@@ -195,7 +210,7 @@ export class Minijuego implements OnInit, OnDestroy {
     this.playSoundError();
     this.cdr.detectChanges();
 
-    setTimeout(() => {
+    this.addTimeout(() => {
       this.evaluateGameStatus();
     }, 2000);
   }
@@ -219,7 +234,7 @@ export class Minijuego implements OnInit, OnDestroy {
     
     this.cdr.detectChanges();
 
-    setTimeout(() => {
+    this.addTimeout(() => {
       this.evaluateGameStatus();
     }, 2000); 
   }
@@ -230,7 +245,7 @@ export class Minijuego implements OnInit, OnDestroy {
       this.currentQuestion = null;
       this.cdr.detectChanges();
       
-      setTimeout(() => {
+      this.addTimeout(() => {
         this.gameLost.emit();
       }, 4000);
       
@@ -251,7 +266,7 @@ export class Minijuego implements OnInit, OnDestroy {
       this.isGameOver = true;
       this.cdr.detectChanges();
       
-      setTimeout(() => {
+      this.addTimeout(() => {
         this.gameLost.emit();
       }, 4000);
       return;
