@@ -1,0 +1,82 @@
+flowchart TB
+    %% ==========================================
+    %% ESTILOS Y TEMAS (Optimizado para GitHub README)
+    %% ==========================================
+    classDef core fill:#EBF3FE,stroke:#2970FF,stroke-width:1.5px,color:#1D2939;
+    classDef publicRoute fill:#FFF4ED,stroke:#FB6514,stroke-width:1.5px,color:#1D2939;
+    classDef protectedRoute fill:#FDF2FA,stroke:#EE46BC,stroke-width:1.5px,color:#1D2939;
+    classDef service fill:#ECFDF3,stroke:#12B76A,stroke-width:1.5px,color:#1D2939;
+    classDef backend fill:#F4F3FF,stroke:#7A5AF8,stroke-width:1.5px,color:#1D2939;
+    classDef hub fill:#FEF0C7,stroke:#F79009,stroke-width:2px,color:#1D2939;
+
+    %% ==========================================
+    %% CAPA 1: CORE SHELL & ESTADO GLOBAL
+    %% ==========================================
+    subgraph CoreShell ["Shell & Core"]
+        direction LR
+        Main["main.ts<br/><sub>bootstrapApplication</sub>"] --> Config["app.config.ts<br/><sub>providers & routes</sub>"]
+        Config --> Shell["App (Shell)<br/><sub>Audio global & router-outlet</sub>"]
+        Shell --- TopNav["TopNav<br/><sub>Control de audio & navegación</sub>"]
+    end
+
+    subgraph State ["Servicios Globales"]
+        direction LR
+        AudioSvc["AudioService<br/><sub>Signal: currentSong</sub>"]
+        AuthSvc["AuthService<br/><sub>Signal: isLoggedIn + storage</sub>"]
+    end
+
+    %% ==========================================
+    %% CAPA 2: RUTAS Y NAVEGACIÓN
+    %% ==========================================
+    subgraph PublicRoutes ["Rutas Públicas"]
+        direction LR
+        Login["/ (TarjetaInicio)<br/><sub>Validación clave</sub>"]
+        Impostor["/impostor<br/><sub>Bloqueo tras 3 fallos</sub>"]
+        Login -->|3 intentos fallidos| Impostor
+    end
+
+    subgraph ProtectedZone ["Zona Protegida: /regalo (authGuard)"]
+        direction TB
+        Home["Home (Hub Central)<br/><sub>Selector canciones + Modal clave</sub>"]:::hub
+        
+        subgraph Destinations ["Destinos & Pistas"]
+            direction LR
+            Cortis["/cortis<br/><sub>Bento Bias + Pista Conceptual #1</sub>"]
+            Personajes["/personajes<br/><sub>Trivia + Pista Conceptual #2</sub>"]
+            Pusheen["/pusheen<br/><sub>Sobres + Pista Conceptual #3</sub>"]
+            Secreto["/secreto<br/><sub>Carta, Video & Feedback</sub>"]
+        end
+
+        Home --> Cortis
+        Home --> Personajes
+        Home --> Pusheen
+        Home -.->|Clave descifrada| Secreto
+    end
+
+    %% ==========================================
+    %% CAPA 3: BACKEND SERVERLESS
+    %% ==========================================
+    subgraph BackendLayer ["Backend Serverless"]
+        ApiSend["api/send.js<br/><sub>Vercel Serverless + Resend Email API</sub>"]
+    end
+
+    %% ==========================================
+    %% CONEXIONES ENTRE CAPAS
+    %% ==========================================
+    Shell ==>|Enrutamiento público| PublicRoutes
+    Shell ==>|authGuard| ProtectedZone
+
+    Login -.->|signIn| AuthSvc
+    AuthSvc -.->|protege /regalo| ProtectedZone
+
+    TopNav -.->|toggle / pause| AudioSvc
+    Home -.->|playTrack| AudioSvc
+
+    Secreto ==>|POST feedback| ApiSend
+
+    class Main,Config,Shell,TopNav core;
+    class Login,Impostor publicRoute;
+    class Cortis,Personajes,Pusheen,Secreto protectedRoute;
+    class AudioSvc,AuthSvc service;
+    class ApiSend backend;
+
