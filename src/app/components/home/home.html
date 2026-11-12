@@ -62,10 +62,10 @@
     <ul class="category-list">
       @for (destination of destinations; track destination.id) {
         <li>
-          <a (click)="handleDestinationClick(destination)" role="button" tabindex="0">
+          <button type="button" class="dest-btn" (click)="handleDestinationClick(destination)">
             <img [src]="destination.icon" [alt]="destination.id" class="dest-icon" loading="lazy">
             <span>{{ destination.title }}</span>
-          </a>
+          </button>
         </li>
       }
     </ul>
