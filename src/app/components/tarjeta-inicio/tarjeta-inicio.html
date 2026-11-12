@@ -14,7 +14,7 @@
     </label>
   </header>
 
-  <form class="input-group" [class.shake]="state.errorAnimation" (submit)="$event.preventDefault(); verifyPassword(inputPass)">
+  <form class="input-group" [class.shake]="state.errorAnimation" (animationend)="state.errorAnimation = false" (submit)="$event.preventDefault(); verifyPassword(inputPass)">
     <input
       #inputPass
       id="contrasena"

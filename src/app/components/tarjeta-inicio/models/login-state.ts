@@ -3,5 +3,5 @@ export interface LoginState {
     errorAnimation: boolean;
     showEmptyWarning: boolean;
     showAttemptError: boolean;
-    hideMessageTimeout?: any;
+    hideMessageTimeout?: ReturnType<typeof setTimeout>;
 }

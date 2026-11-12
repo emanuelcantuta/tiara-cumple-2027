@@ -59,30 +59,18 @@ export class TarjetaInicio {
     }
   }
 
-  async handleEmptyInput(): Promise<void> {
-    this.state.showEmptyWarning = false;
-    this.state.showAttemptError = false;
-    this.cdr.detectChanges();
-
-    await this.sleep(10);
-
+  handleEmptyInput(): void {
     this.state.showEmptyWarning = true;
-    this.cdr.detectChanges();
+    this.state.showAttemptError = false;
 
     this.playErrorSound();
     this.triggerShakeAnimation();
     this.autoHideMessage();
   }
 
-  async handleFailedAttempt(): Promise<void> {
-    this.state.showAttemptError = false;
-    this.state.showEmptyWarning = false;
-    this.cdr.detectChanges();
-
-    await this.sleep(10);
-
+  handleFailedAttempt(): void {
     this.state.showAttemptError = true;
-    this.cdr.detectChanges();
+    this.state.showEmptyWarning = false;
 
     this.playErrorSound();
     this.triggerShakeAnimation();
@@ -95,19 +83,8 @@ export class TarjetaInicio {
     }, this.config.errorTimeout);
   }
 
-  async triggerShakeAnimation(): Promise<void> {
-    this.state.errorAnimation = false; 
-    this.cdr.detectChanges();
-    
-    await this.sleep(10);
-    
+  triggerShakeAnimation(): void {
     this.state.errorAnimation = true;
-    this.cdr.detectChanges();
-    
-    await this.sleep(this.config.errorTimeout);
-    
-    this.state.errorAnimation = false; 
-    this.cdr.detectChanges();
   }
   
   autoHideMessage(): void {
@@ -120,10 +97,6 @@ export class TarjetaInicio {
       this.state.showAttemptError = false;
       this.cdr.detectChanges();
     }, 3000);
-  }
-
-  sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   playErrorSound(): void {

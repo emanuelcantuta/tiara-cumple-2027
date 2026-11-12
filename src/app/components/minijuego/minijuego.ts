@@ -30,7 +30,7 @@ export class Minijuego implements OnInit, OnDestroy {
   wonQuestionsIds = signal<number[]>([]);
 
   timeLeft: number = 15;
-  private timerInterval: any;
+  private timerInterval: ReturnType<typeof setInterval> | null = null;
   private timeoutIds: ReturnType<typeof setTimeout>[] = [];
 
   selectedAnswer: string | null = null;
