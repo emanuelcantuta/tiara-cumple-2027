@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Audio } from '@services/audio';
 import { TopNav } from '@components/top-nav/top-nav';
 import { PusheenMessage } from './models/pusheen-message';
@@ -12,7 +12,7 @@ import { PusheenMessage } from './models/pusheen-message';
 })
 export class MensajesPusheen {
   protected audio = inject(Audio);
-  openedIds: number[] = [];
+  openedIds = signal<Set<number>>(new Set());
   videoUrl: string = 'assets/video/pista-final.mp4';
 
   messagesList: PusheenMessage[] = [
@@ -55,17 +55,18 @@ export class MensajesPusheen {
   ];
 
   isOpened(id: number): boolean {
-    return this.openedIds.includes(id);
+    return this.openedIds().has(id);
   }
 
   openEnvelope(id: number): void {
-    if (!this.openedIds.includes(id)) {
-      this.openedIds.push(id);
-    }
+    this.openedIds.update(set => {
+      if (set.has(id)) return set;
+      const next = new Set(set);
+      next.add(id);
+      return next;
+    });
   }
 
-  get allOpened(): boolean {
-    return this.openedIds.length === this.messagesList.length;
-  }
+  allOpened = computed<boolean>(() => this.openedIds().size === this.messagesList.length);
 
 }

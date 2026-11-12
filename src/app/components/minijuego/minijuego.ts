@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, inject, OnDestroy, OnInit, Output, signal, computed } from '@angular/core';
 import { Question } from './models/question';
 import { AnswerStatus } from './models/answer-status';
 
@@ -27,7 +27,7 @@ export class Minijuego implements OnInit, OnDestroy {
   currentQuestion: Question | null = null;
   askedQuestionsIds: number[] = [];
   currentRotation: number = 0;
-  wonQuestionsIds: number[] = [];
+  wonQuestionsIds = signal<number[]>([]);
 
   timeLeft: number = 15;
   private timerInterval: any;
@@ -105,12 +105,13 @@ export class Minijuego implements OnInit, OnDestroy {
 
   ];
 
-  get availableQuestions(): Question[] {
-    return this.questionsList.filter(q => !this.wonQuestionsIds.includes(q.id));
-  }
+  availableQuestions = computed<Question[]>(() => {
+    const won = this.wonQuestionsIds();
+    return this.questionsList.filter(q => !won.includes(q.id));
+  });
 
-  get rouletteGradient(): string {
-    const available = this.availableQuestions;
+  rouletteGradient = computed<string>(() => {
+    const available = this.availableQuestions();
     if (available.length === 0) return '#f0f0f0';
 
     const sliceSize = 360 / available.length;
@@ -124,7 +125,7 @@ export class Minijuego implements OnInit, OnDestroy {
     });
     
     return gradient + ')';
-  }
+  });
 
   ngOnInit() {
     this.addTimeout(() => {
@@ -152,7 +153,7 @@ export class Minijuego implements OnInit, OnDestroy {
   }
 
   spinRoulette() {
-    const available = this.availableQuestions;
+    const available = this.availableQuestions();
     if (this.isSpinning || available.length === 0 || this.isGameOver) return;
     
     this.isSpinning = true;
@@ -224,7 +225,9 @@ export class Minijuego implements OnInit, OnDestroy {
     if (selectedOption === this.currentQuestion?.correctAnswer) {
       this.answerResult = AnswerStatus.Correct;
       this.score++;
-      this.wonQuestionsIds.push(this.currentQuestion.id); 
+      if (this.currentQuestion) {
+        this.wonQuestionsIds.update(ids => [...ids, this.currentQuestion!.id]);
+      } 
       this.playSoundCorrect();
     } else {
       this.answerResult = AnswerStatus.Incorrect;
@@ -249,7 +252,7 @@ export class Minijuego implements OnInit, OnDestroy {
         this.gameLost.emit();
       }, 4000);
       
-    } else if (this.wonQuestionsIds.length === this.questionsList.length) {
+    } else if (this.wonQuestionsIds().length === this.questionsList.length) {
       this.gameWon.emit(); 
     } else {
       this.resetTurn();
@@ -272,7 +275,7 @@ export class Minijuego implements OnInit, OnDestroy {
       return;
     }
     
-    if (this.wonQuestionsIds.length === this.questionsList.length) this.gameWon.emit();
+    if (this.wonQuestionsIds().length === this.questionsList.length) this.gameWon.emit();
     
     this.cdr.detectChanges();
   }

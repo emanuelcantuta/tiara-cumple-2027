@@ -6,13 +6,13 @@
     <p class="subtitle">Tocá cada sobrecito para descubrir los mensajes sorpresa que tengo guardados para vos :b</p>
     
     <div class="progress-pill" aria-live="polite" aria-atomic="true">
-      Sobres abiertos: <strong>{{ openedIds.length }} / {{ messagesList.length }}</strong> 💌
+      Sobres abiertos: <strong>{{ openedIds().size }} / {{ messagesList.length }}</strong> 💌
     </div>
   </header>
 
   <section class="envelopes-grid" aria-label="Cuadrícula de sobres sorpresa">
     @for (item of messagesList; track item.id) {
-      @if (!isOpened(item.id)) {
+      @if (!openedIds().has(item.id)) {
         <button class="envelope-closed" 
                 [style.--card-color]="item.themeColor"
                 aria-label="Abrir sobre: {{ item.envelopeLabel }}"
@@ -36,7 +36,7 @@
     }
   </section>
 
-  @if (allOpened) {
+  @if (allOpened()) {
     <section class="secret-clue-card final-video-box" aria-labelledby="final-secret-title" aria-live="polite">
       <div class="secret-clue-content">
         <h3 id="final-secret-title" class="secret-clue-title">¡Último Secreto Desbloqueado! 🎥🔓</h3>
