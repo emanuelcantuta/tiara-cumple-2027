@@ -1,9 +1,10 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { Auth } from '@services/auth';
+import { Audio } from '@services/audio';
 
 @Component({
   imports: [CommonModule],
@@ -11,12 +12,12 @@ import { Auth } from '@services/auth';
   styleUrl: './top-nav.css',
   templateUrl: './top-nav.html',
 })
-export class TopNav implements OnInit {
+export class TopNav {
   private auth = inject(Auth);
   private router = inject(Router);
-  private destroyRef = inject(DestroyRef);
+  private audio = inject(Audio);
   
-  isPlaying = signal(true);
+  isPlaying = this.audio.isPlaying;
   isHomePage = signal(this.router.url === '/regalo');
 
   constructor() {
@@ -28,35 +29,8 @@ export class TopNav implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
-    if (audioEl) {
-      this.isPlaying.set(!audioEl.paused);
-
-      const onPlay = () => this.isPlaying.set(true);
-      const onPause = () => this.isPlaying.set(false);
-
-      audioEl.addEventListener('play', onPlay);
-      audioEl.addEventListener('pause', onPause);
-
-      this.destroyRef.onDestroy(() => {
-        audioEl.removeEventListener('play', onPlay);
-        audioEl.removeEventListener('pause', onPause);
-      });
-    }
-  }
-
   toggleAudio(): void {
-    const audioEl = document.getElementById('musica-fondo') as HTMLAudioElement;
-    if (audioEl) {
-      if (audioEl.paused) {
-        audioEl.play();
-        this.isPlaying.set(true);
-      } else {
-        audioEl.pause();
-        this.isPlaying.set(false);
-      }
-    }
+    this.audio.toggleAudio();
   }
 
   logOut(): void {

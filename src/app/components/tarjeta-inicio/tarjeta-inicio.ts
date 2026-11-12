@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '@services/auth';
+import { Audio as AudioService } from '@services/audio';
 import { LoginState } from './models/login-state';
 import { LOGIN_CONFIG } from './models/login.config';
 
@@ -16,6 +17,7 @@ export class TarjetaInicio {
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
   private auth = inject(Auth);
+  private audio = inject(AudioService);
 
   state: LoginState = {
     attempts: 0,
@@ -49,8 +51,7 @@ export class TarjetaInicio {
 
     if (inputPassword === this.config.password) {
       this.auth.signIn();
-      const audio = document.getElementById('musica-fondo') as HTMLAudioElement;
-      if (audio) audio.play();
+      this.audio.play();
       this.router.navigate(['/regalo']);
     } else {
       this.state.attempts++;
