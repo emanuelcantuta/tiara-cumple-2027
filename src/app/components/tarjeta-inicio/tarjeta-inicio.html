@@ -1,25 +1,33 @@
-<article class="card">
+<article class="card" aria-labelledby="login-title">
   <header>
-    <h1>¿Sos la verdadera Tiara?</h1>
-    <img class="emoji-pusheen" src="assets/images/pusheen/emotions/angry/pusheen-suspicious.gif" alt="Pusheen sospechando" width="110">
-    <p>Ingresá la contraseña secreta para acceder a tu regalo:</p>
+    <h1 id="login-title">¿Sos la verdadera Tiara?</h1>
+    
+    <img class="emoji-pusheen" 
+         src="assets/images/pusheen/emotions/angry/pusheen-suspicious.gif" 
+         alt="Pusheen sospechando" 
+         width="110"
+         fetchpriority="high"
+         decoding="async">
+         
+    <label for="contrasena">
+      Ingresá la contraseña secreta para acceder a tu regalo:
+    </label>
   </header>
 
-  <div class="input-group" [class.shake]="state.errorAnimation">
+  <form class="input-group" [class.shake]="state.errorAnimation" (submit)="$event.preventDefault(); verifyPassword(inputPass)">
     <input
       #inputPass
       id="contrasena"
-      name="contrasena"
       type="password"
       placeholder="Tu contraseña..."
       title="Ejemplo: tiara123"
-      aria-label="Ingresá la contraseña secreta"
-      (keyup.enter)="verifyPassword(inputPass)"
     >
-    <button title="Ingresar" type="button" (click)="verifyPassword(inputPass)">Entrar</button>
-  </div>
+    <button title="Ingresar" aria-label="Ingresar contraseña" type="submit">
+      Entrar
+    </button>
+  </form>
 
-  <footer class="error-container">
+  <footer class="error-container" aria-live="assertive" role="alert">
     @if (state.showEmptyWarning) {
       <p class="error-text">¡Ey! No ingresaste ninguna contraseña. 😾</p>
     } @else if (state.showAttemptError) {

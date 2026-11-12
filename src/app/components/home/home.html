@@ -1,7 +1,7 @@
 <app-top-nav></app-top-nav>
 <main class="main-content">
-  <section class="gallery-section">
-    <h2 class="section-title">Elegí qué escuchar 🎧</h2>
+  <section class="gallery-section" aria-labelledby="gallery-title">
+    <h2  id="gallery-title" class="section-title">Elegí qué escuchar 🎧</h2>
     <div class="horizontal-scroll">
       @for (track of tracks; track $index) {
         <button class="gallery-item card" 
@@ -26,8 +26,8 @@
     </div>
   </section>
 
-  <section class="letter-section">
-    <h2 class="section-title">
+  <section class="letter-section" aria-labelledby="welcome-title">
+    <h2 id="welcome-title" class="section-title">
       Bienvenida al... MEJOR REGALO DEL MUNDO
       <span class="title-note" aria-label="(deah que tiraba)">
         (deah que <b>ti<s class="strike">a</s>ra</b>ba)
@@ -57,12 +57,12 @@
     </p>
   </section>
 
-  <section class="categories-section"> 
-    <h2 class="section-title">¡Elegí tu próximo destino!</h2>
+  <section class="categories-section" aria-labelledby="destinations-title"> 
+    <h2 id="destinations-title" class="section-title">¡Elegí tu próximo destino!</h2>
     <ul class="category-list">
       @for (destination of destinations; track destination.id) {
         <li>
-          <a (click)="handleDestinationClick(destination)">
+          <a (click)="handleDestinationClick(destination)" role="button" tabindex="0">
             <img [src]="destination.icon" [alt]="destination.id" class="dest-icon" loading="lazy">
             <span>{{ destination.title }}</span>
           </a>
@@ -71,10 +71,10 @@
     </ul>
   </section>
   
-  <dialog #secretDialog class="secret-dialog card">
+  <dialog #secretDialog class="secret-dialog card" [attr.aria-labelledby]="!showSecretInput() ? 'modal-restricted-title' : 'modal-input-title'">
     @if (!showSecretInput()) {
       <div class="modal-icon" id="secret-icon">🔒</div>
-      <h3 class="section-title">Acceso Restringido</h3>
+      <h3 id="modal-restricted-title" class="section-title">Acceso Restringido</h3>
       <p>Para desbloquear esta sección, vas a tener que encontrar la contraseña oculta en los otros destinos...</p>
       
       <div class="modal-actions">
@@ -90,7 +90,7 @@
              decoding="async">
       </div>
 
-      <h3 class="section-title">Ingresá la clave</h3>
+      <h3 id="modal-input-title" class="section-title">Ingresá la clave</h3>
       <p>Si ya exploraste todo, decime cuál es la palabra secreta:</p>
       
       <div class="modal-input-group" [class.shake]="secretError()">
@@ -103,7 +103,7 @@
       </div>
 
       @if (secretError()) {
-        <p> (┬┬﹏┬┬) MAL!!</p>
+        <p aria-live="assertive" role="alert"> (┬┬﹏┬┬) MAL!!</p>
       }
 
       <div class="modal-actions">

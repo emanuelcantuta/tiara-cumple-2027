@@ -3,45 +3,48 @@
 
   @if (!showMinigame) {
     <header class="section-header">
-      <h1 class="main-title">El Multiverso de Tiara</h1>
+      <h1 class="main-title" id="multiverse-title">El Multiverso de Tiara</h1>
       <p class="subtitle">Personajes que tienen un pedacito de tu esencia (o de tu caos) ✨</p>
     </header>
 
     @if (hasWonMinigame) {
-      <div class="secret-clue-card victory-clue-box">
+      <div class="secret-clue-card victory-clue-box" aria-live="polite" aria-labelledby="victory-title">
         <div class="secret-clue-content">
-          <h3 class="secret-clue-title">¡Sistema Desencriptado! 🔓</h3>
+          <h3 id="victory-title" class="secret-clue-title">¡Sistema Desencriptado! 🔓</h3>
           <p class="secret-clue-text">Completaste la prueba de identidad. Una pieza de la contraseña ha sido revelada:</p>
-          <strong class="secret-clue-badge">{{ clueWord }}</strong>
+          <strong class="secret-clue-badge" aria-label="La palabra clave es: {{ clueWord }}">{{ clueWord }}</strong>
         </div>
       </div>
     }
 
-    <section class="characters-grid">
+    <section class="characters-grid" aria-labelledby="multiverse-title">
       @for (character of charactersList; track character.id) {
-        <article class="character-card">
+        <article class="character-card" [attr.aria-labelledby]="'char-name-' + character.id">
           <div class="card-image-wrapper">
             <img 
               [src]="character.image" 
-              [alt]="character.name" 
-              [attr.loading]="$index <= 2 ? 'eager' : 'lazy'">
+              [alt]="'Retrato de ' + character.name"
+              [attr.loading]="$index <= 2 ? 'eager' : 'lazy'"
+              decoding="async"
+              >
           </div>
           
           <div class="card-info">
             <div class="card-header">
-              <h2>{{ character.name }}</h2>
+              <h2 [id]="'char-name-' + character.id">{{ character.name }}</h2>
               <span class="origin">{{ character.origin }}</span>
             </div>
             
             <div class="stat-badge">
-              <span>{{ character.stat }}</span>
+              <span aria-hidden="true">{{ character.stat }}</span>
+              <span class="visually-hidden">Dato destacado: {{ character.stat }}</span>
             </div>
             
             <p class="description">{{ character.description }}</p>
 
             @if (character.hasSecretLink) {
               <div class="secret-container">
-                <button class="secret-trigger" (click)="launchSecretMinigame()">
+                <button class="secret-trigger" aria-label="Iniciar Prueba de Identidad secreta" (click)="launchSecretMinigame()">
                   [Iniciar Prueba de Identidad]
                 </button>
               </div>

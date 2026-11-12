@@ -1,45 +1,51 @@
 @if (isSystemLoading) {
-  <section class="loading-screen">
+  <section class="loading-screen" role="alert" aria-busy="true" aria-live="assertive">
     <h2>Iniciando sistema secreto... 👾</h2>
-    <p>Cargando archivos encriptados. Por favor espere<span class="dots">...</span></p>
+    <p>Cargando archivos encriptados. Por favor espere<span class="dots" aria-hidden="true">...</span></p>
   </section>
 } @else {
-  <section class="game-container">
+  <section class="game-container" aria-label="Minijuego Pusheen-tados">
     <header class="game-header">
-      <div class="lives-container">
+      <div class="lives-container" aria-label="Vidas restantes">
         @for (i of [1, 2, 3]; track $index) {
-          <span class="heart" [class.lost]="lives < i">❤️</span>
+          <span class="heart" [class.lost]="lives < i" aria-hidden="true">❤️</span>
         }
+        <span class="visually-hidden">Tienes {{ lives }} vidas restantes.</span>
       </div>
-      <div class="category-title">
+      <div class="category-title" area-hidden="true">
         Pusheen-tados
       </div>
-      <div class="score-container">
+      <div class="score-container" aria-label="Puntuación actual">
         <span class="score-text">{{ score }}/{{ questionsList.length }}</span>
       </div>
     </header>
 
     @if (!currentQuestion) {
-      <main class="game-board">
+      <main class="game-board" aria-label="Tablero de ruleta">
         <div class="roulette-wrapper">
-          <div class="roulette-pointer"></div>
+          <div class="roulette-pointer" aria-hidden="true"></div>
           
           <div class="roulette-wheel" 
                [style.transform]="'rotate(' + currentRotation + 'deg)'"
-               [style.background]="rouletteGradient">
+               [style.background]="rouletteGradient"
+               aria-hidden="true">
           </div>
 
-          <button class="spin-btn" (click)="spinRoulette()" [disabled]="isSpinning || isGameOver">
+          <button class="spin-btn" 
+           (click)="spinRoulette()" 
+           [disabled]="isSpinning || isGameOver"
+           [attr.aria-busy]="isSpinning"
+           >
             GIRAR
           </button>
         </div>
       </main>
     } @else {
-      <main class="question-board">
+      <main class="question-board" aria-live="polite">
         <div class="question-card">
           
-          <div class="timer-wrapper">
-            <div class="timer-bar-bg">
+          <div class="timer-wrapper" aria-label="Tiempo restante" [attr.aria-live]="timeLeft <= 3 ? 'assertive' : 'off'">
+            <div class="timer-bar-bg" aria-hidden="true">
               <div class="timer-bar-fill" 
                    [style.width.%]="(timeLeft / 15) * 100"
                    [class.danger]="timeLeft <= 3">
@@ -49,9 +55,9 @@
           </div>
 
           <span class="q-category">{{ currentQuestion.category }}</span>
-          <h3 class="q-text">{{ currentQuestion.text }}</h3>
+          <h3 class="q-text" id="question-text">{{ currentQuestion.text }}</h3>
           
-          <div class="options-grid">
+          <div class="options-grid" role="group" aria-labelledby="question-text">
             @for (option of currentQuestion.options; track $index) {
               
               @if (!hiddenOptions.includes(option)) {
@@ -59,6 +65,7 @@
                         [disabled]="selectedAnswer !== null || answerResult === AnswerStatus.Timeout"
                         [class.correct]="selectedAnswer === option && option === currentQuestion.correctAnswer"
                         [class.incorrect]="selectedAnswer === option && option !== currentQuestion.correctAnswer"
+                        [attr.aria-pressed]="selectedAnswer === option"
                         (click)="checkAnswer(option)">
                   {{ option }}
                 </button>
@@ -67,7 +74,8 @@
           </div>
 
           @if (answerResult) {
-            <div class="result-message" 
+            <div class="result-message"
+                 role="alert"
                  [class.success]="answerResult === AnswerStatus.Correct" 
                  [class.error]="answerResult === AnswerStatus.Incorrect || answerResult === AnswerStatus.Timeout">
               
@@ -95,11 +103,11 @@
 }
 
 @if (isGameOver) {
-  <div class="game-over-overlay">
+  <div class="game-over-overlay" role="alertdialog" aria-modal="true" aria-labelledby="game-over-title">
     <div class="game-over-modal">
-      <h2>¡GAME OVER! 💔</h2>
+      <h2 id="game-over-title">¡GAME OVER! 💔</h2>
       <p>Te quedaste sin intentos... el sistema de seguridad te está expulsando de la zona restringida.</p>
-      <img src="assets/images/pusheen/emotions/sad/pusheen-watching-rainy.gif" alt="Pusheen triste">
+      <img src="assets/images/pusheen/emotions/sad/pusheen-watching-rainy.gif" alt="Pusheen triste mirando la lluvia" fetchpriority="high">
     </div>
   </div>
 }

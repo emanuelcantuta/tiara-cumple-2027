@@ -23,7 +23,7 @@
     <p>Información de los demás miembros omitida intencionalmente por falta de espacio en tu corazón (ahre).</p>
   </div>
 
-  <section class="biases-section">
+  <section class="biases-section" aria-label="Integrantes Destacados">
     @for (bias of biases; track bias.id) {
       <article class="bias-bento" [style.--theme-color]="bias.themeColor">
         <div class="bento-box image-box">
@@ -80,6 +80,9 @@
                 <img [src]="photo" 
                      [alt]="'Polaroid de ' + bias.name" 
                      (click)="selectedPhoto = photo"
+                     (keydown.enter)="selectedPhoto = photo"
+                     role="button"
+                     tabindex="0"
                      [attr.loading]="$index <= 2 ? 'eager' : 'lazy'" 
                      decoding="async"
                      class="clickable-photo">
@@ -101,9 +104,9 @@
     }
   </section>
   
-  <section>
+  <section aria-labelledby="video-final-title">
     <div class="vip-divider">
-      <h2>Para cerrar con broche de oro✨</h2>
+      <h2 id="video-final-title">Para cerrar con broche de oro✨</h2>
       <p>
         No podiamos irnos del sector VIP sin apreciar el arte de ACAI. Espero que te haya gustado la sección Cortis.<br> 
         <span class="muted-tip">(Tip: Pausá la música de arriba si querés activarle el audio al video o noxd)</span>
@@ -125,8 +128,8 @@
 </main>
 
 @if (selectedPhoto) {
-  <div class="photo-modal">
-    <button class="close-modal" (click)="selectedPhoto = null">✕</button>
+  <div class="photo-modal" role="dialog" aria-modal="true" aria-label="Visor de Fotos ampliada">
+    <button class="close-modal" (click)="selectedPhoto = null" aria-label="Cerrar visor de foto">✕</button>
     <img [src]="selectedPhoto" alt="Foto ampliada">
   </div>
 }
