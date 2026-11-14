@@ -241,7 +241,7 @@ export class Minijuego implements OnInit, OnDestroy {
     }, 2000); 
   }
 
-  evaluateGameStatus() {
+  evaluateGameStatus(): void {
     if (this.lives <= 0) {
       this.isGameOver = true;
       this.currentQuestion = null;
@@ -250,7 +250,6 @@ export class Minijuego implements OnInit, OnDestroy {
       this.addTimeout(() => {
         this.gameLost.emit();
       }, 4000);
-      
     } else if (this.wonQuestionsIds().length === this.questionsList.length) {
       this.gameWon.emit(); 
     } else {
@@ -258,24 +257,11 @@ export class Minijuego implements OnInit, OnDestroy {
     }
   }
 
-  resetTurn() {
+  resetTurn(): void {
     this.currentQuestion = null;
     this.selectedAnswer = null;
     this.answerResult = null;
     this.hiddenOptions = [];
-    
-    if (this.lives <= 0) {
-      this.isGameOver = true;
-      this.cdr.detectChanges();
-      
-      this.addTimeout(() => {
-        this.gameLost.emit();
-      }, 4000);
-      return;
-    }
-    
-    if (this.wonQuestionsIds().length === this.questionsList.length) this.gameWon.emit();
-    
     this.cdr.detectChanges();
   }
 
