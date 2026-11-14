@@ -108,12 +108,12 @@ export class Home {
   showSecretInput = signal<boolean>(false);
   secretError = signal<boolean>(false);
 
-  destinations: Destination[] = [
+  destinations = signal<Destination[]>([
     { id: DestinationId.CORTIS, title: 'Cortis (porque sé que los amás)', icon: 'assets/images/icon/destinations/cortis.gif', isLocked: false },
     { id: DestinationId.PERSONAJES, title: 'Personajes que me recuerdan a vos', icon: 'assets/images/icon/destinations/personajes.gif', isLocked: false },
     { id: DestinationId.PUSHEEN, title: 'Mensajes pusheen', icon: 'assets/images/icon/destinations/pusheen.gif', isLocked: false },
     { id: DestinationId.SECRETO, title: 'Regalo sorpresa', icon: 'assets/images/icon/destinations/secreto.gif', isLocked: true }
-  ];
+  ]);
 
 
   handleDestinationClick(destination: Destination): void {
@@ -140,8 +140,9 @@ export class Home {
     const pass = inputElement.value.trim().toLowerCase().replace(/\s+/g, '');
     
     if (pass === FULL_SECRET_PASSWORD) {
-      const secretDest = this.destinations.find(d => d.id === DestinationId.SECRETO);
-      if (secretDest) secretDest.isLocked = false;
+      this.destinations.update(dests =>
+        dests.map(d => d.id === DestinationId.SECRETO ? { ...d, isLocked: false } : d)
+      );
 
       unlockSecret();
       this.closeModal();

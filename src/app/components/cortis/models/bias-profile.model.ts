@@ -1,4 +1,4 @@
-import { ProfileStat } from './ProfileStat';
+import { ProfileStat } from './profile-stat.model';
 
 export interface BiasProfile {
   id: string;

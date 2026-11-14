@@ -197,12 +197,12 @@ export class Minijuego implements OnInit, OnDestroy {
   playSoundCorrect() { 
     const audio = new Audio('assets/audio/ui/correct-answer.wav');
     audio.volume = 0.5;
-    audio.play();
+    audio.play().catch(err => console.warn('SFX bloqueado:', err));
   }
 
   playSoundError() {
     const audio = new Audio('assets/audio/ui/incorrect-answer.wav');
-    audio.play();
+    audio.play().catch(err => console.warn('SFX bloqueado:', err));
   }
 
   handleTimeout() {

@@ -3,7 +3,7 @@ import { Component, ElementRef, effect, inject, viewChild } from '@angular/core'
 import { TopNav } from '@components/top-nav/top-nav';
 import { Audio } from '@services/audio';
 import { SECRET_CLUES } from '@models/secret-clues';
-import { BiasProfile } from './models/BiasProfile';
+import { BiasProfile } from './models/bias-profile.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
