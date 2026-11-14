@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, effect, inject, viewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, effect, inject, viewChild } from '@angular/core';
 import { TopNav } from '@components/top-nav/top-nav';
 import { Audio } from '@services/audio';
 import { SECRET_CLUES } from '@models/secret-clues';
 import { BiasProfile } from './models/bias-profile.model';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   imports: [CommonModule, TopNav],
@@ -146,6 +145,17 @@ export class Cortis {
   onIframeLoad(): void {
     if (!this.audio.isPlaying()) {
       this.sendYoutubeCommand('unMute');
+    }
+  }
+
+  closeModal(): void {
+    this.selectedPhoto = null;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.selectedPhoto) {
+      this.closeModal();
     }
   }
 }

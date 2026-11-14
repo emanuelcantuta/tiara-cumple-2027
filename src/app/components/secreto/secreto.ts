@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 import { Audio } from '@services/audio';
 import { TopNav } from '@components/top-nav/top-nav';
 
@@ -12,6 +14,7 @@ import { TopNav } from '@components/top-nav/top-nav';
 })
 export class Secreto {
   protected audio = inject(Audio);
+  private http = inject(HttpClient);
   videoUrl: string = 'assets/video/regalo.mp4';
   videoPoster: string = 'assets/images/kpop/cortis/cortis-group.webp'; // cambiar
 
@@ -46,17 +49,13 @@ export class Secreto {
     this.sendError.set(false);
 
     try {
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      await firstValueFrom(
+        this.http.post('/api/send', {
           rating: this.rating(),
           favoritePart: this.favoritePart(),
           message: this.message.trim()
         })
-      });
-
-      if (!response.ok) throw new Error('Error al enviar');
+      );
 
       this.isSent.set(true);
       this.message = '';

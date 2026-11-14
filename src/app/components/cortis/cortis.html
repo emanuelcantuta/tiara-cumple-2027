@@ -128,8 +128,8 @@
 </main>
 
 @if (selectedPhoto) {
-  <div class="photo-modal" role="dialog" aria-modal="true" aria-label="Visor de Fotos ampliada">
-    <button class="close-modal" (click)="selectedPhoto = null" aria-label="Cerrar visor de foto">✕</button>
-    <img [src]="selectedPhoto" alt="Foto ampliada">
+  <div class="photo-modal" role="dialog" aria-modal="true" aria-label="Visor de Fotos ampliada" (click)="closeModal()">
+    <button class="close-modal" (click)="closeModal()" aria-label="Cerrar visor de foto">✕</button>
+    <img [src]="selectedPhoto" alt="Foto ampliada" (click)="$event.stopPropagation()">
   </div>
 }
