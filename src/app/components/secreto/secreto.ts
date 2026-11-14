@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { Audio } from '@services/audio';
+import { AudioService } from '@services/audio.service';
 import { TopNav } from '@components/top-nav/top-nav';
 
 @Component({
@@ -13,7 +13,7 @@ import { TopNav } from '@components/top-nav/top-nav';
   templateUrl: './secreto.html',
 })
 export class Secreto {
-  protected audio = inject(Audio);
+  protected audio = inject(AudioService);
   private http = inject(HttpClient);
   videoUrl: string = 'assets/video/regalo.mp4';
   videoPoster: string = 'assets/images/kpop/cortis/cortis-group.webp'; // cambiar

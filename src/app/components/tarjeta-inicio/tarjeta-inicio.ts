@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '@services/auth';
-import { Audio as AudioService } from '@services/audio';
+import { AudioService } from '@services/audio.service';
+import { SoundEffectsService } from '@services/sound-effects.service';
 import { LoginState } from './models/login-state';
 import { LOGIN_CONFIG } from './models/login.config';
 
@@ -18,6 +19,7 @@ export class TarjetaInicio {
   private cdr = inject(ChangeDetectorRef);
   private auth = inject(Auth);
   private audio = inject(AudioService);
+  private soundEffects = inject(SoundEffectsService);
 
   state: LoginState = {
     attempts: 0,
@@ -100,8 +102,6 @@ export class TarjetaInicio {
   }
 
   playErrorSound(): void {
-    const audio = new Audio('assets/audio/ui/error.wav'); 
-    audio.volume = 0.5;
-    audio.play().catch(err => console.warn('Reproducción de audio bloqueada:', err)); 
+    this.soundEffects.playLoginError();
   }
 }

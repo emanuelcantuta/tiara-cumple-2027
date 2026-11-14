@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, EventEmitter, inject, OnDestroy, OnInit, Output, signal, computed } from '@angular/core';
+import { SoundEffectsService } from '@services/sound-effects.service';
 import { Question } from './models/question';
 import { AnswerStatus } from './models/answer-status';
 
@@ -14,6 +15,7 @@ export class Minijuego implements OnInit, OnDestroy {
   @Output() gameLost = new EventEmitter<void>();
 
   private cdr = inject(ChangeDetectorRef);
+  private soundEffects = inject(SoundEffectsService);
   AnswerStatus = AnswerStatus;
 
   isSystemLoading: boolean = true;
@@ -195,14 +197,11 @@ export class Minijuego implements OnInit, OnDestroy {
   }
 
   playSoundCorrect() { 
-    const audio = new Audio('assets/audio/ui/correct-answer.wav');
-    audio.volume = 0.5;
-    audio.play().catch(err => console.warn('SFX bloqueado:', err));
+    this.soundEffects.playCorrect();
   }
 
   playSoundError() {
-    const audio = new Audio('assets/audio/ui/incorrect-answer.wav');
-    audio.play().catch(err => console.warn('SFX bloqueado:', err));
+    this.soundEffects.playIncorrect();
   }
 
   handleTimeout() {

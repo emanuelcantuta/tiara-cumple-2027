@@ -1,6 +1,6 @@
 import { Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Audio } from '@services/audio';
+import { AudioService } from '@services/audio.service';
 import { TopNav } from '@components/top-nav/top-nav';
 import { unlockSecret } from '@guards/secret';
 import { Artist } from '@models/artist';
@@ -16,7 +16,7 @@ import { Destination, DestinationId } from './models/destination';
   templateUrl: './home.html',
 })
 export class Home {
-  private audio = inject(Audio);
+  private audio = inject(AudioService);
   private router = inject(Router);
 
   private buildAudioSource(basePath: string): SongSource {

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
-import { Audio } from '@services/audio';
+import { AudioService } from '@services/audio.service';
 import { TopNav } from '@components/top-nav/top-nav';
 import { PusheenMessage } from './models/pusheen-message';
 
@@ -11,7 +11,7 @@ import { PusheenMessage } from './models/pusheen-message';
   templateUrl: './mensajes-pusheen.html',
 })
 export class MensajesPusheen {
-  protected audio = inject(Audio);
+  protected audio = inject(AudioService);
   openedIds = signal<Set<number>>(new Set());
   videoUrl: string = 'assets/video/pista-final.mp4';
 

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, effect, inject, viewChild } from '@angular/core';
 import { TopNav } from '@components/top-nav/top-nav';
-import { Audio } from '@services/audio';
+import { AudioService } from '@services/audio.service';
 import { SECRET_CLUES } from '@models/secret-clues';
 import { BiasProfile } from './models/bias-profile.model';
 
@@ -12,7 +12,7 @@ import { BiasProfile } from './models/bias-profile.model';
   templateUrl: './cortis.html',
 })
 export class Cortis {
-  private audio = inject(Audio);
+  private audio = inject(AudioService);
   youtubePlayer = viewChild<ElementRef<HTMLIFrameElement>>('youtubePlayer');
   selectedPhoto: string | null = null;
   clueWord: string = SECRET_CLUES[0];

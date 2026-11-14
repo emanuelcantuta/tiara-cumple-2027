@@ -2,7 +2,7 @@ import { Service, signal, Signal } from '@angular/core';
 import { SongSource } from '@models/song-source';
 
 @Service()
-export class Audio {
+export class AudioService {
     private readonly defaultUrl = 'assets/audio/music/cortis/cortis-joyride';
 
     currentSong = signal<SongSource>({

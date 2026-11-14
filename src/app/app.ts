@@ -1,6 +1,6 @@
 import { Component, inject, effect, ViewChild, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Audio } from '@services/audio';
+import { AudioService } from '@services/audio.service';
 
 @Component({
   imports: [RouterOutlet],
@@ -9,7 +9,7 @@ import { Audio } from '@services/audio';
   templateUrl: './app.html',
 })
 export class App {
-  audio = inject(Audio);
+  audio = inject(AudioService);
 
   @ViewChild('audioPlayer') audioPlayer!: ElementRef<HTMLAudioElement>;
 

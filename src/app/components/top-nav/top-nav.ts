@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { Auth } from '@services/auth';
-import { Audio } from '@services/audio';
+import { AudioService } from '@services/audio.service';
 
 @Component({
   imports: [CommonModule],
@@ -15,7 +15,7 @@ import { Audio } from '@services/audio';
 export class TopNav {
   private auth = inject(Auth);
   private router = inject(Router);
-  private audio = inject(Audio);
+  private audio = inject(AudioService);
   
   isPlaying = this.audio.isPlaying;
   isHomePage = signal(this.router.url === '/regalo');
