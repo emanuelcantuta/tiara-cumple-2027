@@ -1,4 +1,5 @@
-import { Component, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, inject, signal, viewChild, Renderer2, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AudioService } from '@services/audio.service';
 import { TopNav } from '@components/top-nav/top-nav';
@@ -15,7 +16,9 @@ import { Destination, DestinationId } from './models/destination';
   styleUrl: './home.css',
   templateUrl: './home.html',
 })
-export class Home {
+export class Home implements AfterViewInit {
+  private document = inject(DOCUMENT);
+  private renderer = inject(Renderer2);
   private audio = inject(AudioService);
   private router = inject(Router);
 
@@ -115,6 +118,21 @@ export class Home {
     { id: DestinationId.SECRETO, title: 'Regalo sorpresa', icon: 'assets/images/icon/destinations/secreto.gif', isLocked: true }
   ]);
 
+  ngAfterViewInit(): void {
+    this.loadTikTokEmbed();
+  }
+
+  private loadTikTokEmbed(): void {
+    const existingScript = this.document.querySelector('script[src*="tiktok.com/embed.js"]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = this.renderer.createElement('script');
+    script.src = 'https://www.tiktok.com/embed.js';
+    script.async = true;
+    this.renderer.appendChild(this.document.body, script);
+  }
 
   handleDestinationClick(destination: Destination): void {
     if (destination.isLocked) {
