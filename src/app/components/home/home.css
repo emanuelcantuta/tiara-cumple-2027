@@ -93,11 +93,16 @@
   overflow: hidden;
 }
 
-.tiktok-badge {
+.tiktok-presentation header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-style: italic;
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: bold;
   color: var(--primary-color);
-  letter-spacing: 0.3px;
+  padding: 0 var(--space-md);
 }
 
 /* =========================================
