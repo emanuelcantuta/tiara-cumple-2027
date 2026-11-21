@@ -27,20 +27,23 @@ La aplicación está construida sobre **Angular 22** bajo un modelo estricto de 
 ![Diagrama de Arquitectura](docs/architecture.svg)
 
 ### Shell Principal y Continuidad de Audio
-El componente raíz `App` actúa como shell estructural: aloja de forma permanente el reproductor de audio global y el punto de montaje de rutas (`<router-outlet>`). Al mantener el reproductor en la raíz, la música continúa sonando sin interrupciones durante las transiciones entre páginas. La barra superior `TopNav` actúa como interfaz de control global, sincronizándose bidireccionalmente con el reproductor y adaptando las acciones de retorno (`Volver` vs `Salir`) según la ruta activa.
+El componente raíz `App` actúa como shell estructural: aloja de forma permanente el reproductor de audio global y el punto de montaje de rutas (`<router-outlet>`). La gestión y control del elemento de audio está completamente centralizada en `AudioService`, eliminando cualquier manipulación directa del DOM desde los componentes y exponiendo señales reactivas (`isPlaying`, `currentSong`). Al mantener el reproductor en la raíz, la música continúa sonando sin interrupciones durante las transiciones entre páginas. La barra superior `TopNav` actúa como interfaz de control global, sincronizándose con el estado reactivo del servicio y adaptando las acciones de retorno (`Volver` vs `Salir`) según la ruta activa.
 
-### Enrutamiento y Seguridad (`authGuard`)
-El enrutador divide la aplicación en dos dominios:
-* **Área pública:** Rutas de acceso (`/` con `TarjetaInicio`) y pantalla de bloqueo preventivo (`/impostor`).
-* **Zona protegida (`/regalo`):** Agrupa como rutas hijas el panel central (`Home`) y las distintas subsecciones temáticas. El acceso está protegido por `authGuard`, un guardia funcional (`CanActivateFn`) que verifica la sesión activa en el servicio de autenticación antes de permitir la navegación a cualquier vista protegida.
+### Enrutamiento, Carga Diferida y Seguridad (`authGuard` y `secretGuard`)
+El enrutador organiza la aplicación en áreas funcionales y optimiza el bundle inicial mediante carga diferida (*Lazy Loading* con `loadComponent` y dynamic imports) en todos los destinos secundarios:
+* **Área pública:** Rutas de acceso inicial (`/` con `TarjetaInicio`) y pantalla de bloqueo preventivo (`/impostor`).
+* **Zona protegida (`/regalo`):** Agrupa como rutas hijas el panel central (`Home`) y las distintas subsecciones temáticas. El acceso al conjunto está custodiado por `authGuard`, un guardia funcional (`CanActivateFn`) que verifica la sesión activa en el servicio de autenticación antes de permitir la navegación.
+* **Protección del Destino Secreto (`secretGuard`):** La ruta final (`/regalo/secreto`) cuenta con una capa de seguridad adicional mediante `secretGuard`, impidiendo el acceso directo por URL o manipulación del historial hasta que la combinación de pistas haya sido validada satisfactoriamente en el hub central.
 
-### Gestión de Estado con Angular Signals
-La reactividad global se gestiona mediante señales (`signal`) centralizadas en servicios inyectables:
-* **`AudioService`:** Mantiene el estado reactivo de la canción activa y provee la API para alternar fuentes de audio o suspender la música de fondo.
+### Gestión de Estado y Servicios Reactivos
+La reactividad se gestiona mediante señales (`signal`) y cálculos derivados (`computed`):
+* **`AudioService`:** Centraliza la reproducción global de la banda sonora, el control del elemento de audio, la señal reactiva `isPlaying` y el cambio dinámico de pistas.
+* **`SoundEffectsService`:** Servicio singleton (`providedIn: 'root'`) que precarga y gestiona en memoria el ciclo de vida de los efectos sonoros de la interfaz (SFX de éxito, error y alertas de login), previniendo rechazos de promesas de audio (`.catch()`) y optimizando la latencia sonora.
 * **`AuthService`:** Controla el estado de autenticación y su persistencia en el almacenamiento local (`localStorage`).
+* **Señales Computadas (`computed`):** Utilizadas en componentes de alto dinamismo para derivar estados complejos (como el degradado cónico de la ruleta y las preguntas disponibles en el minijuego) de manera reactiva y memoizada, evitando evaluaciones redundantes en los ciclos de detección de cambios.
 
 ### Flujo hacia el Backend Serverless
-La interacción con servicios externos se realiza de manera asíncrona desde la sección final. El formulario de dedicatoria despacha una petición `POST` hacia `/api/send`, ejecutada por una función *serverless* en Node.js que procesa la respuesta y utiliza la API de **Resend** para notificarla directamente por correo electrónico, manteniendo las claves de servidor totalmente aisladas del cliente.
+La interacción con servicios externos se realiza de manera asíncrona desde la sección final. El formulario de dedicatoria despacha una petición `POST` mediante `HttpClient` (configurado globalmente vía `provideHttpClient()`) y `firstValueFrom` hacia `/api/send`, ejecutada por una función *serverless* en Node.js que procesa la respuesta y utiliza la API de **Resend** para notificarla directamente por correo electrónico, manteniendo las claves de servidor totalmente aisladas del cliente.
 
 ---
 
@@ -59,12 +62,12 @@ La experiencia está diseñada como una progresión no lineal que premia la curi
 ```
 
 1. **Acceso Inicial (`TarjetaInicio`):** Verificación de identidad. Si se superan los intentos máximos permitidos, el sistema activa una redirección preventiva a una pantalla de bloqueo (`Impostor`). Con la clave correcta, se inicia la sesión y comienza la ambientación musical.
-2. **Hub Central (`Home`):** Panel interactivo donde la usuaria puede cambiar la banda sonora en tiempo real y explorar los destinos abiertos. El destino final ("Regalo Sorpresa") permanece protegido con un candado virtual.
+2. **Hub Central (`Home`):** Panel interactivo donde la usuaria puede cambiar la banda sonora en tiempo real y explorar los destinos abiertos mediante botones semánticos nativos. El destino final ("Regalo Sorpresa") permanece protegido con un candado virtual.
 3. **Exploración y Recolección de Pistas:**
    - **Destino Editorial:** Espacio temático con formato de revista visual donde, al interactuar con las galerías, se revela la primera pista conceptual.
    - **Destino Desafío:** Galería visual que esconde un disparador hacia un minijuego de preguntas. Superar la prueba de conocimiento otorga la segunda pista conceptual.
-   - **Destino Mensajes:** Buzón con sobres interactivos. Abrir todos los mensajes desbloquea la tercera pista conceptual.
-4. **Desbloqueo del Destino Secreto:** La usuaria introduce la combinación de las pistas en el modal interactivo de `Home`. El sistema normaliza el texto (eliminando espacios y tolerando variaciones habituales al escribir) y, si coincide con la clave de desbloqueo, habilita el acceso a la sección final.
+   - **Destino Mensajes:** Buzón con sobres interactivos evaluados de forma reactiva en $O(1)$. Abrir todos los mensajes desbloquea la tercera pista conceptual.
+4. **Desbloqueo del Destino Secreto:** La usuaria introduce la combinación de las pistas en el modal interactivo de `Home`. El sistema normaliza el texto (eliminando espacios y tolerando variaciones habituales al escribir) y, si coincide con la clave de desbloqueo, habilita el acceso a la sección final custodiada por `secretGuard`.
 5. **Experiencia Final y Feedback:** En la zona secreta se accede a la carta principal, material audiovisual especial y un formulario interactivo para enviar su reacción por correo electrónico.
 
 ---
@@ -88,27 +91,43 @@ tiara-cumple2027/
 ├── src/
 │   ├── app/
 │   │   ├── components/                   # Componentes de interfaz (Standalone)
-│   │   │   ├── cortis/                   # Vista editorial, bento grid y visor de fotos
+│   │   │   ├── cortis/                   # Vista editorial, bento grid y visor modal accesible
+│   │   │   │   └── models/               # Modelos tipados (bias-profile.model.ts, profile-stat.model.ts)
 │   │   │   ├── home/                     # Hub central, selector musical y modal de clave
+│   │   │   │   └── models/               # Modelos de destinos y pistas musicales (destination.ts, track.ts)
 │   │   │   ├── impostor/                 # Pantalla de bloqueo por intentos agotados
-│   │   │   ├── mensajes-pusheen/         # Buzón interactivo con sobres animados
-│   │   │   ├── minijuego/                # Trivia interactiva, ruleta, vidas y temporizador
+│   │   │   ├── mensajes-pusheen/         # Buzón interactivo con sobres animados y evaluación O(1)
+│   │   │   │   └── models/               # Modelo de mensajes (pusheen-message.ts)
+│   │   │   ├── minijuego/                # Trivia interactiva, ruleta trigonométrica y vidas
+│   │   │   │   ├── data/                 # Banco estático de preguntas (questions.data.ts)
+│   │   │   │   ├── models/               # Tipos de pregunta y respuesta (question.ts, answer-status.ts)
+│   │   │   │   └── utils/                # Funciones puras matemáticas (roulette.utils.ts)
 │   │   │   ├── personajes/               # Grilla de personajes y trigger del minijuego
-│   │   │   ├── secreto/                  # Vista final: carta, video y formulario
-│   │   │   ├── tarjeta-inicio/           # Login inicial, validación y feedback visual
-│   │   │   └── top-nav/                  # Barra superior de navegación y control de audio
-│   │   ├── guards/
-│   │   │   └── auth.ts                   # Guard funcional de protección de rutas (authGuard)
+│   │   │   │   └── models/               # Modelo de personajes (character.ts)
+│   │   │   ├── secreto/                  # Vista final: carta, video y formulario con HttpClient
+│   │   │   ├── tarjeta-inicio/           # Login inicial, validación reactiva y feedback visual
+│   │   │   │   └── models/               # Estados y configuración de inicio (login-state.ts, login.config.ts)
+│   │   │   └── top-nav/                  # Barra superior de navegación y control reactivo de audio
+│   │   ├── guards/                       # Guards funcionales CanActivateFn
+│   │   │   ├── auth.ts                   # Protección de sesión activa (authGuard)
+│   │   │   └── secret.ts                 # Protección de destino sorpresa (secretGuard)
 │   │   ├── models/                       # Interfaces, tipos y constantes globales
-│   │   ├── services/                     # Servicios singleton (AudioService, AuthService)
-│   │   ├── app.config.ts                 # Configuración de proveedores y View Transitions
-│   │   ├── app.routes.ts                 # Definición del árbol de rutas y protecciones
+│   │   │   ├── artist.ts
+│   │   │   ├── secret-clues.ts
+│   │   │   └── song-source.ts
+│   │   ├── services/                     # Servicios singleton inyectables
+│   │   │   ├── audio.service.ts          # Control global del reproductor y estado isPlaying
+│   │   │   ├── auth.ts                   # Gestión de sesión y persistencia local
+│   │   │   └── sound-effects.service.ts  # Caché y reproducción de efectos sonoros (SFX)
+│   │   ├── app.config.ts                 # Configuración de proveedores (HttpClient, View Transitions)
+│   │   ├── app.routes.ts                 # Árbol de rutas con Lazy Loading y guards
 │   │   ├── app.ts                        # Componente Shell raíz
-│   │   └── app.html                      # Template raíz con el reproductor de audio global
+│   │   ├── app.html                      # Template raíz con el reproductor de audio global
+│   │   └── app.css                       # Estilos estructurales del shell
 │   ├── main.ts                           # Bootstraping de la aplicación
 │   └── styles.css                        # Variables CSS, resets, tipografías y animaciones
 ├── angular.json                          # Configuración de compilación y presupuestos
-└── tsconfig.json                         # Configuración de TypeScript y Path Aliasing
+└── tsconfig.json                         # Configuración de TypeScript (strict: true) y Path Aliasing
 ```
 
 ---
@@ -116,8 +135,12 @@ tiara-cumple2027/
 ## ⚙️ Decisiones Arquitectónicas
 
 * **Angular Standalone Components:** Prescinde de módulos tradicionales para simplificar la estructura del proyecto, optimizar el empaquetado (*tree-shaking*) con Vite/esbuild y garantizar que cada componente declare explícitamente sus dependencias.
-* **Angular Signals (`signal`, `effect`):** Proporciona reactividad granular y síncrona para estados de interfaz (audio actual, sesión activa, estados de formularios) sin la sobrecarga de suscripciones manuales.
-* **Guard Funcional (`authGuard`):** Implementación moderna basada en `CanActivateFn` e inyección de dependencias funcional (`inject()`), simplificando la protección jerárquica de rutas en una sola línea declarativa.
+* **TypeScript en Modo Estricto (`strict: true`):** Tipado riguroso configurado a nivel de compilador (`tsconfig.json`), previniendo accesos inseguros a propiedades nulas o indefinidas (`strictNullChecks`), eliminando tipos `any` implícitos y asegurando predictibilidad en todo el ciclo de desarrollo.
+* **Rutas con Carga Diferida (*Lazy Loading*):** Configuración de rutas mediante `loadComponent` y dynamic imports (`import()`), posibilitando la división de código (*Code Splitting*) para descargar cada subsección únicamente cuando el usuario navega a ella, minimizando el bundle inicial de la aplicación.
+* **Guards Funcionales (`authGuard` y `secretGuard`):** Implementación moderna basada en `CanActivateFn` e inyección de dependencias funcional (`inject()`), simplificando la protección jerárquica de rutas públicas, protegidas y del destino secreto en expresiones declarativas de una sola línea.
+* **Angular Signals y Cálculos Derivados (`signal`, `computed`):** Reactividad síncrona y granular para estados de interfaz. El uso de `computed()` garantiza que cálculos complejos (como el degradado cónico de la ruleta o la indexación de mensajes abiertos) se memoicen y recalculen únicamente ante cambios reales en sus dependencias.
+* **Cliente HTTP Angular (`provideHttpClient`):** Empleo de `HttpClient` inyectable y operadores reactivos (`firstValueFrom`) para la comunicación con endpoints de backend, garantizando tipado estricto y desacoplamiento de APIs del navegador.
+* **Arquitectura Desacoplada en Minijuego:** Separación modular en capas que aísla el banco de datos de preguntas (`questions.data.ts`), utilidades trigonométricas puras (`roulette.utils.ts`) y la orquestación del estado, permitiendo evaluar la lógica matemática de forma independiente al ciclo de renderizado.
 * **Path Aliasing (`tsconfig.json`):** Mapeo de alias semánticos (`@components/*`, `@services/*`, `@models/*`, `@guards/*`, `@environments/*`) para evitar rutas relativas frágiles (`../../`) y simplificar la mantenibilidad.
 * **Vercel Serverless Functions (`api/`):** Aísla la lógica que maneja secretos (como la clave privada de email) fuera del paquete del cliente, ejecutándose bajo demanda sin el coste de mantenimiento de un backend tradicional.
 * **Resend API:** Plataforma de entrega transaccional para el despacho de correos estructurados con alta confiabilidad y latencia mínima.
@@ -127,9 +150,10 @@ tiara-cumple2027/
 
 ## 🎯 Características Técnicas Destacadas
 
-* **Coordinación de Medios Cruzada (*Cross-Media Sync*):** El servicio de audio no solo gestiona la lista musical, sino que coordina la pausa y reanudación automática cuando entran en reproducción videos locales o embebidos de plataformas externas.
-* **Ruleta de Trivia con Dinámica Trigonométrica:** El minijuego genera su disco visual mediante gradientes cónicos CSS (`conic-gradient`) calculados en tiempo real según las preguntas disponibles, combinándolo con cálculo de rotación angular acumulativa y control de tiempo por intervalos.
-* **Modales Nativos Accesibles:** Implementación de ventanas emergentes utilizando el elemento nativo `<dialog>`, garantizando accesibilidad y control de foco estándar.
+* **Coordinación de Medios Cruzada (*Cross-Media Sync*):** `AudioService` encapsula el elemento de audio HTML y coordina la pausa y reanudación automática cuando entran en reproducción videos locales o embebidos de plataformas externas, sincronizando reactivamente la señal `isPlaying`.
+* **Caché y Gestión de Efectos de Sonido (SFX):** `SoundEffectsService` precarga en memoria los activos sonoros de interfaz y maneja de manera segura las promesas de reproducción del navegador (`.catch()`), previniendo excepciones no controladas por políticas de interacción del usuario.
+* **Ruleta de Trivia con Dinámica Trigonométrica:** El minijuego genera su disco visual mediante gradientes cónicos CSS (`conic-gradient`) calculados con funciones puras según las preguntas disponibles, combinándolo con cálculo de rotación angular acumulativa y control de tiempo por intervalos.
+* **Accesibilidad y Semántica Web Nativa:** Uso de elementos HTML nativos (`<button type="button">` para navegación interactiva), atributos ARIA contextuales (`aria-live`, `aria-busy`, `aria-pressed`), y soporte para cierre de modales y visores fotográficos mediante la tecla `Escape` y clics en el backdrop con contención de eventos (`stopPropagation`).
 * **Optimización de Carga Visual:** Priorización intencional de recursos críticos (*above-the-fold*) con atributos de prioridad de carga (`fetchpriority="high"`, `loading="eager"`), mientras que las galerías secundarias y animaciones implementan carga diferida (`loading="lazy"` y `decoding="async"`).
 * **Validación Flexible de Contraseñas:** Algoritmo de normalización de cadenas de texto que elimina espacios, normaliza mayúsculas/minúsculas y compara valores centralizados, tolerando variaciones habituales al escribir en dispositivos móviles.
 
@@ -138,24 +162,27 @@ tiara-cumple2027/
 ## 🚀 Estado del Proyecto y Fases de Desarrollo
 
 ### Fase 1: Arquitectura, Rendimiento y Seguridad (Completada)
-* [x] Configuración de rutas protegidas y transiciones de vista nativas (`View Transitions API`).
+* [x] Configuración de rutas con carga diferida (*Lazy Loading*), transiciones de vista nativas (`View Transitions API`) y guards funcionales (`authGuard`, `secretGuard`).
+* [x] TypeScript configurado en modo estricto (`"strict": true`) sin tipos `any` implícitos ni accesos inseguros.
 * [x] Arquitectura limpia con Path Aliasing (`@components`, `@services`, `@models`, `@guards`).
-* [x] Control de acceso mediante `authGuard` y servicio de autenticación reactivo con Signals.
+* [x] Servicios singleton reactivos (`AudioService`, `AuthService`, `SoundEffectsService`) y cliente `HttpClient` modular.
 * [x] Optimización de rendimiento multimedia (`loading="lazy"`, `fetchpriority`, `decoding="async"`, `preload="metadata"`).
+* [x] Accesibilidad web nativa (botones semánticos, cierre de modales por teclado con `Escape`, roles ARIA).
 * [x] Metadatos Open Graph, Twitter Cards y set completo de Favicons (`apple-touch-icon`, `webmanifest`).
 
 ### Fase 2: Componentes e Interacción Global (Completada)
 * [x] Selector musical con scroll horizontal y colores dinámicos inyectados desde el modelo de datos.
-* [x] Motor de audio global continuo conectado a Signals y sincronizado con la barra de navegación (`TopNav`).
-* [x] Menú de navegación gamificado con estados de bloqueo reactivos.
-* [x] Modal de acceso al escape room con validación normalizada y animaciones de feedback visual.
+* [x] Motor de audio global continuo encapsulado en `AudioService`, con señal reactiva `isPlaying` y sincronizado con `TopNav`.
+* [x] Menú de navegación gamificado con botones semánticos nativos y estados de bloqueo reactivos.
+* [x] Modal de acceso al escape room con validación normalizada, reinicio de animaciones CSS mediante `animationend` y feedback visual.
+* [x] Tarjeta de presentación dinámica integrada con perfil embebido de TikTok. (provisional/en revisión)
 
 ### Fase 3: Destinos y Experiencia Interactiva (Completada)
-* [x] **Zona Editorial:** Maquetación *Bento Grid*, visor de fotos a pantalla completa, carrusel con *Scroll Snapping* y pista conceptual camuflada en la galería.
-* [x] **Zona Coleccionable & Minijuego:** Grilla de tarjetas dinámicas con acceso oculto a la trivia interactiva (ruleta trigonométrica en CSS, temporizador, vidas y comodín 50/50).
-* [x] **Buzón Interactivo:** Cuadrícula de sobres interactivos con contador de progreso y revelación progresiva de mensajes.
-* [x] **Destino Secreto:** Vista final desbloqueable con carta conmemorativa, reproductor de video especial y pie de página de despedida.
-* [x] **Buzón de Respuesta Directa:** Formulario de valoración interactivo conectado al endpoint serverless de Resend.
+* [x] **Zona Editorial:** Maquetación *Bento Grid*, visor de fotos a pantalla completa con cierre por tecla `Escape` y backdrop, carrusel con *Scroll Snapping* y pista conceptual camuflada en la galería.
+* [x] **Zona Coleccionable & Minijuego:** Grilla de tarjetas dinámicas con acceso oculto a la trivia interactiva (arquitectura desacoplada con utilidades trigonométricas puras, ruleta en CSS memoizada con `computed()`, temporizador, vidas y comodín 50/50).
+* [x] **Buzón Interactivo:** Cuadrícula de sobres interactivos con evaluación $O(1)$ mediante `Set<number>` reactivo y revelación progresiva de mensajes.
+* [x] **Destino Secreto:** Vista final desbloqueable protegida por `secretGuard`, con carta conmemorativa, reproductor de video especial y pie de página de despedida.
+* [x] **Buzón de Respuesta Directa:** Formulario de valoración interactivo conectado al endpoint serverless de Resend mediante `HttpClient`.
 
 ---
 
@@ -171,7 +198,7 @@ A diferencia del núcleo técnico, el contenido narrativo continúa en refinamie
 
 ## 🛠️ Tecnologías Utilizadas
 
-* **Frontend:** Angular 22 (Standalone Components, Signals, Router, Control Flow nativo), TypeScript, HTML5 semántico.
+* **Frontend:** Angular 22 (Standalone Components, Signals & `computed()`, Router con Lazy Loading, `HttpClient`, Control Flow nativo), TypeScript (Strict Mode), HTML5 semántico accesible.
 * **Estilos:** CSS3 nativo (Variables CSS, Bento Layout, Flexbox, CSS Grid, Scroll Snapping, Glassmorphism, `@keyframes`), fuentes variables (`Fredoka`, `Quicksand`).
 * **Backend Serverless:** Vercel Serverless Functions (Node.js) + **Resend SDK**.
 * **Infraestructura & Despliegue:** Vercel (CI/CD continuo).
