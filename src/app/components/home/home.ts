@@ -125,7 +125,7 @@ export class Home implements AfterViewInit {
   private loadTikTokEmbed(): void {
     const existingScript = this.document.querySelector('script[src*="tiktok.com/embed.js"]');
     if (existingScript) {
-      existingScript.remove();
+      return;
     }
 
     const script = this.renderer.createElement('script');
