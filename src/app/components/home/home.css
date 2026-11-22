@@ -74,6 +74,7 @@
 .tiktok-presentation {
   width: 100%;
   max-width: 780px;
+  min-height: 285px;
   margin: 0 auto;
   padding: 0.75rem;
   border-radius: 22px;
@@ -91,6 +92,21 @@
   align-items: center;
   gap: 0.5rem;
   overflow: hidden;
+}
+
+@media (max-width: 520px) {
+  .tiktok-presentation {
+    min-height: 262px;
+  }
+}
+
+.tiktok-presentation blockquote:not(:has(iframe))::before {
+  content: 'Cargando perfil...';
+  display: block;
+  padding: 4.5rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(136, 97, 159, 0.75);
 }
 
 .tiktok-presentation header {

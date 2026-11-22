@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, inject, signal, viewChild, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, inject, signal, viewChild, Renderer2, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AudioService } from '@services/audio.service';
 import { TopNav } from '@components/top-nav/top-nav';
@@ -16,11 +16,14 @@ import { Destination, DestinationId } from './models/destination';
   styleUrl: './home.css',
   templateUrl: './home.html',
 })
-export class Home implements AfterViewInit {
+export class Home implements AfterViewInit, OnDestroy {
   private document = inject(DOCUMENT);
   private renderer = inject(Renderer2);
   private audio = inject(AudioService);
   private router = inject(Router);
+
+  tiktokEmbed = viewChild<ElementRef<HTMLElement>>('tiktokEmbed');
+  private tiktokTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
   private buildAudioSource(basePath: string): SongSource {
     return {
@@ -122,9 +125,29 @@ export class Home implements AfterViewInit {
     this.loadTikTokEmbed();
   }
 
+  ngOnDestroy(): void {
+    if (this.tiktokTimeoutId) {
+      clearTimeout(this.tiktokTimeoutId);
+    }
+  }
+
   private loadTikTokEmbed(): void {
-    const existingScript = this.document.querySelector('script[src*="tiktok.com/embed.js"]');
+    const win = this.document.defaultView as (Window & {
+      tiktokEmbed?: {
+        lib?: {
+          render?: (elements?: HTMLElement[]) => void;
+        };
+      };
+    }) | null;
+
+    const existingScript = this.document.querySelector<HTMLScriptElement>('script[src*="tiktok.com/embed.js"]');
+
     if (existingScript) {
+      if (win?.tiktokEmbed?.lib?.render) {
+        this.renderTikTokEmbed();
+      } else {
+        existingScript.addEventListener('load', () => this.renderTikTokEmbed(), { once: true });
+      }
       return;
     }
 
@@ -132,6 +155,29 @@ export class Home implements AfterViewInit {
     script.src = 'https://www.tiktok.com/embed.js';
     script.async = true;
     this.renderer.appendChild(this.document.body, script);
+  }
+
+  private renderTikTokEmbed(): void {
+    if (this.tiktokTimeoutId) {
+      clearTimeout(this.tiktokTimeoutId);
+    }
+
+    this.tiktokTimeoutId = setTimeout(() => {
+      const win = this.document.defaultView as (Window & {
+        tiktokEmbed?: {
+          lib?: {
+            render?: (elements?: HTMLElement[]) => void;
+          };
+        };
+      }) | null;
+
+      if (win?.tiktokEmbed?.lib?.render) {
+        const el = this.tiktokEmbed()?.nativeElement ?? this.document.querySelector<HTMLElement>('blockquote.tiktok-embed');
+        if (el && !el.querySelector('iframe')) {
+          win.tiktokEmbed.lib.render([el]);
+        }
+      }
+    }, 50);
   }
 
   handleDestinationClick(destination: Destination): void {
